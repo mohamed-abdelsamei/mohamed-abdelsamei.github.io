@@ -93,6 +93,30 @@ h1 {
   color: var(--muted);
 }
 
+.hero {
+  text-align: center;
+  gap: 1.5rem;
+}
+
+.cta {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn {
+  border: 1px solid var(--accent);
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  color: var(--accent);
+}
+
+.btn:hover {
+  background: var(--accent);
+  color: var(--bg);
+}
+
 h2 {
   color: var(--accent);
   margin: 0;
