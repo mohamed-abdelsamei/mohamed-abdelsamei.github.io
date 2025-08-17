@@ -1,95 +1,88 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mohamed Abdelsamei | Backend Engineer</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Mohamed Abdelsamei — Software Engineer (Backend, Serverless, AWS)</title>
+<meta name="description" content="Personal site of Mohamed Abdelsamei — Senior Software Engineer specializing in backend systems, AWS serverless, and SSI.">
+<meta property="og:title" content="Mohamed Abdelsamei — Software Engineer (Backend, Serverless, AWS)">
+<meta property="og:description" content="Personal site of Mohamed Abdelsamei — Senior Software Engineer specializing in backend systems, AWS serverless, and SSI.">
+<meta property="og:site_name" content="Mohamed Abdelsamei">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' fill='%2300c896'/%3E%3Ctext x='2' y='12' font-size='10' fill='%230b0f14'%3EMA%3C/text%3E%3C/svg%3E">
 </head>
 <body>
-  <header class="terminal">
-    <div class="terminal-bar">
-      <span class="prompt">mabdelsamei@home:~$</span><span class="cursor"></span>
-      <button id="theme-toggle" aria-label="Toggle theme"></button>
-    </div>
-  </header>
-  <main>
-    <section id="hero" class="hero">
-      <h1>Building privacy-first backend systems with AWS &amp; SSI</h1>
-      <p>Backend engineer shaping digital trust with serverless architecture and decentralized identity.</p>
-      <div class="cta">
-        <a href="resume.pdf" class="btn">View Resume</a>
-        <a href="#contact" class="btn">Contact Me</a>
-        <a href="https://www.linkedin.com/in/mohamed-abdelsamei/" target="_blank" rel="noopener noreferrer" class="btn">LinkedIn</a>
-      </div>
+<div class="window">
+  <div class="bar">
+    <span class="dot red"></span>
+    <span class="dot yellow"></span>
+    <span class="dot green"></span>
+  </div>
+  <div id="output" aria-live="polite"></div>
+  <div class="input">
+    <span class="prompt">$</span>
+    <input id="cli" aria-label="Command line" autocomplete="off" autofocus />
+  </div>
+</div>
+<footer>© 2025 Mohamed Abdelsamei — <code>echo "Stay curious, stay private."</code></footer>
+<script>
+const output=document.getElementById('output');
+const input=document.getElementById('cli');
+const history=[];
+let historyIndex=0;
 
-    </section>
+function print(text){
+  if(Array.isArray(text)){text.forEach(print);return;}
+  const div=document.createElement('div');
+  div.className='line';
+  div.innerHTML=text;
+  output.appendChild(div);
+  output.scrollTop=output.scrollHeight;
+}
 
-    <section id="about">
-      <h2>// about</h2>
-      <p>
-        Backend engineer with 7+ years of experience building scalable cloud-native systems on AWS.
-        I specialize in serverless architecture, data privacy, and decentralized identity using
-        Verifiable Credentials and DIDs. Currently shaping digital trust at Affinidi with
-        OID4VP-based login systems.
+const commands={
+  help(){print('Available commands:');['help','clear','whoami','focus','about','skills','cat skills/backend','cat skills/cloud_infra','cat skills/identity_privacy','cat skills/tools','contact'].forEach(c=>print('  '+c));},
+  clear(){output.innerHTML='';},
+  whoami(){print('Mohamed Abdelsamei — Senior Software Engineer');},
+  focus(){print('Backend · Serverless · AWS Certified · SSI');},
+  about(){['Backend engineer with 7+ years designing and scaling cloud-native systems.','I work with AWS serverless and modern stacks (Node.js, TypeScript, Rust, Dart).','Currently building privacy-first digital identity with SSI, Verifiable Credentials, and DIDs.'].forEach(print);},
+  skills(){['backend          → Node.js, TypeScript, Rust, Dart','cloud_infra      → AWS (Lambda, API Gateway, DynamoDB), Serverless, Terraform, AWS CDK','identity_privacy → Verifiable Credentials, OID4VP, DIDs','tools            → Docker, CI/CD, Git, Monorepos','Try: cat skills/<category>'].forEach(print);},
+  'cat skills/backend'(){['skills/backend','  • Node.js — REST/GraphQL APIs, performance tuning','  • TypeScript — type-safe services, monorepos','  • Rust — high-performance utilities, CLI tools','  • Dart — tooling and side services'].forEach(print);},
+  'cat skills/cloud_infra'(){['skills/cloud_infra','  • AWS Lambda, API Gateway, DynamoDB — serverless systems','  • Infrastructure as Code — Terraform & AWS CDK','  • Observability — logs/metrics, cost awareness'].forEach(print);},
+  'cat skills/identity_privacy'(){['skills/identity_privacy','  • Verifiable Credentials (VCs)','  • OID4VP — verifiable presentations','  • DIDs — decentralized identifiers'].forEach(print);},
+  'cat skills/tools'(){['skills/tools','  • Docker, CI/CD, Git','  • Monorepo workflows','  • Testing & automation'].forEach(print);},
+  contact(){print('Email → <a href="mailto:mohamed@mabdelsamei.com">mohamed@mabdelsamei.com</a> · LinkedIn → <a href="https://www.linkedin.com/in/mohamed-abdelsamei" target="_blank" rel="noopener">linkedin.com/in/mohamed-abdelsamei</a> · GitHub → <a href="https://github.com/mabdelsamei" target="_blank" rel="noopener">github.com/mabdelsamei</a>');}
+};
 
-      </p>
-    </section>
+function run(cmd){
+  const line=document.createElement('div');
+  line.className='line';
+  line.innerHTML='<span class="prompt">$</span> '+cmd;
+  output.appendChild(line);
+  const action=commands[cmd];
+  if(action){action();}
+  else if(cmd.trim()){print('command not found: '+cmd);}
+  output.scrollTop=output.scrollHeight;
+}
 
-    <section id="skills">
-      <h2>// skills</h2>
-      <ul class="skill-list">
-        <li><strong>Backend:</strong> Node.js, TypeScript, Rust, Dart</li>
-        <li><strong>Cloud:</strong> AWS, Lambda, DynamoDB, CDK, Terraform, Serverless</li>
-        <li><strong>Privacy &amp; Identity:</strong> SSI, Verifiable Credentials, OID4VP, DIDs</li>
-        <li><strong>Other:</strong> CI/CD, Docker, Microservices, Monorepos</li>
+input.addEventListener('keydown',e=>{
+  if(e.key==='Enter'){
+    const cmd=input.value.trim();
+    history.push(cmd);
+    historyIndex=history.length;
+    run(cmd);
+    input.value='';
+  }else if(e.key==='ArrowUp'){
+    if(historyIndex>0){historyIndex--;input.value=history[historyIndex];input.setSelectionRange(input.value.length,input.value.length);}e.preventDefault();
+  }else if(e.key==='ArrowDown'){
+    if(historyIndex<history.length-1){historyIndex++;input.value=history[historyIndex];}else{historyIndex=history.length;input.value='';}input.setSelectionRange(input.value.length,input.value.length);e.preventDefault();
+  }
+});
 
-      </ul>
-    </section>
-
-    <section id="projects">
-      <h2>// projects</h2>
-      <ul class="project-list">
-        <li><strong>Affinidi Login</strong> – Privacy-first login using OID4VP + VCs.</li>
-        <li><strong>Serverless Migration</strong> – Led transition from Kubernetes to AWS Lambda.</li>
-        <li><strong>Identity Verification Flow</strong> – Built user-centric verification using DIDs.</li>
-
-      </ul>
-    </section>
-
-    <section id="blog">
-      <h2>// blog</h2>
-      <p>Posts coming soon.</p>
-    </section>
-
-    <section id="contact">
-      <h2>// contact</h2>
-      <p><a href="mailto:mabdelsamei@outlook.com">mabdelsamei@outlook.com</a></p>
-      <div class="social">
-        <a href="https://github.com/mohamed-abdelsamei" target="_blank" rel="noopener noreferrer">github</a>
-        <a href="https://www.linkedin.com/in/mohamed-abdelsamei/" target="_blank" rel="noopener noreferrer">linkedin</a>
-
-      </div>
-    </section>
-  </main>
-  <footer>
-    <p>© 2024 Mohamed Abdelsamei</p>
-  </footer>
-  <script>
-    const toggle = document.getElementById('theme-toggle');
-    const root = document.documentElement;
-    const stored = localStorage.getItem('theme') || 'dark';
-    root.dataset.theme = stored;
-    toggle.textContent = stored === 'dark' ? '☀️' : '🌙';
-    toggle.addEventListener('click', () => {
-      const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
-      root.dataset.theme = next;
-      localStorage.setItem('theme', next);
-      toggle.textContent = next === 'dark' ? '☀️' : '🌙';
-    });
-  </script>
+print('Type "help" for a list of commands.');
+</script>
 </body>
 </html>
