@@ -1,0 +1,164 @@
+:root {
+  --bg: #0d1117;
+  --text: #e5e9f0;
+  --accent: #00ff9c;
+  --muted: #7d8590;
+}
+
+[data-theme="light"] {
+  --bg: #ffffff;
+  --text: #1a1a1a;
+  --accent: #0070f3;
+  --muted: #666666;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'JetBrains Mono', monospace;
+  line-height: 1.6;
+  font-size: 18px;
+}
+
+main {
+  display: grid;
+  gap: 4rem;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+section {
+  display: grid;
+  gap: 1rem;
+}
+
+header.terminal {
+  background: #000;
+  padding: 1rem 2rem;
+  font-size: 0.9rem;
+}
+
+.terminal-bar {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.terminal-bar nav {
+  margin-left: auto;
+  display: flex;
+  gap: 1rem;
+}
+
+.prompt-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.prompt {
+  color: var(--accent);
+}
+
+.cursor {
+  display: inline-block;
+  width: 8px;
+  height: 1em;
+  background: var(--accent);
+  margin-left: 4px;
+  animation: blink 1s steps(2, start) infinite;
+}
+
+#theme-toggle {
+  background: none;
+  border: 1px solid var(--muted);
+  border-radius: 4px;
+  color: var(--text);
+  padding: 0.25rem 0.5rem;
+  cursor: pointer;
+}
+
+#theme-toggle:hover {
+  border-color: var(--accent);
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+h1 {
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 600;
+  margin: 0;
+}
+
+.subtitle {
+  font-size: 1.25rem;
+  color: var(--muted);
+}
+
+.hero {
+  text-align: center;
+  gap: 1.5rem;
+}
+
+.cta {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn {
+  border: 1px solid var(--accent);
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  color: var(--accent);
+}
+
+.btn:hover {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+h2 {
+  color: var(--accent);
+  margin: 0;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.skill-list,
+.project-list {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: 0.75rem;
+}
+
+#contact .social {
+  display: flex;
+  gap: 1rem;
+}
+
+footer {
+  text-align: center;
+  padding: 2rem;
+  color: var(--muted);
+}
+
