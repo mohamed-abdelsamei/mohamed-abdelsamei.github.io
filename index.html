@@ -33,7 +33,7 @@
       <p class="credentials">AWS Certified Solutions Architect – Associate</p>
       <p><a class="cta" href="mailto:mohamed@mabdelsamei.com">Email me</a></p>
     </div>
-    <div id="output" aria-live="polite"></div>
+    <div id="output" class="mono" aria-live="polite"></div>
     <div class="input">
       <span class="prompt mono">$</span>
       <input id="cli" class="mono" aria-label="Command line" autocomplete="off" autofocus />
@@ -49,11 +49,12 @@ let historyIndex=0;
 function print(text){
   if(Array.isArray(text)){text.forEach(print);return;}
   const div=document.createElement('div');
-  div.className='line mono';
+  div.className='line';
   div.innerHTML=text;
   output.appendChild(div);
   output.scrollTop=output.scrollHeight;
 }
+
 
 const commands={
   help(){print('Available commands:');['help','clear','whoami','focus','about','skills','cat skills/backend','cat skills/cloud_infra','cat skills/identity_privacy','cat skills/tools','contact'].forEach(c=>print('  '+c));},
@@ -71,9 +72,10 @@ const commands={
 
 function run(cmd){
   const line=document.createElement('div');
-  line.className='line mono';
-  line.innerHTML='<span class="prompt mono">$</span> '+cmd;
+  line.className='line';
+  line.innerHTML='<span class="prompt">$</span> '+cmd;
   output.appendChild(line);
+
   const action=commands[cmd];
   if(action){action();}
   else if(cmd.trim()){print('command not found: '+cmd);}
