@@ -20,31 +20,51 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' fill='%2300c896'/%3E%3Ctext x='2' y='12' font-size='10' fill='%230b0f14'%3EMA%3C/text%3E%3C/svg%3E">
 <meta name="theme-color" content="#0b0f14">
 </head>
-<body>
+<body class="recruiter">
 <div class="window">
-    <div class="bar">
-      <span class="dot red"></span>
-      <span class="dot yellow"></span>
-      <span class="dot green"></span>
+  <div class="bar">
+    <span class="dot red"></span>
+    <span class="dot yellow"></span>
+    <span class="dot green"></span>
+    <button id="modeToggle">CLI</button>
+  </div>
+  <div class="cli-only">
+    <h1>Mohamed Abdelsamei</h1>
+    <h2>Senior Software Engineer</h2>
+    <h3>Cairo, Egypt</h3>
+    <h3 class="credentials">AWS Certified Solutions Architect – Associate</h3>
+    <h3>Core technologies</h3>
+    <div id="skillsGrid">
+      <span>Node.js</span>
+      <span>TypeScript</span>
+      <span>AWS</span>
+      <span>Rust</span>
+      <span>Serverless</span>
+      <span>Terraform</span>
+      <span>Docker</span>
+      <span>CI/CD</span>
+
     </div>
-    <div class="cli-only">
-      <p><strong>Mohamed Abdelsamei</strong> — Senior Software Engineer</p>
-      <p>Cairo, Egypt</p>
-      <p class="credentials">AWS Certified Solutions Architect – Associate</p>
-      <p><a class="cta" href="mailto:mohamed@mabdelsamei.com">Email me</a></p>
-    </div>
-    <div id="output" class="mono" aria-live="polite"></div>
-    <div class="input">
-      <span class="prompt mono">$</span>
-      <input id="cli" class="mono" aria-label="Command line" autocomplete="off" autofocus />
-    </div>
+    <p><a class="cta" href="mailto:mohamed@mabdelsamei.com">Email me</a></p>
+  </div>
+  <div id="output" aria-live="polite"></div>
+  <div class="input">
+    <span class="prompt mono">$</span>
+    <input id="cli" class="mono" aria-label="Command line" autocomplete="off" autofocus>
+  </div>
 </div>
 <footer>© 2025 Mohamed Abdelsamei — <code>echo "Stay curious, stay private."</code></footer>
 <script>
 const output=document.getElementById('output');
 const input=document.getElementById('cli');
+const modeToggle=document.getElementById('modeToggle');
 const history=[];
 let historyIndex=0;
+
+function scrollToBottom(){
+  const atBottom=output.scrollTop+output.clientHeight>=output.scrollHeight-5;
+  if(atBottom)output.scrollTop=output.scrollHeight;
+}
 
 function print(text){
   if(Array.isArray(text)){text.forEach(print);return;}
@@ -52,12 +72,23 @@ function print(text){
   div.className='line';
   div.innerHTML=text;
   output.appendChild(div);
-  output.scrollTop=output.scrollHeight;
+  scrollToBottom();
+}
+
+function printCommand(cmd){
+  const div=document.createElement('div');
+  div.className='line mono command';
+  div.tabIndex=0;
+  div.textContent=cmd;
+  div.addEventListener('click',()=>run(cmd));
+  div.addEventListener('keydown',e=>{if(e.key==='Enter')run(cmd);});
+  output.appendChild(div);
+  scrollToBottom();
 }
 
 
 const commands={
-  help(){print('Available commands:');['help','clear','whoami','focus','about','skills','cat skills/backend','cat skills/cloud_infra','cat skills/identity_privacy','cat skills/tools','contact'].forEach(c=>print('  '+c));},
+  help(){print('Available commands:');['help','clear','whoami','focus','about','skills','cat skills/backend','cat skills/cloud_infra','cat skills/identity_privacy','cat skills/tools','contact'].forEach(printCommand);},
   clear(){output.innerHTML='';},
   whoami(){print('Mohamed Abdelsamei — Senior Software Engineer');},
   focus(){print('Backend · Serverless · AWS Certified · SSI');},
@@ -77,9 +108,8 @@ function run(cmd){
   output.appendChild(line);
 
   const action=commands[cmd];
-  if(action){action();}
-  else if(cmd.trim()){print('command not found: '+cmd);}
-  output.scrollTop=output.scrollHeight;
+  if(action){action();}else if(cmd.trim()){print('command not found: '+cmd);}
+  scrollToBottom();
 }
 
 input.addEventListener('keydown',e=>{
@@ -94,6 +124,11 @@ input.addEventListener('keydown',e=>{
   }else if(e.key==='ArrowDown'){
     if(historyIndex<history.length-1){historyIndex++;input.value=history[historyIndex];}else{historyIndex=history.length;input.value='';}input.setSelectionRange(input.value.length,input.value.length);e.preventDefault();
   }
+});
+
+modeToggle.addEventListener('click',()=>{
+  document.body.classList.toggle('recruiter');
+  modeToggle.textContent=document.body.classList.contains('recruiter')?'CLI':'Recruiter';
 });
 
 print('Type "help" for a list of commands.');
