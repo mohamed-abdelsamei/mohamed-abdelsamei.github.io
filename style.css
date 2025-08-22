@@ -140,6 +140,20 @@ a:focus {
   outline-offset: 2px;
 }
 
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: var(--space-sm);
+  background: var(--accent);
+  color: var(--bg);
+  padding: var(--space-xs) var(--space-sm);
+  z-index: 1000;
+}
+
+.skip-link:focus {
+  top: var(--space-sm);
+}
+
 .cta {
   display: inline-block;
   padding: var(--space-xs) var(--space-sm);
