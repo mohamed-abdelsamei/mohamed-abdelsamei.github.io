@@ -46,14 +46,15 @@ const input=document.getElementById('cli');
 const history=[];
 let historyIndex=0;
 
-  function print(text){
-    if(Array.isArray(text)){text.forEach(print);return;}
-    const div=document.createElement('div');
-    div.className='line';
-    div.innerHTML=text;
-    output.appendChild(div);
-    output.scrollTop=output.scrollHeight;
-  }
+function print(text){
+  if(Array.isArray(text)){text.forEach(print);return;}
+  const div=document.createElement('div');
+  div.className='line';
+  div.innerHTML=text;
+  output.appendChild(div);
+  output.scrollTop=output.scrollHeight;
+}
+
 
 const commands={
   help(){print('Available commands:');['help','clear','whoami','focus','about','skills','cat skills/backend','cat skills/cloud_infra','cat skills/identity_privacy','cat skills/tools','contact'].forEach(c=>print('  '+c));},
@@ -70,10 +71,11 @@ const commands={
 };
 
 function run(cmd){
-    const line=document.createElement('div');
-    line.className='line';
-    line.innerHTML='<span class="prompt">$</span> '+cmd;
-    output.appendChild(line);
+  const line=document.createElement('div');
+  line.className='line';
+  line.innerHTML='<span class="prompt">$</span> '+cmd;
+  output.appendChild(line);
+
   const action=commands[cmd];
   if(action){action();}
   else if(cmd.trim()){print('command not found: '+cmd);}
