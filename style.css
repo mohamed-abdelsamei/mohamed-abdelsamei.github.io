@@ -19,11 +19,15 @@ body {
   margin: 0;
   background: var(--bg);
   color: var(--text);
-  font-family: 'JetBrains Mono', monospace;
+  font-family: 'Inter', sans-serif;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.mono {
+  font-family: 'JetBrains Mono', monospace;
 }
 
 .window {
@@ -86,7 +90,7 @@ body {
   background: transparent;
   border: none;
   color: var(--text);
-  font: inherit;
+  font-size: inherit;
   outline: none;
 }
 
