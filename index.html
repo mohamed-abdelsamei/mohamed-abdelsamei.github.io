@@ -15,6 +15,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' fill='%2300c896'/%3E%3Ctext x='2' y='12' font-size='10' fill='%230b0f14'%3EMA%3C/text%3E%3C/svg%3E">
 <meta name="theme-color" content="#0b0f14">
@@ -32,10 +33,10 @@
       <p class="credentials">AWS Certified Solutions Architect – Associate</p>
       <p><a class="cta" href="mailto:mohamed@mabdelsamei.com">Email me</a></p>
     </div>
-    <div id="output" aria-live="polite"></div>
+    <div id="output" class="mono" aria-live="polite"></div>
     <div class="input">
-      <span class="prompt">$</span>
-      <input id="cli" aria-label="Command line" autocomplete="off" autofocus />
+      <span class="prompt mono">$</span>
+      <input id="cli" class="mono" aria-label="Command line" autocomplete="off" autofocus />
     </div>
 </div>
 <footer>© 2025 Mohamed Abdelsamei — <code>echo "Stay curious, stay private."</code></footer>
@@ -45,14 +46,14 @@ const input=document.getElementById('cli');
 const history=[];
 let historyIndex=0;
 
-function print(text){
-  if(Array.isArray(text)){text.forEach(print);return;}
-  const div=document.createElement('div');
-  div.className='line';
-  div.innerHTML=text;
-  output.appendChild(div);
-  output.scrollTop=output.scrollHeight;
-}
+  function print(text){
+    if(Array.isArray(text)){text.forEach(print);return;}
+    const div=document.createElement('div');
+    div.className='line';
+    div.innerHTML=text;
+    output.appendChild(div);
+    output.scrollTop=output.scrollHeight;
+  }
 
 const commands={
   help(){print('Available commands:');['help','clear','whoami','focus','about','skills','cat skills/backend','cat skills/cloud_infra','cat skills/identity_privacy','cat skills/tools','contact'].forEach(c=>print('  '+c));},
@@ -69,10 +70,10 @@ const commands={
 };
 
 function run(cmd){
-  const line=document.createElement('div');
-  line.className='line';
-  line.innerHTML='<span class="prompt">$</span> '+cmd;
-  output.appendChild(line);
+    const line=document.createElement('div');
+    line.className='line';
+    line.innerHTML='<span class="prompt">$</span> '+cmd;
+    output.appendChild(line);
   const action=commands[cmd];
   if(action){action();}
   else if(cmd.trim()){print('command not found: '+cmd);}

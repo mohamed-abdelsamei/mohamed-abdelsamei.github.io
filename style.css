@@ -4,6 +4,7 @@
   --text: #e5e7eb;
   --cyan: #7dd3fc;
   --accent: #00c896;
+  --magenta: #a855f7;
   --border: #1f2937;
 }
 
@@ -19,11 +20,15 @@ body {
   margin: 0;
   background: var(--bg);
   color: var(--text);
-  font-family: 'JetBrains Mono', monospace;
+    font-family: 'Inter', system-ui, sans-serif;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.mono {
+  font-family: 'JetBrains Mono', monospace;
 }
 
 .window {
@@ -86,7 +91,7 @@ body {
   background: transparent;
   border: none;
   color: var(--text);
-  font: inherit;
+  font-size: inherit;
   outline: none;
 }
 
@@ -113,25 +118,25 @@ button:focus {
   outline-offset: 2px;
 }
 
-.cta {
-  display: inline-block;
-  padding: 4px 8px;
-  margin-top: 8px;
-  background: var(--accent);
-  color: var(--bg);
-  border-radius: 4px;
-  text-decoration: none;
-}
+  .cta {
+    display: inline-block;
+    padding: 4px 8px;
+    margin-top: 8px;
+    background: linear-gradient(90deg, var(--accent), var(--cyan));
+    color: var(--bg);
+    border-radius: 4px;
+    text-decoration: none;
+  }
 
 .cta:hover {
   text-decoration: none;
   opacity: 0.9;
 }
 
-.cta:focus {
-  outline: 1px dashed var(--cyan);
-  outline-offset: 2px;
-}
+  .cta:focus {
+    outline: 1px dashed var(--magenta);
+    outline-offset: 2px;
+  }
 
 .credentials {
   font-size: 0.875rem;
