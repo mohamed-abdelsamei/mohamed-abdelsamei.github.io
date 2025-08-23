@@ -180,6 +180,14 @@ a:focus {
   outline-offset: 2px;
 }
 
+.social-links {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-md);
+  margin-top: var(--space-sm);
+  font-size: 0.9rem;
+}
+
 footer {
   margin-top: var(--space-lg);
   font-size: 0.875rem;
