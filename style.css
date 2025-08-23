@@ -76,7 +76,15 @@ body {
   color: var(--text);
 }
 
-.content h3.credentials {
+.content .location,
+.content .credentials {
+  margin: var(--space-sm) 0 0;
+  font-size: 1rem;
+  font-weight: normal;
+  color: var(--text);
+}
+
+.content .credentials {
   color: var(--text-muted);
 }
 
