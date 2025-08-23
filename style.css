@@ -69,13 +69,6 @@ body {
   margin: var(--space-sm) 0 0;
 }
 
-.content h3 {
-  margin: var(--space-sm) 0 0;
-  font-size: 1rem;
-  font-weight: normal;
-  color: var(--text);
-}
-
 .content .location,
 .content .credentials {
   margin: var(--space-sm) 0 0;
@@ -93,6 +86,17 @@ body {
   margin-bottom: var(--space-md);
   font-size: 0.9rem;
   color: var(--text-muted);
+}
+
+#skills {
+  margin-top: var(--space-md);
+}
+
+#skills h2 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: normal;
+  color: var(--text);
 }
 
 /* coloured dots in bar */
