@@ -1,0 +1,35 @@
+{
+    "@context": [
+      "https://www.w3.org/ns/did/v1"
+    ],
+    "assertionMethod": [
+      "did:webvh:QmfFAhZqt47XVNPFvHGWMeQeowiUbKL8K6zxqYiqgTn6iq:mabdelsamei.com#key-0"
+    ],
+    "authentication": [
+      "did:webvh:QmfFAhZqt47XVNPFvHGWMeQeowiUbKL8K6zxqYiqgTn6iq:mabdelsamei.com#key-0"
+    ],
+    "id": "did:webvh:QmfFAhZqt47XVNPFvHGWMeQeowiUbKL8K6zxqYiqgTn6iq:mabdelsamei.com",
+    "service": [
+      {
+        "id": "did:webvh:QmfFAhZqt47XVNPFvHGWMeQeowiUbKL8K6zxqYiqgTn6iq:mabdelsamei.com#service-0",
+        "serviceEndpoint": [
+          {
+            "accept": [
+              "didcomm/v2"
+            ],
+            "routingKeys": [],
+            "uri": "http://mediator.affinidi.com:/api"
+          }
+        ],
+        "type": "DIDCommMessaging"
+      }
+    ],
+    "verificationMethod": [
+      {
+        "controller": "did:webvh:QmfFAhZqt47XVNPFvHGWMeQeowiUbKL8K6zxqYiqgTn6iq:mabdelsamei.com",
+        "id": "did:webvh:QmfFAhZqt47XVNPFvHGWMeQeowiUbKL8K6zxqYiqgTn6iq:mabdelsamei.com#key-0",
+        "publicKeyMultibase": "z6Mkf1K46v2asvUezQKukVyyaRKvjnXSW96zPyrZCTejwFr7",
+        "type": "Multikey"
+      }
+    ]
+  }
