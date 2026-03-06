@@ -1,34 +1,34 @@
 {
+  "id": "did:webvh:QmfFLH1y9tjbZj4Fiv6doCJfHCc1MXX96zXA7thKUibmxC:mohamed-abdelsamei.github.io",
   "@context": [
     "https://www.w3.org/ns/did/v1",
     "https://w3id.org/security/multikey/v1"
   ],
-  "id": "did:webvh:QmQYD57XK6jU2Yj2ey3YbNL5wvDvShj1PaYQJsRcb8MX6E:mohamed-abdelsamei.github.io",
   "controller": [
-    "did:webvh:QmQYD57XK6jU2Yj2ey3YbNL5wvDvShj1PaYQJsRcb8MX6E:mohamed-abdelsamei.github.io"
+    "did:webvh:QmfFLH1y9tjbZj4Fiv6doCJfHCc1MXX96zXA7thKUibmxC:mohamed-abdelsamei.github.io"
   ],
   "verificationMethod": [
     {
-      "id": "did:webvh:QmQYD57XK6jU2Yj2ey3YbNL5wvDvShj1PaYQJsRcb8MX6E:mohamed-abdelsamei.github.io#key-0",
+      "id": "did:webvh:QmfFLH1y9tjbZj4Fiv6doCJfHCc1MXX96zXA7thKUibmxC:mohamed-abdelsamei.github.io#key-0",
+      "controller": "did:webvh:QmfFLH1y9tjbZj4Fiv6doCJfHCc1MXX96zXA7thKUibmxC:mohamed-abdelsamei.github.io",
       "type": "Multikey",
-      "controller": "did:webvh:QmQYD57XK6jU2Yj2ey3YbNL5wvDvShj1PaYQJsRcb8MX6E:mohamed-abdelsamei.github.io",
-      "publicKeyMultibase": "z6MkefuLMiRT55wRGBquWqj8TQHj7iSwLh273x76VksCUNXR"
+      "publicKeyMultibase": "z6MkgKXxkxxwLWUQKVznpQHWSieaDLYY5YT2AnNMXFsnkHdR"
     }
   ],
   "authentication": [
-    "did:webvh:QmQYD57XK6jU2Yj2ey3YbNL5wvDvShj1PaYQJsRcb8MX6E:mohamed-abdelsamei.github.io#key-0"
-  ],
-  "assertionMethod": [
-    "did:webvh:QmQYD57XK6jU2Yj2ey3YbNL5wvDvShj1PaYQJsRcb8MX6E:mohamed-abdelsamei.github.io#key-0"
-  ],
-  "keyAgreement": [
-    "did:webvh:QmQYD57XK6jU2Yj2ey3YbNL5wvDvShj1PaYQJsRcb8MX6E:mohamed-abdelsamei.github.io#key-0"
-  ],
-  "capabilityInvocation": [
-    "did:webvh:QmQYD57XK6jU2Yj2ey3YbNL5wvDvShj1PaYQJsRcb8MX6E:mohamed-abdelsamei.github.io#key-0"
+    "did:webvh:QmfFLH1y9tjbZj4Fiv6doCJfHCc1MXX96zXA7thKUibmxC:mohamed-abdelsamei.github.io#key-0"
   ],
   "capabilityDelegation": [
-    "did:webvh:QmQYD57XK6jU2Yj2ey3YbNL5wvDvShj1PaYQJsRcb8MX6E:mohamed-abdelsamei.github.io#key-0"
+    "did:webvh:QmfFLH1y9tjbZj4Fiv6doCJfHCc1MXX96zXA7thKUibmxC:mohamed-abdelsamei.github.io#key-0"
+  ],
+  "capabilityInvocation": [
+    "did:webvh:QmfFLH1y9tjbZj4Fiv6doCJfHCc1MXX96zXA7thKUibmxC:mohamed-abdelsamei.github.io#key-0"
+  ],
+  "keyAgreement": [
+    "did:webvh:QmfFLH1y9tjbZj4Fiv6doCJfHCc1MXX96zXA7thKUibmxC:mohamed-abdelsamei.github.io#key-0"
+  ],
+  "assertionMethod": [
+    "did:webvh:QmfFLH1y9tjbZj4Fiv6doCJfHCc1MXX96zXA7thKUibmxC:mohamed-abdelsamei.github.io#key-0"
   ],
   "service": [
     {
