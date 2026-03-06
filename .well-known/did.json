@@ -1,35 +1,59 @@
 {
-    "@context": [
-      "https://www.w3.org/ns/did/v1"
-    ],
-    "assertionMethod": [
-      "did:webvh:QmfFAhZqt47XVNPFvHGWMeQeowiUbKL8K6zxqYiqgTn6iq:mabdelsamei.com#key-0"
-    ],
-    "authentication": [
-      "did:webvh:QmfFAhZqt47XVNPFvHGWMeQeowiUbKL8K6zxqYiqgTn6iq:mabdelsamei.com#key-0"
-    ],
-    "id": "did:webvh:QmfFAhZqt47XVNPFvHGWMeQeowiUbKL8K6zxqYiqgTn6iq:mabdelsamei.com",
-    "service": [
-      {
-        "id": "did:webvh:QmfFAhZqt47XVNPFvHGWMeQeowiUbKL8K6zxqYiqgTn6iq:mabdelsamei.com#service-0",
-        "serviceEndpoint": [
-          {
-            "accept": [
-              "didcomm/v2"
-            ],
-            "routingKeys": [],
-            "uri": "http://mediator.affinidi.com:/api"
-          }
-        ],
-        "type": "DIDCommMessaging"
-      }
-    ],
-    "verificationMethod": [
-      {
-        "controller": "did:webvh:QmfFAhZqt47XVNPFvHGWMeQeowiUbKL8K6zxqYiqgTn6iq:mabdelsamei.com",
-        "id": "did:webvh:QmfFAhZqt47XVNPFvHGWMeQeowiUbKL8K6zxqYiqgTn6iq:mabdelsamei.com#key-0",
-        "publicKeyMultibase": "z6Mkf1K46v2asvUezQKukVyyaRKvjnXSW96zPyrZCTejwFr7",
-        "type": "Multikey"
-      }
-    ]
-  }
+  "@context": [
+    "https://www.w3.org/ns/did/v1",
+    "https://w3id.org/security/multikey/v1"
+  ],
+  "id": "did:webvh:QmbQjh2cjSp26Gx5smMaBNoKBCqe4KAekLpnpwy2jReL2e:mabdelsamei.com",
+  "controller": "did:webvh:QmbQjh2cjSp26Gx5smMaBNoKBCqe4KAekLpnpwy2jReL2e:mabdelsamei.com",
+  "verificationMethod": [
+    {
+      "id": "did:webvh:QmbQjh2cjSp26Gx5smMaBNoKBCqe4KAekLpnpwy2jReL2e:mabdelsamei.com#key-0",
+      "type": "Multikey",
+      "controller": "did:webvh:QmbQjh2cjSp26Gx5smMaBNoKBCqe4KAekLpnpwy2jReL2e:mabdelsamei.com",
+      "publicKeyMultibase": "z6MkqrYaqSm4nVDVFuBMQ4yb6c5Ygmi6VwauGfiX8vkAyNmh"
+    },
+    {
+      "id": "did:webvh:QmbQjh2cjSp26Gx5smMaBNoKBCqe4KAekLpnpwy2jReL2e:mabdelsamei.com#key-1",
+      "type": "Multikey",
+      "controller": "did:webvh:QmbQjh2cjSp26Gx5smMaBNoKBCqe4KAekLpnpwy2jReL2e:mabdelsamei.com",
+      "publicKeyMultibase": "zDnaenP7bQP2a6F4CrRo4dC4rBZLY84sgDcwiY4KmX273WwUj"
+    },
+    {
+      "id": "did:webvh:QmbQjh2cjSp26Gx5smMaBNoKBCqe4KAekLpnpwy2jReL2e:mabdelsamei.com#key-2",
+      "type": "Multikey",
+      "controller": "did:webvh:QmbQjh2cjSp26Gx5smMaBNoKBCqe4KAekLpnpwy2jReL2e:mabdelsamei.com",
+      "publicKeyMultibase": "zDnaeTqn9yuxQfHi7zF8kE3i2wu3aCNgCBFFvPZyvAuU78QBy"
+    },
+    {
+      "id": "did:webvh:QmbQjh2cjSp26Gx5smMaBNoKBCqe4KAekLpnpwy2jReL2e:mabdelsamei.com#key-3",
+      "type": "Multikey",
+      "controller": "did:webvh:QmbQjh2cjSp26Gx5smMaBNoKBCqe4KAekLpnpwy2jReL2e:mabdelsamei.com",
+      "publicKeyMultibase": "z6MktDABeq5hyrGS57ehzDgnBRpoYCk7zbZN9u8cCSqJ7py5"
+    }
+  ],
+  "authentication": [
+    "did:webvh:QmbQjh2cjSp26Gx5smMaBNoKBCqe4KAekLpnpwy2jReL2e:mabdelsamei.com#key-0",
+    "did:webvh:QmbQjh2cjSp26Gx5smMaBNoKBCqe4KAekLpnpwy2jReL2e:mabdelsamei.com#key-1"
+  ],
+  "assertionMethod": [
+    "did:webvh:QmbQjh2cjSp26Gx5smMaBNoKBCqe4KAekLpnpwy2jReL2e:mabdelsamei.com#key-0",
+    "did:webvh:QmbQjh2cjSp26Gx5smMaBNoKBCqe4KAekLpnpwy2jReL2e:mabdelsamei.com#key-3"
+  ],
+  "keyAgreement": [
+    "did:webvh:QmbQjh2cjSp26Gx5smMaBNoKBCqe4KAekLpnpwy2jReL2e:mabdelsamei.com#key-0",
+    "did:webvh:QmbQjh2cjSp26Gx5smMaBNoKBCqe4KAekLpnpwy2jReL2e:mabdelsamei.com#key-2"
+  ],
+  "capabilityInvocation": [
+    "did:webvh:QmbQjh2cjSp26Gx5smMaBNoKBCqe4KAekLpnpwy2jReL2e:mabdelsamei.com#key-0"
+  ],
+  "capabilityDelegation": [
+    "did:webvh:QmbQjh2cjSp26Gx5smMaBNoKBCqe4KAekLpnpwy2jReL2e:mabdelsamei.com#key-0"
+  ],
+  "service": [
+    {
+      "id": "#hub",
+      "type": "HubService",
+      "serviceEndpoint": "https://hub.example.com"
+    }
+  ]
+}
