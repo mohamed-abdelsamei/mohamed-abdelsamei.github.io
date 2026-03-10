@@ -1,48 +1,48 @@
 {
-  "id": "did:webvh:QmPp9kG8TfcYjFFfboD5Y2T2TDqUfKySjsVUVRfx4A2WF3:example.com:users:alice",
+  "id": "did:webvh:QmPhmHtG4YsxSxhMq9BmS6DfJiGwSGhqLFTBW3Nnia3Sww:mohamed-abdelsamei.github.io",
   "@context": [
     "https://www.w3.org/ns/did/v1",
     "https://w3id.org/security/multikey/v1"
   ],
   "alsoKnownAs": [
-    "did:scid:vh:1:QmPp9kG8TfcYjFFfboD5Y2T2TDqUfKySjsVUVRfx4A2WF3?src=example.com/users/alice"
+    "did:scid:vh:1:QmPhmHtG4YsxSxhMq9BmS6DfJiGwSGhqLFTBW3Nnia3Sww?src=mohamed-abdelsamei.github.io"
   ],
   "controller": [
-    "did:webvh:QmPp9kG8TfcYjFFfboD5Y2T2TDqUfKySjsVUVRfx4A2WF3:example.com:users:alice"
+    "did:webvh:QmPhmHtG4YsxSxhMq9BmS6DfJiGwSGhqLFTBW3Nnia3Sww:mohamed-abdelsamei.github.io"
   ],
   "verificationMethod": [
     {
-      "id": "did:webvh:QmPp9kG8TfcYjFFfboD5Y2T2TDqUfKySjsVUVRfx4A2WF3:example.com:users:alice#key-0",
-      "controller": "did:webvh:QmPp9kG8TfcYjFFfboD5Y2T2TDqUfKySjsVUVRfx4A2WF3:example.com:users:alice",
+      "id": "did:webvh:QmPhmHtG4YsxSxhMq9BmS6DfJiGwSGhqLFTBW3Nnia3Sww:mohamed-abdelsamei.github.io#key-0",
+      "controller": "did:webvh:QmPhmHtG4YsxSxhMq9BmS6DfJiGwSGhqLFTBW3Nnia3Sww:mohamed-abdelsamei.github.io",
       "type": "Multikey",
-      "publicKeyMultibase": "z6MkuVmnQanCjeTv2fCSTdcdCT21pKReq9rJRCx7Apto5dD4"
+      "publicKeyMultibase": "z6Mkp87iJvmWf59Z3o7G4wDPU95ZTywV6SCbKka26pNaim4x"
     },
     {
-      "id": "did:webvh:QmPp9kG8TfcYjFFfboD5Y2T2TDqUfKySjsVUVRfx4A2WF3:example.com:users:alice#key-1",
-      "controller": "did:webvh:QmPp9kG8TfcYjFFfboD5Y2T2TDqUfKySjsVUVRfx4A2WF3:example.com:users:alice",
+      "id": "did:webvh:QmPhmHtG4YsxSxhMq9BmS6DfJiGwSGhqLFTBW3Nnia3Sww:mohamed-abdelsamei.github.io#key-1",
+      "controller": "did:webvh:QmPhmHtG4YsxSxhMq9BmS6DfJiGwSGhqLFTBW3Nnia3Sww:mohamed-abdelsamei.github.io",
       "type": "Multikey",
-      "publicKeyMultibase": "z6Mko3V8fdPtS6E62CiDcsQaxTfQ9wVhxJAZpiY7qf544nZU"
+      "publicKeyMultibase": "z6MkmDm7oakcZsjS3JZCTGTyiZ7pEbRWU7qJ5C7Ddb4zgpGe"
     }
   ],
   "authentication": [
-    "did:webvh:QmPp9kG8TfcYjFFfboD5Y2T2TDqUfKySjsVUVRfx4A2WF3:example.com:users:alice#key-0",
-    "did:webvh:QmPp9kG8TfcYjFFfboD5Y2T2TDqUfKySjsVUVRfx4A2WF3:example.com:users:alice#key-1"
+    "did:webvh:QmPhmHtG4YsxSxhMq9BmS6DfJiGwSGhqLFTBW3Nnia3Sww:mohamed-abdelsamei.github.io#key-0",
+    "did:webvh:QmPhmHtG4YsxSxhMq9BmS6DfJiGwSGhqLFTBW3Nnia3Sww:mohamed-abdelsamei.github.io#key-1"
   ],
   "capabilityDelegation": [
-    "did:webvh:QmPp9kG8TfcYjFFfboD5Y2T2TDqUfKySjsVUVRfx4A2WF3:example.com:users:alice#key-0",
-    "did:webvh:QmPp9kG8TfcYjFFfboD5Y2T2TDqUfKySjsVUVRfx4A2WF3:example.com:users:alice#key-1"
+    "did:webvh:QmPhmHtG4YsxSxhMq9BmS6DfJiGwSGhqLFTBW3Nnia3Sww:mohamed-abdelsamei.github.io#key-0",
+    "did:webvh:QmPhmHtG4YsxSxhMq9BmS6DfJiGwSGhqLFTBW3Nnia3Sww:mohamed-abdelsamei.github.io#key-1"
   ],
   "capabilityInvocation": [
-    "did:webvh:QmPp9kG8TfcYjFFfboD5Y2T2TDqUfKySjsVUVRfx4A2WF3:example.com:users:alice#key-0",
-    "did:webvh:QmPp9kG8TfcYjFFfboD5Y2T2TDqUfKySjsVUVRfx4A2WF3:example.com:users:alice#key-1"
+    "did:webvh:QmPhmHtG4YsxSxhMq9BmS6DfJiGwSGhqLFTBW3Nnia3Sww:mohamed-abdelsamei.github.io#key-0",
+    "did:webvh:QmPhmHtG4YsxSxhMq9BmS6DfJiGwSGhqLFTBW3Nnia3Sww:mohamed-abdelsamei.github.io#key-1"
   ],
   "keyAgreement": [
-    "did:webvh:QmPp9kG8TfcYjFFfboD5Y2T2TDqUfKySjsVUVRfx4A2WF3:example.com:users:alice#key-0",
-    "did:webvh:QmPp9kG8TfcYjFFfboD5Y2T2TDqUfKySjsVUVRfx4A2WF3:example.com:users:alice#key-1"
+    "did:webvh:QmPhmHtG4YsxSxhMq9BmS6DfJiGwSGhqLFTBW3Nnia3Sww:mohamed-abdelsamei.github.io#key-0",
+    "did:webvh:QmPhmHtG4YsxSxhMq9BmS6DfJiGwSGhqLFTBW3Nnia3Sww:mohamed-abdelsamei.github.io#key-1"
   ],
   "assertionMethod": [
-    "did:webvh:QmPp9kG8TfcYjFFfboD5Y2T2TDqUfKySjsVUVRfx4A2WF3:example.com:users:alice#key-0",
-    "did:webvh:QmPp9kG8TfcYjFFfboD5Y2T2TDqUfKySjsVUVRfx4A2WF3:example.com:users:alice#key-1"
+    "did:webvh:QmPhmHtG4YsxSxhMq9BmS6DfJiGwSGhqLFTBW3Nnia3Sww:mohamed-abdelsamei.github.io#key-0",
+    "did:webvh:QmPhmHtG4YsxSxhMq9BmS6DfJiGwSGhqLFTBW3Nnia3Sww:mohamed-abdelsamei.github.io#key-1"
   ],
   "service": [
     {
