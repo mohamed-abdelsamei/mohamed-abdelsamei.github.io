@@ -1,45 +1,54 @@
 {
-  "id": "did:webvh:Qmf4DyMMQeB3PkDuoGaeERNnsgsb7M2DW5agUntkS6HWSu:mohamed-abdelsamei.github.io",
+  "id": "did:webvh:QmPp9kG8TfcYjFFfboD5Y2T2TDqUfKySjsVUVRfx4A2WF3:example.com:users:alice",
   "@context": [
     "https://www.w3.org/ns/did/v1",
     "https://w3id.org/security/multikey/v1"
   ],
   "alsoKnownAs": [
-    "https://example.com/users/alice",
-    "did:web:social.example.com:alice",
-    "https://mastodon.social/@alice"
+    "did:scid:vh:1:QmPp9kG8TfcYjFFfboD5Y2T2TDqUfKySjsVUVRfx4A2WF3?src=example.com/users/alice"
   ],
   "controller": [
-    "did:webvh:Qmf4DyMMQeB3PkDuoGaeERNnsgsb7M2DW5agUntkS6HWSu:mohamed-abdelsamei.github.io"
+    "did:webvh:QmPp9kG8TfcYjFFfboD5Y2T2TDqUfKySjsVUVRfx4A2WF3:example.com:users:alice"
   ],
   "verificationMethod": [
     {
-      "id": "did:webvh:Qmf4DyMMQeB3PkDuoGaeERNnsgsb7M2DW5agUntkS6HWSu:mohamed-abdelsamei.github.io#key-0",
-      "controller": "did:webvh:Qmf4DyMMQeB3PkDuoGaeERNnsgsb7M2DW5agUntkS6HWSu:mohamed-abdelsamei.github.io",
+      "id": "did:webvh:QmPp9kG8TfcYjFFfboD5Y2T2TDqUfKySjsVUVRfx4A2WF3:example.com:users:alice#key-0",
+      "controller": "did:webvh:QmPp9kG8TfcYjFFfboD5Y2T2TDqUfKySjsVUVRfx4A2WF3:example.com:users:alice",
       "type": "Multikey",
-      "publicKeyMultibase": "z6Mkq2RvdtkLF1Qos86L8B4u3S8T8ReW47pR5NhkCbrupsRb"
+      "publicKeyMultibase": "z6MkuVmnQanCjeTv2fCSTdcdCT21pKReq9rJRCx7Apto5dD4"
+    },
+    {
+      "id": "did:webvh:QmPp9kG8TfcYjFFfboD5Y2T2TDqUfKySjsVUVRfx4A2WF3:example.com:users:alice#key-1",
+      "controller": "did:webvh:QmPp9kG8TfcYjFFfboD5Y2T2TDqUfKySjsVUVRfx4A2WF3:example.com:users:alice",
+      "type": "Multikey",
+      "publicKeyMultibase": "z6Mko3V8fdPtS6E62CiDcsQaxTfQ9wVhxJAZpiY7qf544nZU"
     }
   ],
   "authentication": [
-    "did:webvh:Qmf4DyMMQeB3PkDuoGaeERNnsgsb7M2DW5agUntkS6HWSu:mohamed-abdelsamei.github.io#key-0"
+    "did:webvh:QmPp9kG8TfcYjFFfboD5Y2T2TDqUfKySjsVUVRfx4A2WF3:example.com:users:alice#key-0",
+    "did:webvh:QmPp9kG8TfcYjFFfboD5Y2T2TDqUfKySjsVUVRfx4A2WF3:example.com:users:alice#key-1"
   ],
   "capabilityDelegation": [
-    "did:webvh:Qmf4DyMMQeB3PkDuoGaeERNnsgsb7M2DW5agUntkS6HWSu:mohamed-abdelsamei.github.io#key-0"
+    "did:webvh:QmPp9kG8TfcYjFFfboD5Y2T2TDqUfKySjsVUVRfx4A2WF3:example.com:users:alice#key-0",
+    "did:webvh:QmPp9kG8TfcYjFFfboD5Y2T2TDqUfKySjsVUVRfx4A2WF3:example.com:users:alice#key-1"
   ],
   "capabilityInvocation": [
-    "did:webvh:Qmf4DyMMQeB3PkDuoGaeERNnsgsb7M2DW5agUntkS6HWSu:mohamed-abdelsamei.github.io#key-0"
+    "did:webvh:QmPp9kG8TfcYjFFfboD5Y2T2TDqUfKySjsVUVRfx4A2WF3:example.com:users:alice#key-0",
+    "did:webvh:QmPp9kG8TfcYjFFfboD5Y2T2TDqUfKySjsVUVRfx4A2WF3:example.com:users:alice#key-1"
   ],
   "keyAgreement": [
-    "did:webvh:Qmf4DyMMQeB3PkDuoGaeERNnsgsb7M2DW5agUntkS6HWSu:mohamed-abdelsamei.github.io#key-0"
+    "did:webvh:QmPp9kG8TfcYjFFfboD5Y2T2TDqUfKySjsVUVRfx4A2WF3:example.com:users:alice#key-0",
+    "did:webvh:QmPp9kG8TfcYjFFfboD5Y2T2TDqUfKySjsVUVRfx4A2WF3:example.com:users:alice#key-1"
   ],
   "assertionMethod": [
-    "did:webvh:Qmf4DyMMQeB3PkDuoGaeERNnsgsb7M2DW5agUntkS6HWSu:mohamed-abdelsamei.github.io#key-0"
+    "did:webvh:QmPp9kG8TfcYjFFfboD5Y2T2TDqUfKySjsVUVRfx4A2WF3:example.com:users:alice#key-0",
+    "did:webvh:QmPp9kG8TfcYjFFfboD5Y2T2TDqUfKySjsVUVRfx4A2WF3:example.com:users:alice#key-1"
   ],
   "service": [
     {
-      "id": "did:webvh:Qmf4DyMMQeB3PkDuoGaeERNnsgsb7M2DW5agUntkS6HWSu:mohamed-abdelsamei.github.io#whois",
+      "id": "#whois",
       "type": "LinkedDomains",
-      "serviceEndpoint": "https://api.example.com/identity/whois"
+      "serviceEndpoint": "https://example.com/users/alice/whois.vp"
     }
   ]
 }
