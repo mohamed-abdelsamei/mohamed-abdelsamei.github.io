@@ -1,40 +1,55 @@
 {
-  "id": "did:webvh:QmXx5ckUbqpTkjC7aFcXbDKZdsvXWXiCXR98QS5ME5BwVT:mohamed-abdelsamei.github.io",
+  "id": "did:webvh:Qmd7Qr5kZjPqDCv3431RTPk8i13Dk4X7Jo2kK553WQ7daK:mohamed-abdelsamei.github.io",
   "@context": [
     "https://www.w3.org/ns/did/v1",
     "https://w3id.org/security/multikey/v1"
   ],
   "alsoKnownAs": [
-    "did:web:mohamed-abdelsamei.github.io",
-    "https://mohamed-abdelsamei.github.io/users/alice"
+    "did:web:mohamed-abdelsamei.github.io"
   ],
   "controller": [
-    "did:webvh:QmXx5ckUbqpTkjC7aFcXbDKZdsvXWXiCXR98QS5ME5BwVT:mohamed-abdelsamei.github.io"
+    "did:webvh:Qmd7Qr5kZjPqDCv3431RTPk8i13Dk4X7Jo2kK553WQ7daK:mohamed-abdelsamei.github.io"
   ],
   "verificationMethod": [
     {
-      "id": "did:webvh:QmXx5ckUbqpTkjC7aFcXbDKZdsvXWXiCXR98QS5ME5BwVT:mohamed-abdelsamei.github.io#key-0",
-      "controller": "did:webvh:QmXx5ckUbqpTkjC7aFcXbDKZdsvXWXiCXR98QS5ME5BwVT:mohamed-abdelsamei.github.io",
+      "id": "did:webvh:Qmd7Qr5kZjPqDCv3431RTPk8i13Dk4X7Jo2kK553WQ7daK:mohamed-abdelsamei.github.io#key-0",
+      "controller": "did:webvh:Qmd7Qr5kZjPqDCv3431RTPk8i13Dk4X7Jo2kK553WQ7daK:mohamed-abdelsamei.github.io",
       "type": "Multikey",
-      "publicKeyMultibase": "z6MkirtEx29qqni5QmEG3F1mBSC2Ma4ASHtyCS6pzRzWzy6U"
+      "publicKeyMultibase": "z6MkphpTPh5BxR8iBSPR2yYEWrTdx2HtDbuUnn7RWxNdFr7E"
+    },
+    {
+      "id": "did:webvh:Qmd7Qr5kZjPqDCv3431RTPk8i13Dk4X7Jo2kK553WQ7daK:mohamed-abdelsamei.github.io#key-1",
+      "controller": "did:webvh:Qmd7Qr5kZjPqDCv3431RTPk8i13Dk4X7Jo2kK553WQ7daK:mohamed-abdelsamei.github.io",
+      "type": "Multikey",
+      "publicKeyMultibase": "z6MkshWfQdpJXPiksDQ24NbLzbtRTZcigJZkQeWBY7rod1Z1"
     }
   ],
   "authentication": [
-    "did:webvh:QmXx5ckUbqpTkjC7aFcXbDKZdsvXWXiCXR98QS5ME5BwVT:mohamed-abdelsamei.github.io#key-0"
+    "did:webvh:Qmd7Qr5kZjPqDCv3431RTPk8i13Dk4X7Jo2kK553WQ7daK:mohamed-abdelsamei.github.io#key-0",
+    "did:webvh:Qmd7Qr5kZjPqDCv3431RTPk8i13Dk4X7Jo2kK553WQ7daK:mohamed-abdelsamei.github.io#key-1"
   ],
   "capabilityDelegation": [
-    "did:webvh:QmXx5ckUbqpTkjC7aFcXbDKZdsvXWXiCXR98QS5ME5BwVT:mohamed-abdelsamei.github.io#key-0"
+    "did:webvh:Qmd7Qr5kZjPqDCv3431RTPk8i13Dk4X7Jo2kK553WQ7daK:mohamed-abdelsamei.github.io#key-0",
+    "did:webvh:Qmd7Qr5kZjPqDCv3431RTPk8i13Dk4X7Jo2kK553WQ7daK:mohamed-abdelsamei.github.io#key-1"
   ],
   "capabilityInvocation": [
-    "did:webvh:QmXx5ckUbqpTkjC7aFcXbDKZdsvXWXiCXR98QS5ME5BwVT:mohamed-abdelsamei.github.io#key-0"
+    "did:webvh:Qmd7Qr5kZjPqDCv3431RTPk8i13Dk4X7Jo2kK553WQ7daK:mohamed-abdelsamei.github.io#key-0",
+    "did:webvh:Qmd7Qr5kZjPqDCv3431RTPk8i13Dk4X7Jo2kK553WQ7daK:mohamed-abdelsamei.github.io#key-1"
   ],
   "keyAgreement": [
-    "did:webvh:QmXx5ckUbqpTkjC7aFcXbDKZdsvXWXiCXR98QS5ME5BwVT:mohamed-abdelsamei.github.io#key-0"
+    "did:webvh:Qmd7Qr5kZjPqDCv3431RTPk8i13Dk4X7Jo2kK553WQ7daK:mohamed-abdelsamei.github.io#key-0",
+    "did:webvh:Qmd7Qr5kZjPqDCv3431RTPk8i13Dk4X7Jo2kK553WQ7daK:mohamed-abdelsamei.github.io#key-1"
   ],
   "assertionMethod": [
-    "did:webvh:QmXx5ckUbqpTkjC7aFcXbDKZdsvXWXiCXR98QS5ME5BwVT:mohamed-abdelsamei.github.io#key-0"
+    "did:webvh:Qmd7Qr5kZjPqDCv3431RTPk8i13Dk4X7Jo2kK553WQ7daK:mohamed-abdelsamei.github.io#key-0",
+    "did:webvh:Qmd7Qr5kZjPqDCv3431RTPk8i13Dk4X7Jo2kK553WQ7daK:mohamed-abdelsamei.github.io#key-1"
   ],
   "service": [
+    {
+      "id": "#profile",
+      "type": "LinkedDomains",
+      "serviceEndpoint": "https://mohamed-abdelsamei.github.io/profile.vp"
+    },
     {
       "id": "#whois",
       "type": "LinkedDomains",
