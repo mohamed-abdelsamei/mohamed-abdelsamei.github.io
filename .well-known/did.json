@@ -1,36 +1,59 @@
 {
-  "id": "did:web:mohamed-abdelsamei.github.io",
-  "@context": [
-    "https://www.w3.org/ns/did/v1",
-    "https://w3id.org/security/multikey/v1"
-  ],
-  "verificationMethod": [
-    {
-      "id": "did:web:mohamed-abdelsamei.github.io#key-1",
-      "controller": "did:web:mohamed-abdelsamei.github.io",
-      "type": "Multikey",
-      "publicKeyMultibase": "zQ3shsdqgLUJffAVrR8pPTYVZuEweBttEVfGL4uovmWKjqmvd"
-    },
-    {
-      "id": "did:web:mohamed-abdelsamei.github.io#key-2",
-      "controller": "did:web:mohamed-abdelsamei.github.io",
-      "type": "Multikey",
-      "publicKeyMultibase": "zQ3shsdqgLUJffAVrR8pPTYVZuEweBttEVfGL4uovmWKjqmvd"
-    },
-    {
-      "id": "did:web:mohamed-abdelsamei.github.io#key-3",
-      "controller": "did:web:mohamed-abdelsamei.github.io",
-      "type": "Multikey",
-      "publicKeyMultibase": "zQ3shWMEr6EasYVauAxMUtJLfAxNVQqjTaaAmo1hEVXu866TS"
-    }
-  ],
-  "authentication": [
-    "did:web:mohamed-abdelsamei.github.io#key-1"
+  "assertionMethod": [
+    "did:web:mohamed-abdelsamei.github.io#key-2",
+    "did:web:mohamed-abdelsamei.github.io#key-6"
   ],
   "keyAgreement": [
     "did:web:mohamed-abdelsamei.github.io#key-3"
   ],
-  "assertionMethod": [
-    "did:web:mohamed-abdelsamei.github.io#key-2"
+  "id": "did:web:mohamed-abdelsamei.github.io",
+  "verificationMethod": [
+    {
+      "publicKeyMultibase": "zQ3shsdqgLUJffAVrR8pPTYVZuEweBttEVfGL4uovmWKjqmvd",
+      "controller": "did:web:mohamed-abdelsamei.github.io",
+      "id": "did:web:mohamed-abdelsamei.github.io#key-1",
+      "type": "Multikey"
+    },
+    {
+      "publicKeyMultibase": "zQ3shsdqgLUJffAVrR8pPTYVZuEweBttEVfGL4uovmWKjqmvd",
+      "controller": "did:web:mohamed-abdelsamei.github.io",
+      "id": "did:web:mohamed-abdelsamei.github.io#key-2",
+      "type": "Multikey"
+    },
+    {
+      "publicKeyMultibase": "zQ3shWMEr6EasYVauAxMUtJLfAxNVQqjTaaAmo1hEVXu866TS",
+      "controller": "did:web:mohamed-abdelsamei.github.io",
+      "id": "did:web:mohamed-abdelsamei.github.io#key-3",
+      "type": "Multikey"
+    },
+    {
+      "publicKeyMultibase": "z6Mkpde8iDR85RXFs5N2oAZxnMUBAaf3hHMLeQAWtgGjbXsH",
+      "controller": "did:web:mohamed-abdelsamei.github.io",
+      "id": "did:web:mohamed-abdelsamei.github.io#key-4",
+      "type": "Multikey"
+    },
+    {
+      "publicKeyMultibase": "z6Mkpde8iDR85RXFs5N2oAZxnMUBAaf3hHMLeQAWtgGjbXsH",
+      "controller": "did:web:mohamed-abdelsamei.github.io",
+      "id": "did:web:mohamed-abdelsamei.github.io#key-5",
+      "type": "Multikey"
+    },
+    {
+      "publicKeyMultibase": "z6Mkpde8iDR85RXFs5N2oAZxnMUBAaf3hHMLeQAWtgGjbXsH",
+      "controller": "did:web:mohamed-abdelsamei.github.io",
+      "id": "did:web:mohamed-abdelsamei.github.io#key-6",
+      "type": "Multikey"
+    }
+  ],
+  "capabilityInvocation": [
+    "did:web:mohamed-abdelsamei.github.io#key-5"
+  ],
+  "@context": [
+    "https://www.w3.org/ns/did/v1",
+    "https://w3id.org/security/multikey/v1"
+  ],
+  "authentication": [
+    "did:web:mohamed-abdelsamei.github.io#key-1",
+    "did:web:mohamed-abdelsamei.github.io#key-4"
   ]
 }
