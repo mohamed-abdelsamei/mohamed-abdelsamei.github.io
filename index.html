@@ -3,101 +3,107 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mohamed Abdelsamei — Software Engineer (Backend, Serverless, SSI)</title>
-    <meta
-      name="description"
-      content="Personal site of Mohamed Abdelsamei — Senior Software Engineer specialising in backend systems, AWS serverless and Self‑Sovereign Identity (SSI)."
-    />
+    <title>Mohamed Abdelsamei — Software Engineer</title>
+    <meta name="description" content="Senior Software Engineer specializing in backend systems, AWS serverless, and Self-Sovereign Identity. Based in Berlin." />
     <link rel="canonical" href="https://mabdelsamei.com/" />
-    <meta property="og:title" content="Mohamed Abdelsamei — Software Engineer (Backend, Serverless, SSI)" />
-    <meta property="og:description" content="Personal site of Mohamed Abdelsamei — Senior Software Engineer specialising in backend systems, AWS serverless and SSI." />
-    <meta property="og:site_name" content="Mohamed Abdelsamei" />
+    <meta property="og:title" content="Mohamed Abdelsamei" />
+    <meta property="og:description" content="Senior Software Engineer — Backend · Serverless · SSI" />
     <meta property="og:url" content="https://mabdelsamei.com/" />
     <meta property="og:type" content="website" />
     <meta name="twitter:card" content="summary" />
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="style.css" />
-    <!-- Favicon: Neon green square with MA letters -->
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
     <link
       rel="icon"
-      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' fill='%2300c896'/%3E%3Ctext x='2' y='12' font-size='10' fill='%230b0f14'%3EMA%3C/text%3E%3C/svg%3E"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2300d4ff'/%3E%3Ctext x='2' y='24' font-family='monospace' font-size='16' font-weight='700' fill='%23050810'%3EMA%3C/text%3E%3C/svg%3E"
     />
-    <meta name="theme-color" content="#0b0f14" />
+    <meta name="theme-color" content="#050810" />
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
-    <div class="window">
-      <!-- window bar with coloured dots -->
-      <div class="bar">
-        <span class="dot red"></span>
-        <span class="dot yellow"></span>
-        <span class="dot green"></span>
+
+    <div class="scanlines" aria-hidden="true"></div>
+    <div class="vignette"  aria-hidden="true"></div>
+
+    <main id="main">
+
+      <div class="boot-line" aria-hidden="true">
+        <span class="boot-text">&gt; PLAYER.PROFILE — v2026<span class="blink">_</span></span>
       </div>
-      <main id="main" class="content">
-        <h1>Mohamed Abdelsamei</h1>
-        <h2>Senior Software Engineer</h2>
-        <!-- Location and certification -->
-        <p class="location">Berlin, Germany</p>
-        <p class="credentials">AWS Certified Solutions Architect – Associate</p>
-        <!-- Tagline conveying mission -->
-        <p class="tagline mono">Building privacy‑first backend systems with serverless &amp; SSI</p>
-        <section id="skills">
-          <h2 id="skills-heading">Skills</h2>
-          <!-- Skills laid out by category -->
-          <div id="skillsGrid">
-            <div class="skill-category">
-              <strong>Backend</strong>
-              <ul>
-                <li>Node.js</li>
-                <li>TypeScript</li>
-                <li>Rust</li>
-                <li>Dart</li>
-              </ul>
-            </div>
-            <div class="skill-category">
-              <strong>Cloud &amp; Infrastructure</strong>
-              <ul>
-                <li>AWS (Lambda, API Gateway, DynamoDB)</li>
-                <li>Serverless</li>
-                <li>Terraform</li>
-                <li>AWS CDK</li>
-              </ul>
-            </div>
-            <div class="skill-category">
-              <strong>Identity &amp; Privacy</strong>
-              <ul>
-                <li>Self‑Sovereign Identity (SSI)</li>
-                <li>Verifiable Credentials (VCs)</li>
-                <li>OID4VP</li>
-                <li>DIDs</li>
-              </ul>
-            </div>
-            <div class="skill-category">
-              <strong>Tools</strong>
-              <ul>
-                <li>Docker</li>
-                <li>CI/CD</li>
-                <li>Git</li>
-                <li>Monorepos</li>
-              </ul>
-            </div>
-          </div>
-        </section>
-        <p>
-          <a class="cta" href="mailto:mohamed@mabdelsamei.com">Email me</a>
+
+      <header>
+        <h1>Mohamed<br>Abdelsamei</h1>
+        <p class="role">&gt; Senior Software Engineer</p>
+        <p class="location">
+          <span class="dim">Berlin, DE</span>
+          <span class="sep">·</span>
+          <span class="online"><span class="online-dot" aria-hidden="true"></span>Online</span>
         </p>
-        <div class="social-links">
-          <a href="https://github.com/mohamed-abdelsamei" target="_blank" rel="noopener noreferrer">GitHub</a>
-          <a href="https://www.linkedin.com/in/mohamed-abdelsamei/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-        </div>
-      </main>
-    </div>
+      </header>
+
+      <section class="about" aria-label="Bio">
+        <h2 class="sec-hdr">[ BIO ]</h2>
+        <p>
+          Ten years building backend systems — currently at Affinidi in Berlin,
+          operating at staff scope: leading cross&#8209;functional projects,
+          owning the architecture of identity and verification platforms built on
+          <mark>OIDC4VP</mark> and <mark>Verifiable&nbsp;Credentials</mark>,
+          and driving a core&#8209;services modernisation in <mark>Dart</mark>
+          for ~2&times; API performance gains.
+        </p>
+        <p>
+          TypeScript day&#8209;to&#8209;day, Rust when correctness isn't optional.
+          Privacy isn't a feature I bolt on —
+          it's the constraint I design around.
+        </p>
+        <p class="cert">
+          <span class="cert-icon" aria-hidden="true">★</span>
+          AWS Certified Solutions Architect · Associate
+        </p>
+      </section>
+
+      <section class="stack" aria-label="Tech stack">
+        <h2 class="sec-hdr">[ TECH STACK ]</h2>
+        <ul>
+          <li>Node.js</li>
+          <li>TypeScript</li>
+          <li>Dart</li>
+          <li>Rust</li>
+          <li>AWS Lambda</li>
+          <li>DynamoDB</li>
+          <li>API Gateway</li>
+          <li>Terraform</li>
+          <li>AWS CDK</li>
+          <li>SSI / DIDs</li>
+          <li>Verifiable Credentials</li>
+          <li>OID4VP</li>
+          <li>Docker</li>
+        </ul>
+      </section>
+
+      <section class="contact" aria-label="Contact">
+        <h2 class="sec-hdr">[ CONNECT ]</h2>
+        <nav>
+          <a href="mailto:mohamed@mabdelsamei.com">
+            <span class="prompt" aria-hidden="true">&gt;</span>Email
+          </a>
+          <a href="https://github.com/mohamed-abdelsamei" target="_blank" rel="noopener noreferrer">
+            <span class="prompt" aria-hidden="true">&gt;</span>GitHub
+          </a>
+          <a href="https://www.linkedin.com/in/mohamed-abdelsamei/" target="_blank" rel="noopener noreferrer">
+            <span class="prompt" aria-hidden="true">&gt;</span>LinkedIn
+          </a>
+        </nav>
+      </section>
+
+    </main>
+
     <footer>
-      © 2025 Mohamed Abdelsamei — <code>echo "Stay curious, stay private."</code>
+      <span>&copy; 2026 MABDELSAMEI.COM</span>
+      <span class="footer-sep" aria-hidden="true">·</span>
+      <span class="dim">STAY CURIOUS. STAY PRIVATE.</span>
     </footer>
   </body>
 </html>
