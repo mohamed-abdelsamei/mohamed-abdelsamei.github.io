@@ -49,136 +49,173 @@
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
     <link
       rel="icon"
-      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%231a1814'/%3E%3Ctext x='2' y='24' font-family='Georgia,serif' font-size='15' font-style='italic' fill='%23faf9f7'%3EMA%3C/text%3E%3C/svg%3E"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23080808'/%3E%3Crect x='1' y='1' width='30' height='30' fill='none' stroke='%232a2a2a'/%3E%3Ctext x='4' y='22' font-family='monospace' font-size='14' fill='%23e8a020'%3EMA%3C/text%3E%3C/svg%3E"
     />
-    <meta name="theme-color" content="#faf9f7" />
+    <meta name="theme-color" content="#080808" />
     <link rel="alternate" type="application/rss+xml" title="Mohamed Abdelsamei" href="https://mabdelsamei.com/feed.xml" />
-    <link rel="stylesheet" href="style.css" />  </head>
+    <link rel="stylesheet" href="style.css" />
+  </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
 
     <main id="main">
 
-      <div class="boot-line" aria-hidden="true">
-        <span class="boot-text">mabdelsamei.com<span class="blink">_</span></span>
+      <!-- Boot sequence -->
+      <div class="boot-seq" aria-hidden="true">
+        <p class="boot-line"><span class="sym">[</span><span class="ok">OK</span><span class="sym">]</span> loading profile <span class="path">~/mabdelsamei</span></p>
+        <p class="boot-line"><span class="sym">[</span><span class="ok">OK</span><span class="sym">]</span> credentials verified</p>
+        <p class="boot-line"><span class="sym">[</span><span class="ok">OK</span><span class="sym">]</span> session active <span class="blink">_</span></p>
       </div>
 
+      <!-- Header -->
       <header>
+        <p class="header-prompt" aria-hidden="true">$ cat ./profile.yml</p>
         <div class="header-top">
           <img
             class="avatar"
             src="https://avatars.githubusercontent.com/u/9941173?v=4"
             alt="Mohamed Abdelsamei"
-            width="88"
-            height="88"
+            width="72"
+            height="72"
             loading="eager"
           />
-          <div class="name-line">
-            <h1>Mohamed Abdelsamei</h1>
-            <span class="role-badge">Sr. Software Engineer <span class="at-company">@ Affinidi</span></span>
+          <div class="name-block">
+            <h1>Mohamed Abdelsamei<span class="cursor" aria-hidden="true"></span></h1>
+            <p class="role-line">sr. software engineer <span class="highlight">@ affinidi</span></p>
           </div>
         </div>
-        <p class="meta">
-          <span class="dim">Berlin, DE</span>
-          <span class="sep" aria-hidden="true">//</span>
-          <span class="dim">10 yrs exp</span>
-          <span class="sep" aria-hidden="true">//</span>
-          <a href="#contact" class="online">
-            <span class="online-dot" aria-hidden="true"></span>available
-          </a>
-        </p>
       </header>
 
+      <!-- System status bar -->
+      <div class="sys-status" aria-label="Status">
+        <div class="status-cell">
+          <span class="status-key">Location</span>
+          <span class="status-val">Berlin, DE</span>
+        </div>
+        <div class="status-cell">
+          <span class="status-key">Experience</span>
+          <span class="status-val">10 years</span>
+        </div>
+        <div class="status-cell">
+          <a href="#contact" class="status-val" style="text-decoration:none;color:inherit">
+            <span class="status-key">Status</span>
+            <span class="status-val"><span class="dot" aria-hidden="true"></span>Available</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- About -->
       <section class="about" aria-label="Bio">
-        <h2 class="sec-hdr">[ WHO I AM ]</h2>
-        <p>
-          I build systems that are fast, correct, and private by design.
-          Ten years in — backend engineering is still the part of the stack
-          where I feel most at home, where the real constraints live,
-          and where getting it wrong actually matters.
-        </p>
-        <p>
-          My focus lately is <mark>digital identity</mark> — specifically the kind
-          that puts people in control of their own data.
-          I work deep in <mark>Verifiable Credentials</mark>, <mark>OIDC4VP</mark>,
-          and <mark>OID4CI</mark> — building infrastructure that makes
-          privacy-preserving auth and credential issuance
-          something developers can actually ship.
-        </p>
-        <p>
-          TypeScript is my daily driver. I reach for <mark>Rust</mark> when
-          correctness isn't negotiable. I care about system design, clear
-          interfaces, and code that survives the next engineer.
-        </p>
-        <div class="cert">
-          <span class="cert-icon" aria-hidden="true">★</span>
-          AWS Certified Solutions Architect · Associate
+        <h2 class="sec-hdr">
+          <span class="sec-prompt" aria-hidden="true">$</span>
+          <span class="sec-title">who i am</span>
+          <span class="sec-line" aria-hidden="true"></span>
+        </h2>
+        <div class="about-block">
+          <p>
+            I build systems that are fast, correct, and private by design.
+            Ten years in — backend engineering is still the part of the stack
+            where I feel most at home, where the real constraints live,
+            and where getting it wrong actually matters.
+          </p>
+          <p>
+            My focus lately is <mark>digital identity</mark> — specifically the kind
+            that puts people in control of their own data.
+            I work deep in <mark>Verifiable Credentials</mark>, <mark>OIDC4VP</mark>,
+            and <mark>OID4CI</mark> — building infrastructure that makes
+            privacy-preserving auth and credential issuance
+            something developers can actually ship.
+          </p>
+          <p>
+            TypeScript is my daily driver. I reach for <mark>Rust</mark> when
+            correctness isn't negotiable. I care about system design, clear
+            interfaces, and code that survives the next engineer.
+          </p>
+          <div class="cert-row">
+            <span class="star" aria-hidden="true">&#9733;</span>
+            AWS Certified Solutions Architect &middot; Associate
+          </div>
         </div>
       </section>
 
+      <!-- Values -->
       <section class="values" aria-label="Values">
-        <h2 class="sec-hdr">[ WHAT I BELIEVE ]</h2>
+        <h2 class="sec-hdr">
+          <span class="sec-prompt" aria-hidden="true">$</span>
+          <span class="sec-title">what i believe</span>
+          <span class="sec-line" aria-hidden="true"></span>
+        </h2>
         <ul class="belief-list">
           <li>
+            <span class="belief-idx">01</span>
             <span class="belief-key">Privacy</span>
             <span class="belief-val">is a design constraint, not a checkbox.</span>
           </li>
           <li>
+            <span class="belief-idx">02</span>
             <span class="belief-key">Simplicity</span>
             <span class="belief-val">is harder to achieve than complexity.</span>
           </li>
           <li>
+            <span class="belief-idx">03</span>
             <span class="belief-key">Ownership</span>
             <span class="belief-val">people should control their own identity and data.</span>
           </li>
           <li>
+            <span class="belief-idx">04</span>
             <span class="belief-key">Correctness</span>
             <span class="belief-val">matters more than cleverness.</span>
           </li>
         </ul>
       </section>
 
+      <!-- Tech Stack -->
       <section class="stack" aria-label="Tech stack">
-        <h2 class="sec-hdr">[ TECH STACK ]</h2>
-        <div class="stack-groups">
-
-          <div class="stack-group">
-            <p class="stack-group-label">// LANGUAGES</p>
-            <ul>
-              <li>TypeScript</li>
-              <li>Node.js</li>
-              <li>Rust</li>
-              <li>Dart</li>
-            </ul>
+        <h2 class="sec-hdr">
+          <span class="sec-prompt" aria-hidden="true">$</span>
+          <span class="sec-title">tech stack</span>
+          <span class="sec-line" aria-hidden="true"></span>
+        </h2>
+        <div class="stack-table">
+          <div class="stack-row">
+            <div class="stack-cat">Languages</div>
+            <div class="stack-items">
+              <span class="tag">TypeScript</span>
+              <span class="tag">Node.js</span>
+              <span class="tag">Rust</span>
+              <span class="tag">Dart</span>
+            </div>
           </div>
-
-          <div class="stack-group">
-            <p class="stack-group-label">// CLOUD &amp; INFRA</p>
-            <ul>
-              <li>AWS Lambda</li>
-              <li>DynamoDB</li>
-              <li>API Gateway</li>
-              <li>Terraform</li>
-              <li>AWS CDK</li>
-              <li>Docker</li>
-            </ul>
+          <div class="stack-row">
+            <div class="stack-cat">Cloud &amp; Infra</div>
+            <div class="stack-items">
+              <span class="tag">AWS Lambda</span>
+              <span class="tag">DynamoDB</span>
+              <span class="tag">API Gateway</span>
+              <span class="tag">Terraform</span>
+              <span class="tag">AWS CDK</span>
+              <span class="tag">Docker</span>
+            </div>
           </div>
-
-          <div class="stack-group">
-            <p class="stack-group-label">// IDENTITY &amp; PRIVACY</p>
-            <ul>
-              <li>SSI / DIDs</li>
-              <li>Verifiable Credentials</li>
-              <li>OIDC4VP</li>
-              <li>OID4CI</li>
-            </ul>
+          <div class="stack-row">
+            <div class="stack-cat">Identity</div>
+            <div class="stack-items">
+              <span class="tag">SSI / DIDs</span>
+              <span class="tag">Verifiable Credentials</span>
+              <span class="tag">OIDC4VP</span>
+              <span class="tag">OID4CI</span>
+            </div>
           </div>
-
         </div>
       </section>
 
+      <!-- Writing -->
       <section class="writing" aria-label="Writing and talks">
-        <h2 class="sec-hdr">[ WRITING &amp; TALKS ]</h2>
+        <h2 class="sec-hdr">
+          <span class="sec-prompt" aria-hidden="true">$</span>
+          <span class="sec-title">writing &amp; talks</span>
+          <span class="sec-line" aria-hidden="true"></span>
+        </h2>
         <p class="writing-intro">
           I'm writing about identity infrastructure, Verifiable Credentials,
           and the messy realities of backend system design.
@@ -186,6 +223,7 @@
         <ul class="writing-list">
           <li class="writing-soon">
             <span class="writing-label">First post coming soon</span>
+            <span class="writing-meta">pending</span>
           </li>
         </ul>
         <p class="writing-follow">
@@ -195,8 +233,13 @@
         </p>
       </section>
 
+      <!-- Contact -->
       <section class="contact" id="contact" aria-label="Contact">
-        <h2 class="sec-hdr">[ CONNECT ]</h2>
+        <h2 class="sec-hdr">
+          <span class="sec-prompt" aria-hidden="true">$</span>
+          <span class="sec-title">connect</span>
+          <span class="sec-line" aria-hidden="true"></span>
+        </h2>
         <p class="contact-note">
           Open to consulting, conference talks, and select collaborations
           in the identity and privacy space.
