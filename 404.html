@@ -6,7 +6,7 @@
     <title>404 — Mohamed Abdelsamei</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="style.css" />
     <style>
       main {
@@ -15,86 +15,70 @@
         justify-content: center;
         align-items: flex-start;
         min-height: 80svh;
+        border-bottom: 2px solid var(--ink);
+        padding-bottom: 40px;
+        margin-bottom: 0;
       }
       .err-prefix {
-        font-family: 'Press Start 2P', monospace;
-        font-size: 0.48rem;
-        color: var(--dim);
-        letter-spacing: 0.1em;
-        margin-bottom: 18px;
+        font-family: var(--mono);
+        font-size: 0.62rem;
+        color: var(--border2);
+        letter-spacing: 0.08em;
+        margin-bottom: 20px;
       }
       .err-code {
-        font-family: 'Press Start 2P', monospace;
-        font-size: clamp(3rem, 14vw, 5.5rem);
-        color: var(--green);
-        text-shadow:
-          0 0 16px rgba(57, 255, 20, 0.9),
-          0 0 40px rgba(57, 255, 20, 0.4),
-          0 0 80px rgba(57, 255, 20, 0.15);
+        font-family: var(--serif);
+        font-size: clamp(5rem, 20vw, 9rem);
+        font-weight: 400;
+        font-style: italic;
+        letter-spacing: -0.03em;
+        color: var(--ink);
         line-height: 1;
-        margin-bottom: 20px;
-        animation: err-glitch 6s infinite;
-      }
-      @keyframes err-glitch {
-        0%, 92%, 97%, 100% { text-shadow: 0 0 16px rgba(57,255,20,0.9), 0 0 40px rgba(57,255,20,0.4); transform: none; }
-        93%  { text-shadow: -3px 0 var(--amber), 3px 0 var(--cyan); transform: translate(3px, 0); }
-        94%  { text-shadow:  3px 0 var(--amber),-3px 0 var(--cyan); transform: translate(-3px, 0); }
-        95%  { text-shadow: 0 0 16px rgba(57,255,20,0.9); transform: none; }
-        96%  { text-shadow: -2px 0 var(--red), 2px 0 var(--green); transform: translate(1px,-1px); }
+        margin-bottom: 16px;
       }
       .err-msg {
-        font-family: 'Press Start 2P', monospace;
-        font-size: 0.52rem;
-        color: var(--amber);
+        font-family: var(--mono);
+        font-size: 0.65rem;
+        color: var(--dim);
         letter-spacing: 0.1em;
-        margin-bottom: 8px;
-        text-shadow: 0 0 8px rgba(255, 179, 0, 0.5);
+        text-transform: uppercase;
+        margin-bottom: 6px;
       }
       .err-sub {
-        font-size: 0.78rem;
+        font-family: var(--serif);
+        font-size: 1rem;
         color: var(--dim);
-        margin-bottom: 36px;
-        letter-spacing: 0.02em;
+        font-style: italic;
+        margin-bottom: 44px;
       }
       .back-link {
-        font-family: 'Press Start 2P', monospace;
-        font-size: 0.5rem;
-        color: var(--text);
+        font-family: var(--mono);
+        font-size: 0.68rem;
+        color: var(--dim);
         text-decoration: none;
         display: inline-flex;
         align-items: center;
-        gap: 14px;
-        letter-spacing: 0.09em;
-        padding: 10px 0;
-        transition: color 0.15s, text-shadow 0.15s;
+        gap: 12px;
+        letter-spacing: 0.05em;
+        padding: 12px 0;
+        border-bottom: 1px solid var(--border);
+        transition: color 0.15s, border-color 0.15s;
       }
-      .back-link:hover {
-        color: var(--green);
-        text-shadow: 0 0 10px rgba(57, 255, 20, 0.6);
-      }
+      .back-link:hover { color: var(--ink); border-color: var(--ink); }
       .back-link .prompt {
-        color: var(--dim);
+        color: var(--border2);
         transition: color 0.15s, transform 0.2s cubic-bezier(0.22, 1, 0.36, 1);
         display: inline-block;
       }
-      .back-link:hover .prompt {
-        color: var(--green);
-        transform: translateX(5px);
-        text-shadow: 0 0 8px rgba(57, 255, 20, 0.8);
-      }
-      .back-link:focus-visible {
-        outline: 1px dashed var(--green);
-        outline-offset: 4px;
-      }
+      .back-link:hover .prompt { color: var(--ink); transform: translateX(4px); }
+      .back-link:focus-visible { outline: 1px solid var(--ink); outline-offset: 3px; }
     </style>
   </head>
   <body>
-    <div class="scanlines" aria-hidden="true"></div>
-    <div class="vignette"  aria-hidden="true"></div>
     <main id="main">
-      <p class="err-prefix">&gt; ERROR ENCOUNTERED<span class="blink">_</span></p>
+      <p class="err-prefix">mabdelsamei.com<span class="blink">_</span></p>
       <p class="err-code">404</p>
-      <p class="err-msg">[ PAGE NOT FOUND ]</p>
+      <p class="err-msg">Page not found</p>
       <p class="err-sub">The path you requested does not exist.</p>
       <a class="back-link" href="/">
         <span class="prompt" aria-hidden="true">&gt;</span>Return home
@@ -102,7 +86,7 @@
     </main>
     <footer>
       <span>&copy; 2026 MABDELSAMEI.COM</span>
-      <span class="footer-sep" aria-hidden="true">//</span>
+      <span class="footer-sep" aria-hidden="true">·</span>
       <span>STAY CURIOUS. STAY PRIVATE.</span>
     </footer>
   </body>
