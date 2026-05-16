@@ -37,6 +37,7 @@
       "description": "Senior Software Engineer specialising in backend systems, serverless infrastructure, and Self-Sovereign Identity. Based in Berlin.",
       "address": { "@type": "PostalAddress", "addressLocality": "Berlin", "addressCountry": "DE" },
       "knowsAbout": ["TypeScript", "Node.js", "Rust", "Dart", "AWS Lambda", "Serverless", "Verifiable Credentials", "OIDC4VP", "OID4CI", "Self-Sovereign Identity", "DynamoDB", "Terraform"],
+      "worksFor": { "@type": "Organization", "name": "Affinidi" },
       "sameAs": [
         "https://github.com/mohamed-abdelsamei",
         "https://www.linkedin.com/in/mohamed-abdelsamei/"
@@ -51,8 +52,8 @@
       href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%231a1814'/%3E%3Ctext x='2' y='24' font-family='Georgia,serif' font-size='15' font-style='italic' fill='%23faf9f7'%3EMA%3C/text%3E%3C/svg%3E"
     />
     <meta name="theme-color" content="#faf9f7" />
-    <link rel="stylesheet" href="style.css" />
-  </head>
+    <link rel="alternate" type="application/rss+xml" title="Mohamed Abdelsamei" href="https://mabdelsamei.com/feed.xml" />
+    <link rel="stylesheet" href="style.css" />  </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
 
@@ -63,18 +64,28 @@
       </div>
 
       <header>
-        <div class="name-line">
-          <h1>Mohamed Abdelsamei</h1>
-          <span class="role-badge">Sr. Software Engineer</span>
+        <div class="header-top">
+          <img
+            class="avatar"
+            src="https://avatars.githubusercontent.com/u/9941173?v=4"
+            alt="Mohamed Abdelsamei"
+            width="88"
+            height="88"
+            loading="eager"
+          />
+          <div class="name-line">
+            <h1>Mohamed Abdelsamei</h1>
+            <span class="role-badge">Sr. Software Engineer <span class="at-company">@ Affinidi</span></span>
+          </div>
         </div>
         <p class="meta">
           <span class="dim">Berlin, DE</span>
           <span class="sep" aria-hidden="true">//</span>
           <span class="dim">10 yrs exp</span>
           <span class="sep" aria-hidden="true">//</span>
-          <span class="online">
+          <a href="#contact" class="online">
             <span class="online-dot" aria-hidden="true"></span>available
-          </span>
+          </a>
         </p>
       </header>
 
@@ -166,20 +177,42 @@
         </div>
       </section>
 
-      <section class="contact" aria-label="Contact">
+      <section class="writing" aria-label="Writing and talks">
+        <h2 class="sec-hdr">[ WRITING &amp; TALKS ]</h2>
+        <p class="writing-intro">
+          I'm writing about identity infrastructure, Verifiable Credentials,
+          and the messy realities of backend system design.
+        </p>
+        <ul class="writing-list">
+          <li class="writing-soon">
+            <span class="writing-label">First post coming soon</span>
+          </li>
+        </ul>
+        <p class="writing-follow">
+          Follow along on
+          <a href="https://www.linkedin.com/in/mohamed-abdelsamei/" target="_blank" rel="me noopener noreferrer">LinkedIn</a>
+          for updates.
+        </p>
+      </section>
+
+      <section class="contact" id="contact" aria-label="Contact">
         <h2 class="sec-hdr">[ CONNECT ]</h2>
+        <p class="contact-note">
+          Open to consulting, conference talks, and select collaborations
+          in the identity and privacy space.
+        </p>
         <nav>
-          <a href="mailto:mohamed@mabdelsamei.com">
+          <a href="mailto:mohamed@mabdelsamei.com?subject=Let's%20talk">
             <span class="prompt" aria-hidden="true">&rarr;</span>
             <span class="contact-label">Email</span>
             <span class="contact-hint">mohamed@mabdelsamei.com</span>
           </a>
-          <a href="https://github.com/mohamed-abdelsamei" target="_blank" rel="noopener noreferrer">
+          <a href="https://github.com/mohamed-abdelsamei" target="_blank" rel="me noopener noreferrer">
             <span class="prompt" aria-hidden="true">&rarr;</span>
             <span class="contact-label">GitHub</span>
             <span class="contact-hint">@mohamed-abdelsamei</span>
           </a>
-          <a href="https://www.linkedin.com/in/mohamed-abdelsamei/" target="_blank" rel="noopener noreferrer">
+          <a href="https://www.linkedin.com/in/mohamed-abdelsamei/" target="_blank" rel="me noopener noreferrer">
             <span class="prompt" aria-hidden="true">&rarr;</span>
             <span class="contact-label">LinkedIn</span>
             <span class="contact-hint">in/mohamed-abdelsamei</span>

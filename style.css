@@ -90,8 +90,9 @@ header     { animation: fade-in 0.5s ease 0.1s  backwards; }
 .about     { animation: fade-in 0.5s ease 0.18s backwards; }
 .values    { animation: fade-in 0.5s ease 0.26s backwards; }
 .stack     { animation: fade-in 0.5s ease 0.34s backwards; }
-.contact   { animation: fade-in 0.5s ease 0.42s backwards; }
-footer     { animation: fade-in 0.5s ease 0.50s backwards; }
+.writing   { animation: fade-in 0.5s ease 0.42s backwards; }
+.contact   { animation: fade-in 0.5s ease 0.50s backwards; }
+footer     { animation: fade-in 0.5s ease 0.58s backwards; }
 
 /* ─── Boot line ─────────────────────────────────────── */
 
@@ -129,7 +130,31 @@ header::after {
   background: var(--ink);
 }
 
-.name-line { margin-bottom: 14px; }
+/* ─── Avatar ──────────────────────────────────────────── */
+
+.header-top {
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+  margin-bottom: 14px;
+}
+
+.avatar {
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  border: 2px solid var(--border);
+  flex-shrink: 0;
+  filter: grayscale(15%);
+  transition: filter 0.3s, border-color 0.3s;
+}
+
+.avatar:hover {
+  filter: grayscale(0%);
+  border-color: var(--border2);
+}
+
+.name-line { margin-bottom: 0; }
 
 h1 {
   font-family: var(--serif);
@@ -148,6 +173,11 @@ h1 {
   color: var(--dim);
   letter-spacing: 0.12em;
   text-transform: uppercase;
+}
+
+.at-company {
+  color: var(--text);
+  font-weight: 500;
 }
 
 .meta {
@@ -169,7 +199,11 @@ h1 {
   align-items: center;
   gap: 6px;
   color: var(--text);
+  text-decoration: none;
+  transition: color 0.2s;
 }
+
+a.online:hover { color: var(--ink); }
 
 .online-dot {
   display: inline-block;
@@ -321,7 +355,81 @@ mark {
   background: var(--bg);
 }
 
+/* ─── Writing ─────────────────────────────────────────── */
+
+.writing-intro {
+  font-family: var(--serif);
+  font-size: 1rem;
+  color: var(--text);
+  line-height: 1.8;
+  margin-bottom: 20px;
+}
+
+.writing-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.writing-list li {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.writing-soon {
+  opacity: 0.55;
+}
+
+.writing-label {
+  font-family: var(--serif);
+  font-size: 0.9375rem;
+  font-style: italic;
+  color: var(--text);
+}
+
+.writing-meta {
+  font-family: var(--mono);
+  font-size: 0.58rem;
+  color: var(--dim);
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+.writing-follow {
+  font-family: var(--sans);
+  font-size: 0.8125rem;
+  color: var(--dim);
+  margin-top: 18px;
+}
+
+.writing-follow a {
+  color: var(--text);
+  text-decoration: none;
+  border-bottom: 1px solid var(--border2);
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.writing-follow a:hover {
+  color: var(--ink);
+  border-color: var(--ink);
+}
+
 /* ─── Contact ─────────────────────────────────────────── */
+
+.contact-note {
+  font-family: var(--sans);
+  font-size: 0.8125rem;
+  color: var(--dim);
+  line-height: 1.7;
+  margin-bottom: 24px;
+  padding-left: 14px;
+  border-left: 2px solid var(--border2);
+}
 
 .contact nav {
   display: flex;
@@ -407,4 +515,7 @@ a:focus-visible {
   footer  { flex-direction: column; align-items: flex-start; gap: 4px; }
   .contact-hint { display: none; }
   .belief-list li { grid-template-columns: 100px 1fr; gap: 0 16px; }
+  .header-top { gap: 16px; }
+  .avatar { width: 64px; height: 64px; }
+  .writing-list li { flex-direction: column; gap: 4px; }
 }
