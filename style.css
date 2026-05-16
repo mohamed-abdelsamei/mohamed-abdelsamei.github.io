@@ -113,45 +113,56 @@ footer     { animation: fade-in 0.5s ease 0.50s backwards; }
 /* ─── Header ─────────────────────────────────────────── */
 
 header {
-  margin-bottom: 72px;
-  border-bottom: 2px solid var(--ink);
-  padding-bottom: 32px;
+  margin-bottom: 68px;
+  padding-bottom: 36px;
+  border-bottom: 1px solid var(--border);
+  position: relative;
 }
 
-.name-line { margin-bottom: 16px; }
+header::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 48px;
+  height: 3px;
+  background: var(--ink);
+}
+
+.name-line { margin-bottom: 14px; }
 
 h1 {
   font-family: var(--serif);
-  font-size: clamp(2.8rem, 9vw, 4.5rem);
+  font-size: clamp(2.6rem, 8.5vw, 4.25rem);
   font-weight: 400;
   line-height: 1.05;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.025em;
   color: var(--ink);
   font-style: italic;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 
 .role-badge {
   font-family: var(--mono);
-  font-size: 0.65rem;
+  font-size: 0.62rem;
   color: var(--dim);
-  letter-spacing: 0.1em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 
 .meta {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
   font-family: var(--mono);
-  font-size: 0.65rem;
+  font-size: 0.62rem;
   color: var(--dim);
   letter-spacing: 0.04em;
-  margin-top: 20px;
+  margin-top: 22px;
   flex-wrap: wrap;
 }
 
-.sep { color: var(--border2); }
+.sep { color: var(--border); }
 
 .online {
   display: flex;
@@ -225,14 +236,15 @@ mark {
   align-items: center;
   gap: 10px;
   font-family: var(--mono);
-  font-size: 0.62rem;
+  font-size: 0.6rem;
   color: var(--dim);
-  letter-spacing: 0.05em;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
   border-left: 2px solid var(--border2);
-  padding-left: 12px;
+  padding: 4px 0 4px 14px;
 }
 
-.cert-icon { color: var(--dim); }
+.cert-icon { color: #c8a415; font-style: normal; }
 
 /* ─── Values ─────────────────────────────────────────── */
 
@@ -244,10 +256,10 @@ mark {
 
 .belief-list li {
   display: grid;
-  grid-template-columns: 120px 1fr;
-  gap: 0 20px;
+  grid-template-columns: 130px 1fr;
+  gap: 0 24px;
   align-items: baseline;
-  padding: 13px 0;
+  padding: 15px 0;
   border-bottom: 1px solid var(--border);
 }
 
@@ -255,7 +267,7 @@ mark {
 
 .belief-key {
   font-family: var(--serif);
-  font-size: 0.9375rem;
+  font-size: 1rem;
   font-style: italic;
   color: var(--ink);
 }
@@ -264,7 +276,7 @@ mark {
   font-family: var(--sans);
   font-size: 0.8125rem;
   color: var(--dim);
-  line-height: 1.5;
+  line-height: 1.6;
 }
 
 /* ─── Stack ──────────────────────────────────────────── */
@@ -293,19 +305,20 @@ mark {
 
 .stack-group li {
   font-family: var(--mono);
-  font-size: 0.68rem;
-  padding: 4px 10px;
+  font-size: 0.65rem;
+  padding: 5px 11px;
   border: 1px solid var(--border);
   color: var(--dim);
   background: var(--surface);
-  letter-spacing: 0.03em;
+  letter-spacing: 0.04em;
   cursor: default;
-  transition: border-color 0.15s, color 0.15s;
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
 }
 
 .stack-group li:hover {
   border-color: var(--ink);
   color: var(--ink);
+  background: var(--bg);
 }
 
 /* ─── Contact ─────────────────────────────────────────── */
@@ -313,40 +326,66 @@ mark {
 .contact nav {
   display: flex;
   flex-direction: column;
+  border-top: 1px solid var(--border);
 }
 
 .contact a {
   font-family: var(--mono);
-  font-size: 0.68rem;
-  letter-spacing: 0.05em;
-  color: var(--dim);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  color: var(--text);
   text-decoration: none;
-  display: grid;
-  grid-template-columns: 80px 1fr;
+  display: flex;
   align-items: center;
-  gap: 0 16px;
-  padding: 13px 0;
+  gap: 14px;
+  padding: 16px 0;
   border-bottom: 1px solid var(--border);
-  transition: color 0.15s;
+  transition: color 0.2s;
+  position: relative;
 }
 
-.contact a:first-child { border-top: 1px solid var(--border); }
+.contact a::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--ink);
+  transition: width 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
 
 .contact a:hover { color: var(--ink); }
+.contact a:hover::after { width: 100%; }
 
-.contact a:hover .prompt { transform: translateX(4px); color: var(--ink); }
+.contact a:hover .prompt {
+  transform: translateX(5px);
+  color: var(--ink);
+}
 
 .prompt {
   color: var(--border2);
-  transition: color 0.15s, transform 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+  font-size: 0.8rem;
+  transition: color 0.2s, transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
   display: inline-block;
+  flex-shrink: 0;
+}
+
+.contact-label {
+  font-size: 0.72rem;
+  color: inherit;
+  min-width: 72px;
 }
 
 .contact-hint {
   font-size: 0.62rem;
   color: var(--border2);
   letter-spacing: 0.02em;
+  margin-left: auto;
+  transition: color 0.2s;
 }
+
+.contact a:hover .contact-hint { color: var(--dim); }
 
 /* ─── Focus ─────────────────────────────────────────── */
 
@@ -364,9 +403,8 @@ a:focus-visible {
 
 @media (max-width: 520px) {
   main    { padding: 48px 20px 60px; }
-  h1      { font-size: 2.5rem; }
+  h1      { font-size: 2.4rem; }
   footer  { flex-direction: column; align-items: flex-start; gap: 4px; }
-  .contact a { grid-template-columns: 70px 1fr; }
   .contact-hint { display: none; }
-  .belief-list li { grid-template-columns: 100px 1fr; }
+  .belief-list li { grid-template-columns: 100px 1fr; gap: 0 16px; }
 }
