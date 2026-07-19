@@ -1,0 +1,189 @@
+---
+import '../styles/blog.css';
+
+interface Props {
+  title: string;
+  description: string;
+  type?: 'website' | 'article';
+  publishedTime?: Date;
+  tags?: string[];
+}
+
+const { title, description, type = 'website', publishedTime, tags = [] } = Astro.props;
+
+const pageTitle = `${title} — Mohamed Abdelsamei`;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const ogImage = new URL('/og-image.jpg', Astro.site);
+
+const jsonLd =
+  type === 'article' && publishedTime
+    ? {
+        '@context': 'https://schema.org',
+        '@type': 'BlogPosting',
+        headline: title,
+        description,
+        datePublished: publishedTime.toISOString(),
+        url: canonicalURL.toString(),
+        image: ogImage.toString(),
+        author: { '@type': 'Person', name: 'Mohamed Abdelsamei', url: 'https://mabdelsamei.com/' },
+        keywords: tags.join(', '),
+      }
+    : null;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content={type} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    {jsonLd && (
+      <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    )}
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230b0d0c' rx='6'/%3E%3Crect x='9.5' y='14' width='13' height='4.5' fill='%234ade8f'/%3E%3C/svg%3E"
+    />
+    <meta name="theme-color" content="#0b0d0c" />
+    <link rel="alternate" type="application/rss+xml" title="Mohamed Abdelsamei" href="/blog/rss.xml" />
+    <script is:inline>
+      // Apply saved theme before first paint to avoid a flash
+      (function () {
+        try {
+          if (localStorage.getItem('ma-theme') === 'light') {
+            document.documentElement.dataset.theme = 'light';
+          }
+        } catch (e) { /* storage unavailable — stay dark */ }
+      })();
+    </script>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <nav class="nav" aria-label="Site">
+      <a href="/" class="logo">ma<span class="logo-block" aria-hidden="true"></span></a>
+      <div class="nav-links">
+        <a href="/#work">work</a>
+        <a href="/#open-source">open_source</a>
+        <a href="/blog/" class="accent">writing</a>
+        <a href="/#stack">stack</a>
+        <a href="/#contact">contact</a>
+        <button type="button" class="theme-btn" id="theme-btn">theme --light</button>
+      </div>
+    </nav>
+
+    <main id="main">
+      <slot />
+    </main>
+
+    <footer>
+      <span>&copy; 2026 mohamed abdelsamei &middot; utc+1</span>
+      <span class="logo logo--sm">ma<span class="logo-block" aria-hidden="true"></span></span>
+    </footer>
+
+    <script is:inline>
+      // Theme toggle, persisted across visits
+      const btn = document.getElementById('theme-btn');
+      const root = document.documentElement;
+      const label = () => {
+        btn.textContent = root.dataset.theme === 'light' ? 'theme --dark' : 'theme --light';
+      };
+      btn.addEventListener('click', () => {
+        const next = root.dataset.theme === 'light' ? 'dark' : 'light';
+        if (next === 'light') { root.dataset.theme = 'light'; }
+        else { delete root.dataset.theme; }
+        try { localStorage.setItem('ma-theme', next); } catch (e) { /* ignore */ }
+        label();
+      });
+      label();
+    </script>
+
+    <script is:inline>
+      // Wrap Shiki code blocks in the terminal-style "code-card" chrome
+      // (filename bar + copy button) — done client-side since Astro's
+      // Shiki output isn't reachable as a plain hast tree at rehype time.
+      document.querySelectorAll('.prose pre.astro-code').forEach((pre) => {
+        const card = document.createElement('div');
+        card.className = 'code-card';
+
+        const bar = document.createElement('div');
+        bar.className = 'code-card-bar';
+
+        const name = document.createElement('span');
+        name.className = 'code-card-name';
+        name.textContent = pre.getAttribute('data-language') || 'text';
+
+        const copyBtn = document.createElement('button');
+        copyBtn.type = 'button';
+        copyBtn.className = 'code-card-copy';
+        copyBtn.textContent = 'copy';
+        copyBtn.addEventListener('click', async () => {
+          const code = pre.querySelector('code');
+          if (!code) return;
+          try {
+            await navigator.clipboard.writeText(code.textContent || '');
+            const original = copyBtn.textContent;
+            copyBtn.textContent = 'copied';
+            setTimeout(() => { copyBtn.textContent = original; }, 1400);
+          } catch (e) { /* clipboard unavailable */ }
+        });
+
+        bar.append(name, copyBtn);
+        pre.replaceWith(card);
+        card.append(bar, pre);
+      });
+    </script>
+
+    <script is:inline>
+      // Share the current post — native share sheet where available,
+      // clipboard copy otherwise (both real actions; this used to be a
+      // link that just pointed at the page's own URL, doing nothing).
+      document.querySelectorAll('.post-share').forEach((btn) => {
+        const label = btn.querySelector('.post-share-label');
+        btn.addEventListener('click', async () => {
+          const url = window.location.href;
+          const title = document.title;
+          if (navigator.share) {
+            try {
+              await navigator.share({ title, url });
+            } catch (e) { /* user cancelled — ignore */ }
+            return;
+          }
+          try {
+            await navigator.clipboard.writeText(url);
+            if (label) {
+              const original = label.textContent;
+              label.textContent = 'copied';
+              setTimeout(() => { label.textContent = original; }, 1400);
+            }
+          } catch (e) { /* clipboard unavailable */ }
+        });
+      });
+    </script>
+  </body>
+</html>

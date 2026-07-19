@@ -1,0 +1,34 @@
+---
+import BlogLayout from '../layouts/BlogLayout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (
+  await getCollection('blog', ({ data }) => (import.meta.env.PROD ? !data.draft : true))
+).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+---
+
+<BlogLayout
+  title="writing"
+  description="Writing about identity infrastructure, Verifiable Credentials, and backend system design."
+>
+  <section class="sec" aria-label="Writing">
+    <p class="prompt accent">$ cd ~/writing</p>
+    <h1 class="sec-hdr">## writing --latest</h1>
+    <div class="post-list">
+      {posts.map((post) => (
+        <article class="card">
+          <p class="card-tag accent">// {post.data.pubDate.toISOString().slice(0, 10)}</p>
+          <h3><a href={`/blog/${post.id}/`}>{post.data.title}</a></h3>
+          <p class="card-desc">{post.data.description}</p>
+          {post.data.tags.length > 0 && (
+            <div class="chip-row">
+              {post.data.tags.map((tag) => (
+                <span class="chip">{tag}</span>
+              ))}
+            </div>
+          )}
+        </article>
+      ))}
+    </div>
+  </section>
+</BlogLayout>

@@ -1,0 +1,106 @@
+---
+import { getCollection, render } from 'astro:content';
+import BlogLayout from '../layouts/BlogLayout.astro';
+
+const AUTHOR = 'mohamed abdelsamei';
+const WORDS_PER_MINUTE = 200;
+
+export async function getStaticPaths() {
+  const posts = (
+    await getCollection('blog', ({ data }) => (import.meta.env.PROD ? !data.draft : true))
+  ).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+  return posts.map((post, i) => ({
+    params: { slug: post.id },
+    props: { post, older: posts[i + 1], newer: posts[i - 1] },
+  }));
+}
+
+const { post, older, newer } = Astro.props;
+const { Content } = await render(post);
+
+const wordCount = post.body ? post.body.trim().split(/\s+/).length : 0;
+const readMinutes = Math.max(1, Math.round(wordCount / WORDS_PER_MINUTE));
+const pubDateStr = post.data.pubDate.toISOString().slice(0, 10);
+const [firstTag, ...restTags] = post.data.tags;
+---
+
+<BlogLayout
+  title={post.data.title}
+  description={post.data.description}
+  type="article"
+  publishedTime={post.data.pubDate}
+  tags={post.data.tags}
+>
+  <div class="post-header-wrap" aria-label={post.data.title}>
+    <div class="post-header-inner">
+      <a href="/blog/" class="post-crumb">&larr; cd ~/blog</a>
+
+      {post.data.tags.length > 0 && (
+        <div class="post-tags">
+          <span class="tag-fill">{firstTag}</span>
+          {restTags.map((tag) => (
+            <span class="tag-outline">{tag}</span>
+          ))}
+        </div>
+      )}
+
+      <h1 class="post-hero-title">{post.data.title}</h1>
+
+      <div class="post-meta-row">
+        <span>{pubDateStr}</span>
+        <span class="meta-dot" aria-hidden="true"></span>
+        <span>{readMinutes} min read</span>
+        <span class="meta-dot" aria-hidden="true"></span>
+        <span>{AUTHOR}</span>
+      </div>
+
+      <div class="post-divider" aria-hidden="true"></div>
+    </div>
+  </div>
+
+  <div class="post-body-wrap">
+    <article class="prose">
+      <Content />
+    </article>
+
+    <div class="post-footer-row">
+      {post.data.tags.length > 0 && (
+        <div class="post-footer-tags">
+          <span class="post-footer-tags-label">$ tag:</span>
+          {post.data.tags.map((tag) => (
+            <span class="tag-outline">{tag}</span>
+          ))}
+        </div>
+      )}
+      <button type="button" class="post-share">
+        <span class="post-share-label">share</span> <span aria-hidden="true">&#8599;</span>
+      </button>
+    </div>
+
+    <div class="post-nav-grid">
+      {older ? (
+        <a href={`/blog/${older.id}/`} class="post-nav-card">
+          <div class="post-nav-label">&larr; older</div>
+          <div class="post-nav-title">{older.data.title}</div>
+        </a>
+      ) : (
+        <div class="post-nav-empty">
+          <div class="post-nav-label">&larr; older</div>
+          <div class="post-nav-title">nothing yet</div>
+        </div>
+      )}
+      {newer ? (
+        <a href={`/blog/${newer.id}/`} class="post-nav-card" style="text-align: right;">
+          <div class="post-nav-label">newer &rarr;</div>
+          <div class="post-nav-title">{newer.data.title}</div>
+        </a>
+      ) : (
+        <div class="post-nav-empty">
+          <div class="post-nav-label">newer &rarr;</div>
+          <div class="post-nav-title">nothing yet &mdash; this is the latest</div>
+        </div>
+      )}
+    </div>
+  </div>
+</BlogLayout>

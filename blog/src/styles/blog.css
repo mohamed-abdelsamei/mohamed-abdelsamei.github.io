@@ -1,0 +1,343 @@
+/* ─── Blog-only tokens (design: Blog Post.dc.html) ───────────────────── */
+
+:root {
+  --code-bg: #0e1210;
+  --tok-k: #4ade8f;
+  --tok-s: #e8c468;
+  --tok-c: #5c6660;
+  --tok-f: #67d4e8;
+}
+
+[data-theme='light'] {
+  --code-bg: #f1f1ec;
+  --tok-k: #0b7a48;
+  --tok-s: #8f6a06;
+  --tok-c: #8a938b;
+  --tok-f: #0b6b88;
+}
+
+/* Astro's `shikiConfig: { theme: 'css-variables' }` emits --astro-code-*
+   custom properties instead of baked-in hex, recolored here with the
+   tokens above so code blocks match the site instead of a stock theme. */
+:root {
+  --astro-code-foreground: var(--body);
+  --astro-code-background: var(--code-bg);
+  --astro-code-token-constant: var(--tok-s);
+  --astro-code-token-string: var(--tok-s);
+  --astro-code-token-string-expression: var(--tok-s);
+  --astro-code-token-comment: var(--tok-c);
+  --astro-code-token-keyword: var(--tok-k);
+  --astro-code-token-parameter: var(--body);
+  --astro-code-token-function: var(--tok-f);
+  --astro-code-token-punctuation: var(--body);
+  --astro-code-token-link: var(--tok-f);
+}
+
+/* ─── Post list ───────────────────────────────────────────────────── */
+
+.post-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-top: 30px;
+}
+
+.post-list .card {
+  margin: 0;
+  max-width: 720px;
+}
+
+.post-list .card h3 {
+  margin-top: 4px;
+}
+
+.post-list .card h3 a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.post-list .card h3 a:hover { color: var(--accent); }
+
+/* ─── Post header ─────────────────────────────────────────────────── */
+
+.post-header-wrap {
+  padding: 88px 64px 0;
+}
+
+.post-header-inner,
+.post-body-wrap {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.post-body-wrap { padding: 48px 64px 80px; }
+
+.post-crumb {
+  font-size: 0.75rem;
+  color: var(--mut);
+  text-decoration: none;
+}
+
+.post-crumb:hover { opacity: 0.75; }
+
+.post-tags {
+  display: flex;
+  gap: 10px;
+  margin-top: 34px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.tag-fill,
+.tag-outline {
+  font-size: 0.6875rem;
+  padding: 5px 12px;
+  white-space: nowrap;
+}
+
+.tag-fill {
+  color: var(--bg);
+  background: var(--accent);
+}
+
+.tag-outline {
+  color: var(--dim);
+  border: 1px solid var(--hair2);
+}
+
+.post-hero-title {
+  margin: 26px 0 0;
+  font-size: clamp(1.7rem, 4.4vw, 2.375rem);
+  line-height: 1.25;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  color: var(--head);
+  text-wrap: pretty;
+}
+
+.post-meta-row {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  margin-top: 26px;
+  font-size: 0.75rem;
+  color: var(--mut);
+  white-space: nowrap;
+  flex-wrap: wrap;
+}
+
+.meta-dot {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--hair2);
+}
+
+.post-divider {
+  width: 56px;
+  height: 2px;
+  background: var(--accent);
+  margin-top: 32px;
+}
+
+/* ─── Prose ───────────────────────────────────────────────────────── */
+
+.prose {
+  max-width: 720px;
+  margin-top: 0;
+  font-size: 0.906rem;
+}
+
+.prose > * + * { margin-top: 1.25em; }
+
+.prose h2,
+.prose h3 {
+  color: var(--head);
+  font-weight: 500;
+  line-height: 1.5;
+  margin-top: 3.2em;
+}
+
+.prose h2 { font-size: 1.25rem; }
+.prose h3 { font-size: 1.05rem; }
+
+.prose h2 .prose-hdr-mark,
+.prose h3 .prose-hdr-mark {
+  color: var(--accent);
+}
+
+.prose p { line-height: 2; }
+
+.prose em { color: var(--head); font-style: italic; }
+
+.prose a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid var(--hair2);
+}
+
+.prose a:hover { opacity: 0.75; }
+
+.prose ul,
+.prose ol {
+  padding-left: 1.4em;
+  line-height: 1.8;
+}
+
+.prose li + li { margin-top: 0.4em; }
+
+.prose blockquote {
+  margin-top: 2.2em;
+  border-left: 3px solid var(--accent);
+  padding: 6px 0 6px 24px;
+  font-size: 0.94rem;
+  line-height: 1.9;
+  color: var(--dim);
+  font-style: italic;
+}
+
+.prose hr {
+  border: none;
+  border-top: 1px solid var(--hair);
+  margin-top: 2em;
+}
+
+/* ─── Code card ───────────────────────────────────────────────────── */
+
+.code-card {
+  margin-top: 2em;
+  border: 1px solid var(--hair);
+  background: var(--code-bg);
+}
+
+.code-card-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 20px;
+  border-bottom: 1px solid var(--hair);
+}
+
+.code-card-name {
+  font-size: 0.6875rem;
+  color: var(--mut);
+}
+
+.code-card-copy {
+  font-size: 0.6875rem;
+  font-family: var(--mono);
+  color: var(--accent);
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.code-card-copy:hover { opacity: 0.75; }
+
+.code-card pre.astro-code {
+  margin: 0;
+  padding: 24px 24px 26px;
+  font-size: 0.78rem;
+  line-height: 1.8;
+  overflow-x: auto;
+}
+
+.prose :not(pre) > code {
+  font-family: var(--mono);
+  font-size: 0.86em;
+  background: var(--card);
+  color: var(--head);
+  padding: 2px 6px;
+  border: 1px solid var(--hair);
+}
+
+/* ─── Post footer / prev-next ────────────────────────────────────── */
+
+.post-footer-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-top: 64px;
+  padding-top: 28px;
+  border-top: 1px solid var(--hair);
+  flex-wrap: wrap;
+}
+
+.post-footer-tags {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.post-footer-tags-label {
+  font-size: 0.72rem;
+  color: var(--mut);
+}
+
+.post-share {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--accent);
+  text-decoration: none;
+  white-space: nowrap;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.post-share:hover { opacity: 0.75; }
+
+.post-nav-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: 40px;
+}
+
+.post-nav-card,
+.post-nav-empty {
+  padding: 24px 28px;
+}
+
+.post-nav-card {
+  border: 1px solid var(--hair);
+  background: var(--card);
+  text-decoration: none;
+  display: block;
+}
+
+.post-nav-empty {
+  border: 1px dashed var(--hair2);
+  text-align: right;
+}
+
+.post-nav-label {
+  font-size: 0.6875rem;
+  color: var(--mut);
+}
+
+.post-nav-title {
+  font-size: 0.844rem;
+  font-weight: 500;
+  color: var(--head);
+  line-height: 1.55;
+  margin-top: 10px;
+}
+
+.post-nav-empty .post-nav-title {
+  color: var(--mut);
+  font-weight: 400;
+  font-style: italic;
+}
+
+/* ─── Mobile ──────────────────────────────────────────────────────── */
+
+@media (max-width: 760px) {
+  .post-header-wrap { padding: 56px 22px 0; }
+  .post-body-wrap { padding: 32px 22px 56px; }
+  .post-nav-grid { grid-template-columns: 1fr; }
+  .post-nav-empty { text-align: left; }
+}

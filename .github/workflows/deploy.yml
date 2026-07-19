@@ -1,0 +1,63 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: blog/package-lock.json
+
+      - name: Install blog dependencies
+        working-directory: blog
+        run: npm ci
+
+      - name: Build Astro blog
+        working-directory: blog
+        run: npm run build
+
+      # Assemble the static root files (hand-authored, no build step) and the
+      # built blog into a single directory to publish. Add new root static
+      # files to this list explicitly when they're added to the repo.
+      - name: Assemble combined Pages artifact
+        run: |
+          mkdir -p _site
+          cp index.html 404.html CNAME .nojekyll robots.txt sitemap.xml feed.xml \
+             og-image.jpg google02b7a32b9c11fcc0.html style.css _site/
+          mkdir -p _site/blog
+          cp -r blog/dist/. _site/blog/
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
