@@ -15,6 +15,29 @@ const pageTitle = `${title} — Mohamed Abdelsamei`;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const ogImage = new URL('/og-image.jpg', Astro.site);
 
+// Same entity as the Person JSON-LD on the root index.html — keep these two in sync.
+const personSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Mohamed Abdelsamei',
+  url: 'https://mabdelsamei.com/',
+  image: 'https://mabdelsamei.com/og-image.jpg',
+  jobTitle: 'Senior Software Engineer',
+  description:
+    'Identity and backend infrastructure engineer. 10 years building privacy-preserving systems with Verifiable Credentials, OID4VP, and OID4VCI — now focused on identity for humans and AI agents, and safe agent execution environments.',
+  address: { '@type': 'PostalAddress', addressLocality: 'Berlin', addressCountry: 'DE' },
+  knowsAbout: [
+    'Digital Identity', 'Verifiable Credentials', 'OID4VP', 'OID4VCI', 'Self-Sovereign Identity',
+    'AI Agent Identity', 'Agent Sandboxing', 'TypeScript', 'Node.js', 'Dart', 'Rust',
+    'AWS Lambda', 'Serverless', 'DynamoDB', 'Terraform',
+  ],
+  worksFor: { '@type': 'Organization', name: 'Affinidi' },
+  sameAs: [
+    'https://github.com/mohamed-abdelsamei',
+    'https://www.linkedin.com/in/mohamed-abdelsamei/',
+  ],
+};
+
 const jsonLd =
   type === 'article' && publishedTime
     ? {
@@ -54,6 +77,7 @@ const jsonLd =
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
 
+    <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
     {jsonLd && (
       <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
     )}
