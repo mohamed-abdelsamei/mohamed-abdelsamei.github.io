@@ -41,7 +41,7 @@ jobs:
         run: |
           mkdir -p _site
           cp index.html 404.html CNAME .nojekyll robots.txt sitemap.xml feed.xml \
-             og-image.jpg google02b7a32b9c11fcc0.html style.css _site/
+             og-image.jpg favicon.ico favicon.svg google02b7a32b9c11fcc0.html style.css _site/
           mkdir -p _site/blog
           cp -r blog/dist/. _site/blog/
 
