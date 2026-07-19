@@ -4,12 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mohamed Abdelsamei — Identity &amp; Backend Infrastructure Engineer</title>
-    <meta name="description" content="Mohamed Abdelsamei — 10 years building backend systems and digital identity infrastructure. Verifiable Credentials, OIDC4VP, OID4CI. Berlin." />
+    <meta name="description" content="Mohamed Abdelsamei — 10 years building backend systems and identity infrastructure for humans and AI agents. Verifiable Credentials, OID4VP, OID4VCI, safe agent runtimes. Berlin." />
     <link rel="canonical" href="https://mabdelsamei.com/" />
 
     <!-- Open Graph -->
     <meta property="og:title" content="Mohamed Abdelsamei — Identity &amp; Backend Infrastructure Engineer" />
-    <meta property="og:description" content="Mohamed Abdelsamei — 10 years building backend systems and digital identity infrastructure. Verifiable Credentials, OIDC4VP, OID4CI. Berlin." />
+    <meta property="og:description" content="Mohamed Abdelsamei — 10 years building backend systems and identity infrastructure for humans and AI agents. Verifiable Credentials, OID4VP, OID4VCI, safe agent runtimes. Berlin." />
     <meta property="og:url" content="https://mabdelsamei.com/" />
     <meta property="og:type" content="profile" />
     <meta property="og:image" content="https://mabdelsamei.com/og-image.jpg" />
@@ -23,7 +23,7 @@
     <!-- Twitter -->
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content="Mohamed Abdelsamei — Identity &amp; Backend Infrastructure Engineer" />
-    <meta name="twitter:description" content="10 years building backend systems and privacy-preserving identity infrastructure. Verifiable Credentials, OIDC4VP, OID4CI." />
+    <meta name="twitter:description" content="10 years building privacy-preserving identity infrastructure for humans and AI agents. Verifiable Credentials, OID4VP, OID4VCI, safe agent runtimes." />
     <meta name="twitter:image" content="https://mabdelsamei.com/og-image.jpg" />
 
     <!-- Structured data -->
@@ -35,9 +35,9 @@
       "url": "https://mabdelsamei.com/",
       "image": "https://mabdelsamei.com/og-image.jpg",
       "jobTitle": "Senior Software Engineer",
-      "description": "Identity and backend infrastructure engineer. 10 years building privacy-preserving systems with Verifiable Credentials, OIDC4VP, and OID4CI. Based in Berlin.",
+      "description": "Identity and backend infrastructure engineer. 10 years building privacy-preserving systems with Verifiable Credentials, OID4VP, and OID4VCI — now focused on identity for humans and AI agents, and safe agent execution environments. Based in Berlin.",
       "address": { "@type": "PostalAddress", "addressLocality": "Berlin", "addressCountry": "DE" },
-      "knowsAbout": ["Digital Identity", "Verifiable Credentials", "OIDC4VP", "OID4CI", "Self-Sovereign Identity", "TypeScript", "Node.js", "Dart", "Rust", "AWS Lambda", "Serverless", "DynamoDB", "Terraform"],
+      "knowsAbout": ["Digital Identity", "Verifiable Credentials", "OID4VP", "OID4VCI", "Self-Sovereign Identity", "AI Agent Identity", "Agent Sandboxing", "TypeScript", "Node.js", "Dart", "Rust", "AWS Lambda", "Serverless", "DynamoDB", "Terraform"],
       "worksFor": { "@type": "Organization", "name": "Affinidi" },
       "sameAs": [
         "https://github.com/mohamed-abdelsamei",
@@ -47,248 +47,178 @@
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet" />
     <link
       rel="icon"
-      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230d0d12' rx='6'/%3E%3Crect x='1.5' y='1.5' width='29' height='29' fill='none' stroke='%23d4a853' stroke-width='1.2' rx='5'/%3E%3Ctext x='6' y='22' font-family='Georgia,serif' font-size='14' fill='%23d4a853' font-style='italic'%3EM%3C/text%3E%3C/svg%3E"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230b0d0c' rx='6'/%3E%3Crect x='9.5' y='14' width='13' height='4.5' fill='%234ade8f'/%3E%3C/svg%3E"
     />
-    <meta name="theme-color" content="#0d0d12" />
+    <meta name="theme-color" content="#0b0d0c" />
     <link rel="alternate" type="application/rss+xml" title="Mohamed Abdelsamei" href="https://mabdelsamei.com/feed.xml" />
+    <script>
+      // Apply saved theme before first paint to avoid a flash
+      (function () {
+        try {
+          if (localStorage.getItem('ma-theme') === 'light') {
+            document.documentElement.dataset.theme = 'light';
+          }
+        } catch (e) { /* storage unavailable — stay dark */ }
+      })();
+    </script>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
 
+    <!-- Nav -->
+    <nav class="nav" aria-label="Site">
+      <a href="#top" class="logo">ma<span class="logo-block" aria-hidden="true"></span></a>
+      <div class="nav-links">
+        <a href="#open-source">open_source</a>
+        <a href="#articles">articles</a>
+        <a href="#stack">stack</a>
+        <a href="#contact" class="accent">contact</a>
+        <button type="button" class="theme-btn" id="theme-btn">theme --light</button>
+      </div>
+    </nav>
+
     <main id="main">
-      <div class="brand-bar" aria-hidden="true"></div>
-      <!-- Header -->
-      <header>
-        <div class="header-top">
-          <img
-            class="avatar"
-            src="og-image.jpg"
-            alt="Mohamed Abdelsamei — Identity &amp; Backend Infrastructure Engineer"
-            width="72"
-            height="72"
-            loading="eager"
-          />
-          <div class="name-block">
-            <h1>Mohamed Abdelsamei</h1>
-            <p class="role-line">identity &amp; backend infrastructure engineer</p>
-          </div>
+      <!-- Hero -->
+      <header class="hero" id="top">
+        <p class="prompt accent">$ whoami</p>
+        <h1>
+          Mohamed Abdelsamei &mdash; I build identity infrastructure for humans
+          and AI agents, and the safe environments agents run
+          in.<span class="cursor" aria-hidden="true"></span>
+        </h1>
+        <p class="hero-intro">
+          Hey &mdash; I'm Mohamed, a senior software engineer in Berlin. Ten
+          years in &mdash; from leading a team of six in Cairo to Affinidi,
+          where I own backend architecture across identity &amp; verification
+          services. Along the way I've shipped a standards-based OIDC4VP
+          identity provider, roughly doubled API performance rebuilding core
+          services in Dart, and moved production from Kubernetes to serverless
+          without anyone noticing. My current focus is identity for AI agents
+          &mdash; how an agent proves who it is and whom it acts for &mdash;
+          and the safe, sandboxed environments agents run in.
+        </p>
+        <div class="btn-row">
+          <a href="#contact" class="btn btn--primary">./get_in_touch</a>
+          <a href="https://www.linkedin.com/in/mohamed-abdelsamei/" target="_blank" rel="me noopener noreferrer" class="btn">open linkedin/</a>
         </div>
+        <ul class="stat-row" aria-label="Highlights">
+          <li><span class="accent">10+</span> years shipping</li>
+          <li><span class="accent">2&times;</span> API perf after modernization</li>
+          <li><span class="accent">AWS</span> certified solutions architect</li>
+          <li><span class="accent">6</span> engineers led &amp; mentored</li>
+        </ul>
       </header>
 
-      <!-- System status bar -->
-      <div class="sys-status" aria-label="Status">
-        <div class="status-cell">
-          <span class="status-key">Location</span>
-          <span class="status-val">Berlin, DE</span>
-        </div>
-        <div class="status-cell">
-          <span class="status-key">Experience</span>
-          <span class="status-val">10+ years</span>
-        </div>
-        <div class="status-cell status-cell--link">
-          <span class="status-key">Status</span>
-          <a href="#contact" class="status-val status-val--link">
-            <span class="dot" aria-hidden="true"></span>Available for consulting
-          </a>
-        </div>
-      </div>
-
-      <!-- About -->
-      <section class="about" aria-label="Bio">
-        <h2 class="sec-hdr">
-          <span class="sec-num" aria-hidden="true">01</span>
-          <span class="sec-title">who i am</span>
-          <span class="sec-line" aria-hidden="true"></span>
-        </h2>
-        <div class="about-block">
-          <p>
-            Ten years in — from backend startups in Cairo to decentralised
-            identity systems in Berlin — I've shipped <mark>OIDC4VP</mark>-based
-            identity providers, re-architected services in <mark>Dart</mark> that
-            cut response times in half, and migrated production infrastructure
-            from Kubernetes to serverless. I lead technical initiatives,
-            mentor engineers, and write code that has to survive
-            the next engineer.
+      <!-- Open source -->
+      <section id="open-source" class="sec" aria-label="Open source">
+        <h2 class="sec-hdr">## open_source</h2>
+        <article class="card card--solo">
+          <p class="card-tag accent">// dart_package</p>
+          <h3>aws_xray_sdk &mdash; AWS X-Ray distributed tracing for Dart</h3>
+          <p class="card-desc">
+            Auto-traces <code>dart:io</code> HTTP and Smithy SDK clients,
+            propagates <code>X-Amzn-Trace-Id</code>, and sends segments via
+            UDP. First-class Lambda support. Verified publisher on pub.dev.
           </p>
-          <p>
-            My focus for the past four years has been making <mark>digital identity</mark>
-            work at infrastructure level — the protocols, the credential flows,
-            the auth layers that let people prove who they are without giving up
-            control of their data. That's the problem I want to keep solving.
+          <p class="pkg-meta">
+            <code class="pkg-install">dart pub add aws_xray_sdk</code>
           </p>
-          <p>
-            <mark>TypeScript</mark> and <mark>Dart</mark> are my daily drivers.
-            I reach for <mark>Rust</mark> where correctness demands go further.
-          </p>
-          <div class="cert-row">
-            <span class="star" aria-hidden="true">&#9733;</span>
-            AWS Certified Solutions Architect &middot; Associate
+          <div class="chip-row">
+            <span class="chip">Dart</span>
+            <span class="chip">MIT</span>
+            <span class="chip">&#x2713; verified publisher</span>
           </div>
-          <a href="https://pub.dev/packages/aws_xray_sdk" target="_blank" rel="noopener noreferrer" class="cert-row pub-row">
-            <span class="pub-icon" aria-hidden="true">d</span>
-            pub.dev/packages/aws_xray_sdk
-          </a>
+          <p class="card-links">
+            <a href="https://pub.dev/packages/aws_xray_sdk" target="_blank" rel="noopener noreferrer">pub.dev <span aria-hidden="true">&#x2197;</span></a>
+            <a href="https://github.com/mohamed-abdelsamei/aws-xray-sdk-dart" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">&#x2197;</span></a>
+          </p>
+        </article>
+      </section>
+
+      <!-- Articles -->
+      <section id="articles" class="sec" aria-label="Articles">
+        <h2 class="sec-hdr">## articles</h2>
+        <div class="articles-empty">
+          <p class="card-tag accent">// coming_soon</p>
+          <p class="articles-note">
+            Notes on identity for AI agents, verifiable credentials, and safe
+            agent runtimes are in the works. The
+            <a href="feed.xml">RSS feed</a> is already live &mdash; point your
+            reader at it and the first post will find you.
+          </p>
         </div>
       </section>
 
-      <!-- Values -->
-      <section class="values" aria-label="Values">
-        <h2 class="sec-hdr">
-          <span class="sec-num" aria-hidden="true">02</span>
-          <span class="sec-title">what i believe</span>
-          <span class="sec-line" aria-hidden="true"></span>
-        </h2>
-        <ul class="belief-list">
-          <li>
-            <span class="belief-idx">01</span>
-            <span class="belief-key">Privacy</span>
-            <span class="belief-val">is a design constraint, not a checkbox.</span>
-          </li>
-          <li>
-            <span class="belief-idx">02</span>
-            <span class="belief-key">Simplicity</span>
-            <span class="belief-val">is harder to achieve than complexity.</span>
-          </li>
-          <li>
-            <span class="belief-idx">03</span>
-            <span class="belief-key">Ownership</span>
-            <span class="belief-val">people should control their own identity and data.</span>
-          </li>
-          <li>
-            <span class="belief-idx">04</span>
-            <span class="belief-key">Correctness</span>
-            <span class="belief-val">matters more than cleverness.</span>
-          </li>
-        </ul>
-      </section>
-
-      <!-- Tech Stack -->
-      <section class="stack" aria-label="Tech stack">
-        <h2 class="sec-hdr">
-          <span class="sec-num" aria-hidden="true">03</span>
-          <span class="sec-title">tech stack</span>
-          <span class="sec-line" aria-hidden="true"></span>
-        </h2>
-        <div class="stack-table">
-          <div class="stack-row">
-            <div class="stack-cat">Languages</div>
-            <div class="stack-items">
-              <span class="tag">TypeScript</span>
-              <span class="tag">Node.js</span>
-              <span class="tag">Dart</span>
-            </div>
+      <!-- Stack -->
+      <section id="stack" class="sec" aria-label="Stack">
+        <h2 class="sec-hdr">## stack --list</h2>
+        <div class="stack-grid">
+          <div class="stack-col">
+            <p class="stack-cat accent">build</p>
+            <p class="stack-items">
+              Node.js / TypeScript<br />Dart<br />RESTful API design<br />Distributed systems
+            </p>
           </div>
-          <div class="stack-row">
-            <div class="stack-cat">Cloud &amp; Infra</div>
-            <div class="stack-items">
-              <span class="tag">AWS Lambda</span>
-              <span class="tag">DynamoDB</span>
-              <span class="tag">API Gateway</span>
-              <span class="tag">Terraform</span>
-              <span class="tag">AWS CDK</span>
-              <span class="tag">AWS X-Ray</span>
-              <span class="tag">Docker</span>
-            </div>
+          <div class="stack-col">
+            <p class="stack-cat accent">run</p>
+            <p class="stack-items">
+              AWS &middot; certified SA<br />Serverless architectures<br />CDK / Infrastructure-as-Code<br />Docker &middot; CI/CD pipelines
+            </p>
           </div>
-          <div class="stack-row">
-            <div class="stack-cat">Identity</div>
-            <div class="stack-items">
-              <span class="tag">SSI / DIDs</span>
-              <span class="tag">Verifiable Credentials</span>
-              <span class="tag">OIDC4VP</span>
-              <span class="tag">OID4CI</span>
-            </div>
+          <div class="stack-col">
+            <p class="stack-cat accent">identity</p>
+            <p class="stack-items">
+              SSI / DIDs &middot; Verifiable Credentials<br />OID4VP &middot; OID4VCI<br />Agent identity<br />Sandboxed agent runtimes
+            </p>
           </div>
-          <div class="stack-row">
-            <div class="stack-cat">Exploring</div>
-            <div class="stack-items">
-              <span class="tag">Rust</span>
-            </div>
+          <div class="stack-col">
+            <p class="stack-cat accent">lead</p>
+            <p class="stack-items">
+              System design leadership<br />Technical strategy<br />Mentoring &amp; coaching<br />Cross-functional alignment
+            </p>
           </div>
-        </div>
-        <p class="stack-proof">
-          Work lives on <a href="https://github.com/mohamed-abdelsamei" target="_blank" rel="me noopener noreferrer">GitHub</a>.
-          Most identity work is under org repos — reach out if you want context.
-        </p>
-      </section>
-
-      <!-- Thinking -->
-      <section class="writing" aria-label="Thinking">
-        <h2 class="sec-hdr">
-          <span class="sec-num" aria-hidden="true">04</span>
-          <span class="sec-title">thinking out loud</span>
-          <span class="sec-line" aria-hidden="true"></span>
-        </h2>
-        <div class="writing-placeholder">
-          <p>First post in progress &mdash; writing about identity infrastructure, Verifiable Credentials, and backend design.</p>
-          <p>Follow on
-            <a href="https://www.linkedin.com/in/mohamed-abdelsamei/" target="_blank" rel="me noopener noreferrer">LinkedIn</a>
-            to catch it.
-          </p>
-          <p class="writing-feed-link">
-            <span aria-hidden="true">&#x221E;</span>
-            <a href="/feed.xml" target="_blank" rel="alternate" type="application/rss+xml">RSS feed</a>
-          </p>
         </div>
       </section>
 
       <!-- Contact -->
-      <section class="contact" id="contact" aria-label="Contact">
-        <h2 class="sec-hdr">
-          <span class="sec-num" aria-hidden="true">05</span>
-          <span class="sec-title">connect</span>
-          <span class="sec-line" aria-hidden="true"></span>
+      <section id="contact" class="sec sec--contact" aria-label="Contact">
+        <p class="prompt accent">$ ping mohamed</p>
+        <h2 class="contact-lede">
+          Working on identity for humans or AI agents, verifiable credentials,
+          or safe agent runtimes? Let's compare notes.
         </h2>
-        <p class="contact-note">
-          <span class="contact-cta">Available for consulting</span>
-          on identity infrastructure, Verifiable Credential integrations, and backend architecture.
-          <a href="mailto:mohamed@mabdelsamei.com?subject=Let's%20talk" class="contact-cta-link">Send me an email &rarr;</a>
-        </p>
-        <nav>
-          <a href="mailto:mohamed@mabdelsamei.com?subject=Let's%20talk">
-            <span class="prompt" aria-hidden="true">&rarr;</span>
-            <span class="contact-label">Email</span>
-            <span class="contact-hint">mohamed@mabdelsamei.com</span>
-          </a>
-          <a href="https://www.linkedin.com/in/mohamed-abdelsamei/" target="_blank" rel="me noopener noreferrer">
-            <span class="prompt" aria-hidden="true">&rarr;</span>
-            <span class="contact-label">LinkedIn</span>
-            <span class="contact-hint">in/mohamed-abdelsamei</span>
-          </a>
-          <a href="https://github.com/mohamed-abdelsamei" target="_blank" rel="me noopener noreferrer">
-            <span class="prompt" aria-hidden="true">&rarr;</span>
-            <span class="contact-label">GitHub</span>
-            <span class="contact-hint">@mohamed-abdelsamei</span>
-          </a>
-        </nav>
+        <div class="btn-row">
+          <a href="mailto:mohamed@mabdelsamei.com?subject=Let's%20talk" class="btn btn--primary">mohamed@mabdelsamei.com</a>
+          <a href="https://www.linkedin.com/in/mohamed-abdelsamei/" target="_blank" rel="me noopener noreferrer" class="btn">linkedin/mohamed-abdelsamei</a>
+          <a href="https://github.com/mohamed-abdelsamei" target="_blank" rel="me noopener noreferrer" class="btn">github/mohamed-abdelsamei</a>
+        </div>
       </section>
-
     </main>
 
     <footer>
-      <span>&copy; 2026 MABDELSAMEI.COM</span>
-      <span class="footer-sep" aria-hidden="true">//</span>
-      <span>STAY CURIOUS. STAY PRIVATE.</span>
+      <span>&copy; 2026 mohamed abdelsamei &middot; berlin, de &middot; utc+1</span>
+      <span class="logo logo--sm">ma<span class="logo-block" aria-hidden="true"></span></span>
     </footer>
 
     <script>
-      // Scroll-triggered reveal for sections below the fold
-      const io = new IntersectionObserver((entries) => {
-        entries.forEach(e => {
-          if (e.isIntersecting) {
-            e.target.classList.add('in-view');
-            io.unobserve(e.target);
-          }
-        });
-      }, { threshold: 0.15 });
-      document.querySelectorAll('.values, .stack, .writing, .contact').forEach(s => {
-        s.classList.add('reveal');
-        io.observe(s);
+      // Theme toggle, persisted across visits
+      const btn = document.getElementById('theme-btn');
+      const root = document.documentElement;
+      const label = () => {
+        btn.textContent = root.dataset.theme === 'light' ? 'theme --dark' : 'theme --light';
+      };
+      btn.addEventListener('click', () => {
+        const next = root.dataset.theme === 'light' ? 'dark' : 'light';
+        if (next === 'light') { root.dataset.theme = 'light'; }
+        else { delete root.dataset.theme; }
+        try { localStorage.setItem('ma-theme', next); } catch (e) { /* ignore */ }
+        label();
       });
+      label();
     </script>
   </body>
 </html>
