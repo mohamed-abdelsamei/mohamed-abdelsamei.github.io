@@ -6,7 +6,7 @@
     <title>404 — Mohamed Abdelsamei</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="style.css" />
     <style>
       main {
@@ -18,80 +18,89 @@
         padding-bottom: 40px;
         margin-bottom: 0;
       }
-      .err-boot {
+      .err-label {
         font-family: var(--mono);
-        font-size: 0.58rem;
+        font-size: 0.6rem;
         color: var(--dim);
-        letter-spacing: 0.04em;
-        line-height: 2.0;
-        margin-bottom: 32px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        margin-bottom: 12px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
       }
-      .err-boot .sym { color: var(--border2); }
-      .err-boot .fail { color: var(--red); }
-      .err-boot .path { color: var(--amber); }
+      .err-label::before {
+        content: '';
+        display: inline-block;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--primary);
+        opacity: 0.6;
+      }
       .err-code {
-        font-family: var(--mono);
+        font-family: var(--serif);
         font-size: clamp(4rem, 18vw, 7rem);
         font-weight: 400;
+        font-style: italic;
         letter-spacing: -0.03em;
         color: var(--ink);
         line-height: 1;
         margin-bottom: 12px;
-        text-shadow: 0 0 30px rgba(232, 160, 32, 0.08);
+        text-shadow: 0 0 40px rgba(212, 168, 83, 0.06);
       }
       .err-msg {
-        font-family: var(--mono);
-        font-size: 0.56rem;
-        color: var(--dim);
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
+        font-family: var(--sans);
+        font-size: 1rem;
+        color: var(--text);
         margin-bottom: 6px;
+        font-weight: 500;
       }
       .err-sub {
-        font-family: var(--mono);
-        font-size: 0.68rem;
-        color: var(--text);
+        font-family: var(--sans);
+        font-size: 0.85rem;
+        color: var(--dim);
         margin-bottom: 40px;
         line-height: 1.6;
       }
       .back-link {
         font-family: var(--mono);
-        font-size: 0.64rem;
+        font-size: 0.7rem;
         color: var(--dim);
         text-decoration: none;
         display: inline-flex;
         align-items: center;
         gap: 12px;
-        letter-spacing: 0.05em;
-        padding: 10px 16px;
-        border: 1px solid var(--border2);
+        letter-spacing: 0.04em;
+        padding: 12px 18px;
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
         background: var(--surface);
-        transition: color 0.15s, border-color 0.15s, background 0.15s, padding-left 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+        box-shadow: var(--shadow);
+        transition: color 0.2s, border-color 0.2s, background 0.2s, padding-left 0.25s cubic-bezier(0.22, 1, 0.36, 1);
       }
       .back-link:hover {
-        color: var(--amber);
-        border-color: var(--amber-dim);
+        color: var(--primary);
+        border-color: var(--primary);
         background: var(--surface2);
-        padding-left: 22px;
+        padding-left: 24px;
       }
       .back-link .prompt {
         color: var(--border2);
-        transition: color 0.15s, transform 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+        transition: color 0.2s, transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
         display: inline-block;
       }
-      .back-link:hover .prompt { color: var(--amber); transform: translateX(4px); }
-      .back-link:focus-visible { outline: 1px solid var(--amber); outline-offset: 3px; }
+      .back-link:hover .prompt { color: var(--primary); transform: translateX(4px); }
+      .back-link:focus-visible { outline: 2px solid var(--primary); outline-offset: 3px; }
     </style>
   </head>
   <body>
     <main id="main">
-      <div class="err-boot" aria-hidden="true">
-        <p><span class="sym">[</span><span class="fail">ERR</span><span class="sym">]</span> route not found <span class="path">404</span></p>
-        <p><span class="sym">[</span><span class="fail">ERR</span><span class="sym">]</span> no matching handler<span class="blink">_</span></p>
-      </div>
+      <div class="brand-bar" aria-hidden="true"></div>
+      <p class="err-label">Route not found</p>
       <p class="err-code">404</p>
-      <p class="err-msg">Page not found</p>
-      <p class="err-sub">The path you requested does not exist on this server.</p>
+      <p class="err-msg">This page doesn't exist.</p>
+      <p class="err-sub">The path you requested could not be resolved on this server.</p>
       <a class="back-link" href="/">
         <span class="prompt" aria-hidden="true">&rarr;</span>Return home
       </a>
