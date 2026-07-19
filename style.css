@@ -196,12 +196,27 @@ footer {
   50%, 100% { opacity: 0; }
 }
 
+.hero-divider {
+  width: 56px;
+  height: 2px;
+  background: var(--accent);
+  margin-top: 28px;
+}
+
+.hero-tagline {
+  font-size: 0.875rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--dim);
+  margin-top: 24px;
+}
+
 .hero-intro {
   font-size: 0.94rem;
   line-height: 1.75;
   color: var(--dim);
   max-width: 640px;
-  margin-top: 30px;
+  margin-top: 28px;
 }
 
 .btn-row {
@@ -226,16 +241,6 @@ footer {
   color: var(--ink);
   background: var(--accent);
   border: none;
-}
-
-.stat-row {
-  list-style: none;
-  display: flex;
-  gap: 36px;
-  margin-top: 64px;
-  font-size: 0.75rem;
-  color: var(--mut);
-  flex-wrap: wrap;
 }
 
 /* ─── Sections ────────────────────────────────────────── */
@@ -288,6 +293,21 @@ footer {
   padding: 4px 9px;
 }
 
+/* ─── What I do ───────────────────────────────────────── */
+
+.work-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 30px;
+}
+
+.work-grid .card { margin: 0; }
+
+@media (max-width: 1000px) {
+  .work-grid { grid-template-columns: 1fr; }
+}
+
 /* ─── Open source ─────────────────────────────────────── */
 
 .card--solo {
@@ -326,49 +346,136 @@ footer {
 
 .card-links a:hover { opacity: 0.75; }
 
-/* ─── Articles ────────────────────────────────────────── */
+/* ─── Writing ─────────────────────────────────────────── */
 
-.articles-empty { margin-top: 26px; max-width: 640px; }
-
-.articles-empty .card-tag { margin-bottom: 12px; }
-
-.articles-note {
-  font-size: 0.84rem;
-  line-height: 1.85;
-  color: var(--dim);
+.term {
+  margin-top: 30px;
+  max-width: 860px;
+  border: 1px solid var(--hair);
+  background: var(--card);
 }
 
-.articles-note a {
+.term-bar {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--hair);
+}
+
+.term-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--hair2);
+}
+
+.term-dot--accent { background: var(--accent); }
+
+.term-path {
+  font-size: 0.72rem;
+  color: var(--mut);
+  margin-left: 10px;
+}
+
+.term-body { padding: 32px 36px 36px; }
+
+.term-mut { color: var(--mut); }
+
+.writing-note {
+  font-size: 0.81rem;
+  line-height: 1.8;
+  color: var(--dim);
+  margin-top: 16px;
+}
+
+.writing-note a {
   color: var(--accent);
   text-decoration: none;
   border-bottom: 1px solid var(--hair2);
 }
 
-.articles-note a:hover { opacity: 0.75; }
+.writing-note a:hover { opacity: 0.75; }
+
+.term-cursor-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 24px;
+  padding-top: 22px;
+  border-top: 1px solid var(--hair);
+}
+
+.term-dollar {
+  font-size: 0.81rem;
+  color: var(--body);
+}
+
+.cursor--block {
+  width: 11px;
+  height: 15px;
+  margin-left: 0;
+}
+
+.term-hint {
+  font-size: 0.75rem;
+  color: var(--mut);
+}
 
 /* ─── Stack ───────────────────────────────────────────── */
 
 .stack-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 44px;
-  max-width: 1100px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
   margin-top: 30px;
 }
 
 @media (max-width: 1000px) {
-  .stack-grid { grid-template-columns: 1fr 1fr; gap: 32px 44px; }
+  .stack-grid { grid-template-columns: 1fr; }
 }
 
-.stack-cat {
-  font-size: 0.75rem;
-  margin-bottom: 14px;
-}
+.stack-card { margin: 0; }
 
-.stack-items {
+.stack-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
   font-size: 0.81rem;
-  line-height: 2.1;
+  color: var(--body);
+  list-style: none;
+}
+
+.stack-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+}
+
+.stack-freq {
+  font-size: 0.66rem;
+  color: var(--mut);
+  white-space: nowrap;
+}
+
+.stack-freq.accent { color: var(--accent); }
+
+.chip-row--stack {
+  margin-top: 28px;
+  align-items: center;
+}
+
+.stack-also {
+  font-size: 0.72rem;
+  color: var(--mut);
+  margin-right: 8px;
+}
+
+.chip--lg {
+  font-size: 0.6875rem;
   color: var(--dim);
+  padding: 5px 12px;
 }
 
 /* ─── Contact ─────────────────────────────────────────── */
@@ -426,11 +533,15 @@ a:focus-visible,
     gap: 8px;
   }
 
-  .stat-row { gap: 16px 24px; margin-top: 44px; }
-
   .card { padding: 24px 22px; }
 
   .stack-grid { grid-template-columns: 1fr; gap: 28px; }
+
+  .work-grid { grid-template-columns: 1fr; }
+
+  .term-bar { padding: 12px 16px; }
+
+  .term-body { padding: 24px 22px 28px; }
 
   .btn-row .btn { width: 100%; text-align: center; }
 }
