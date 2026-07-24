@@ -3,8 +3,8 @@ title: "Running Dart on AWS Lambda"
 description: "Dart isn't on Lambda's runtime list, but a compiled Dart binary runs there just fine. A walkthrough: custom runtime, Docker image, CDK deploy."
 pubDate: 2026-07-24T09:00:00Z
 tags: ["dart", "aws", "lambda"]
-ogImage: "/blog/og/dart-on-aws-lambda.png"
-heroImage: "/blog/posters/dart-on-aws-lambda.png"
+ogImage: "/og/dart-on-aws-lambda.png"
+heroImage: "/posters/dart-on-aws-lambda.png"
 heroAlt: "Terminal illustration: dart compile exe bin/main.dart -o bootstrap, and a pipeline of main.dart to bootstrap to the provided.al2023 Lambda runtime"
 ---
 

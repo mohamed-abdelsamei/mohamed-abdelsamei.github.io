@@ -76,6 +76,8 @@ python3 -m http.server 8080 --directory dist
 ```
 Since the whole site is now one Astro project, `npm run dev` (or `astro dev --background`) also works for full end-to-end checks — it no longer has the base-path/same-origin-stylesheet blind spot the old split blog/root setup had.
 
+`npm run check-links` (wraps `linkinator`, a dev dependency) crawls the built `dist/` and reports any broken internal link or asset reference — canonical URLs, OG images, hero posters, RSS/sitemap links, everything. It rewrites `https://mabdelsamei.com` back to the local `dist/` server via `--url-rewrite-search`/`--url-rewrite-replace` so the site's own absolute URLs (required for OG/canonical tags) get checked locally instead of hitting the real internet. Run it after every build, especially after touching frontmatter image paths or restructuring — it's exactly the kind of check that would have caught the `/blog/og/...`/`/blog/posters/...` path bug (leftover from when the blog was mounted at a `/blog` base) that once broke every per-post social-card image and hero poster after the base/root unification.
+
 ## Conventions
 
 - Design iterations happen on branches (`v2`, `v3`, `v3.1`, `design/*`); `master` is what's live.

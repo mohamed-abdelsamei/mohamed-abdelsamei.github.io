@@ -9,7 +9,8 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "check-links": "linkinator dist --recurse --silent --url-rewrite-search https://mabdelsamei.com --url-rewrite-replace ."
   },
   "dependencies": {
     "@astrojs/check": "^0.9.9",
@@ -19,5 +20,8 @@
     "astro": "^7.1.1",
     "typescript": "^6.0.3",
     "unist-util-visit": "^5.1.0"
+  },
+  "devDependencies": {
+    "linkinator": "^8.0.2"
   }
 }

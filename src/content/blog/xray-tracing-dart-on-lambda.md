@@ -3,8 +3,8 @@ title: "Adding AWS X-Ray tracing to a Dart Lambda"
 description: "From black box to full trace tree: instrumenting a Dart Lambda with aws_xray_sdk, and the two silent Lambda traps that make it harder than it should be."
 pubDate: 2026-07-24T12:00:00Z
 tags: ["dart", "aws", "lambda", "x-ray", "observability"]
-ogImage: "/blog/og/xray-tracing-dart-on-lambda.png"
-heroImage: "/blog/posters/xray-tracing-dart-on-lambda.png"
+ogImage: "/og/xray-tracing-dart-on-lambda.png"
+heroImage: "/posters/xray-tracing-dart-on-lambda.png"
 heroAlt: "Illustration of an X-Ray trace waterfall: nested bars for the Lambda function, handler, validation, an external HTTP call taking 612 ms, and a DynamoDB write"
 ---
 
