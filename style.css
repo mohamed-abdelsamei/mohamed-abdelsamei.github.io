@@ -383,31 +383,6 @@ footer {
 
 .term-mut { color: var(--mut); }
 
-.writing-list {
-  list-style: none;
-  margin: 16px 0 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 9px;
-}
-
-.writing-list a {
-  display: flex;
-  gap: 16px;
-  align-items: baseline;
-  font-size: 0.81rem;
-  color: var(--body);
-  text-decoration: none;
-}
-
-.writing-list a:hover { color: var(--accent); }
-
-.writing-date {
-  flex: none;
-  color: var(--mut);
-}
-
 .writing-note {
   font-size: 0.81rem;
   line-height: 1.8;
@@ -521,15 +496,12 @@ footer {
 
 .sec--contact .btn-row { margin-top: 36px; }
 
-.contact a:hover .contact-hint { color: var(--text); }
-
 /* ─── Focus ───────────────────────────────────────────── */
 
 a:focus-visible,
 .theme-btn:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 2px;
-  border-radius: var(--radius-sm);
 }
 
 /* ─── Reduced motion ─────────────────────────────────── */
