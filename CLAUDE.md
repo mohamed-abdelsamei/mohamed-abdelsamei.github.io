@@ -44,7 +44,10 @@ src/
     blog.css                 prose typography, Shiki code-block coloring (via Astro's
                               `--astro-code-*` vars, not `--shiki-*`), blog-only tokens
   lib/
-    rehype-post-enhance.mjs  markdown rehype plugin, wired in astro.config.mjs
+    rehype-post-enhance.mjs  markdown rehype plugin — wired via the explicit
+                             `unified({ rehypePlugins: [...] })` processor in
+                             astro.config.mjs (Astro 7 deprecated the top-level
+                             `markdown.rehypePlugins` shortcut; don't reintroduce it)
 public/
   CNAME, .nojekyll, robots.txt, sitemap covers are generated (not here) — see SEO below
   favicon.ico/.svg/_32.png/_180.png, og-image.jpg/.png, google02b7a32b9c11fcc0.html,
