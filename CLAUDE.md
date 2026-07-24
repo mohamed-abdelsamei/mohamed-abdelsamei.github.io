@@ -4,7 +4,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-Mohamed Abdelsamei's personal site (mabdelsamei.com): a single unified Astro project covering both the homepage and the blog under `/blog`. Custom domain is set in `public/CNAME`; `public/.nojekyll` disables Jekyll processing. Deployed via GitHub Actions (`.github/workflows/deploy.yml`) — `npm ci && npm run build`, then the `dist/` output is uploaded directly as the Pages artifact (no manual file assembly). The repo's GitHub Pages source must be set to "GitHub Actions" (Settings → Pages), not "Deploy from a branch".
+Mohamed Abdelsamei's personal site (mabdelsamei.com): a single unified Astro project covering both the homepage and the blog under `/blog`. Custom domain is set in `public/CNAME`; `public/.nojekyll` disables Jekyll processing.
+
+**Deployment is fully automatic — a `git push` to `master` is the only step.** `.github/workflows/deploy.yml` runs `npm ci && npm run build` and uploads `dist/` directly as the Pages artifact (no manual file assembly). Everything else the deploy needs is handled inside the workflow, so no manual settings or API calls are ever required:
+- The `actions/configure-pages@v5` step asserts the repo's Pages config on every run — enabling Pages and forcing the build source to "GitHub Actions" (build type `workflow`), so it self-heals if the Settings → Pages source ever drifts back to legacy branch/Jekyll (which is what causes the redundant `pages-build-deployment` Jekyll run to fire and fail on `.astro` frontmatter).
+- The custom domain re-asserts itself from `public/CNAME` → `dist/CNAME` on every deploy, and GitHub auto-purges the Fastly CDN cache on each deployment.
+- **Never** partially `PUT` the Pages config via `gh api` (e.g. `-f build_type=workflow` alone) — the API replaces rather than merges, so omitting `cname` silently drops the custom domain and 404s the site until the next deploy re-sets it. The workflow is the source of truth; let it do the work.
 
 Root `package.json`/`astro.config.mjs`/`tsconfig.json` are the only build config in the repo — one dependency tree, one dev server, one build. `npm run dev` (background mode: `astro dev --background`, then `astro dev stop`/`status`/`logs` to manage it) serves the *entire* site fully styled, including `/blog/*` — there is no longer a split where part of the site 404s locally.
 

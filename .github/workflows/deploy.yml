@@ -20,6 +20,16 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # Asserts this repo's Pages config from inside the workflow: enables Pages
+      # if needed and forces the build source to "GitHub Actions" (build_type
+      # workflow) on every run. Removes the dependency on the Settings → Pages
+      # source ever having been set by hand — if it drifts back to legacy
+      # (branch/Jekyll), the next push self-heals it instead of silently breaking.
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+
       - uses: actions/setup-node@v4
         with:
           node-version: 22
