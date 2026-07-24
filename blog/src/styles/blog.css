@@ -70,7 +70,14 @@
   margin: 0 auto;
 }
 
-.post-body-wrap { padding: 48px 64px 80px; }
+/* content-box so max-width:720 is the content column (matching
+   .post-header-inner, which carries no side padding of its own) and the
+   64px paddings act as gutters; with the root border-box rule the body
+   column rendered 592px — 128px narrower than the header above it. */
+.post-body-wrap {
+  padding: 48px 64px 80px;
+  box-sizing: content-box;
+}
 
 .post-crumb {
   font-size: 0.75rem;
@@ -138,6 +145,18 @@
   height: 2px;
   background: var(--accent);
   margin-top: 32px;
+}
+
+/* ─── Post poster ─────────────────────────────────────────────────── */
+
+/* Rendered on the site's ink background regardless of theme (the posters
+   are dark terminal illustrations, treated like screenshots). */
+.post-poster {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--hair);
+  margin-bottom: 40px;
 }
 
 /* ─── Prose ───────────────────────────────────────────────────────── */

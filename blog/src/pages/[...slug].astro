@@ -2,7 +2,7 @@
 import { getCollection, render } from 'astro:content';
 import BlogLayout from '../layouts/BlogLayout.astro';
 
-const AUTHOR = 'mohamed abdelsamei';
+const AUTHOR = 'Mohamed Abdelsamei';
 const WORDS_PER_MINUTE = 200;
 
 export async function getStaticPaths() {
@@ -31,6 +31,7 @@ const [firstTag, ...restTags] = post.data.tags;
   type="article"
   publishedTime={post.data.pubDate}
   tags={post.data.tags}
+  image={post.data.ogImage}
 >
   <div class="post-header-wrap" aria-label={post.data.title}>
     <div class="post-header-inner">
@@ -60,6 +61,15 @@ const [firstTag, ...restTags] = post.data.tags;
   </div>
 
   <div class="post-body-wrap">
+    {post.data.heroImage && (
+      <img
+        class="post-poster"
+        src={post.data.heroImage}
+        alt={post.data.heroAlt ?? ''}
+        width="1440"
+        height="480"
+      />
+    )}
     <article class="prose">
       <Content />
     </article>
