@@ -10,7 +10,7 @@ heroAlt: "Illustration of an X-Ray trace waterfall: nested bars for the Lambda f
 
 Dart has no official AWS X-Ray SDK, so a Dart function on Lambda is a black box by default: CloudWatch tells you an invocation took 480 ms and nothing about where those milliseconds went. This guide takes you from that black box to a full trace tree, with every downstream call nested under Lambda's own segment, using [`aws_xray_sdk`](https://pub.dev/packages/aws_xray_sdk), a package I wrote for exactly this gap.
 
-It picks up where [running Dart on AWS Lambda](/blog/dart-on-aws-lambda/) left off: a Dart function on `provided.al2023`, compiled to a native `bootstrap` binary, using the [`aws_lambda_dart_runtime_ns`](https://pub.dev/packages/aws_lambda_dart_runtime_ns) package. Everything below matches the deployable demo in [`demos/lambda_dart_runtime`](https://github.com/mohamed-abdelsamei/aws-xray-sdk-dart).
+It picks up where [running Dart on AWS Lambda](/blog/dart-on-aws-lambda/) left off: a Dart function on `provided.al2023`, compiled to a native `bootstrap` binary, using the [`aws_lambda_dart_runtime_ns`](https://pub.dev/packages/aws_lambda_dart_runtime_ns) package. The pattern below is the one in the package's runnable [`example/lambda_runtime.dart`](https://github.com/mohamed-abdelsamei/aws-xray-sdk-dart/blob/main/example/lambda_runtime.dart).
 
 ## Why Lambda is a special case
 
@@ -46,15 +46,13 @@ With just this you already get a trace per invocation, but an empty one: Lambda'
 
 ## Step 2: add the SDK
 
-```yaml
-dependencies:
-  aws_lambda_dart_runtime_ns: ^1.0.1
-  aws_xray_sdk: ^0.4.1
-  # plus whichever aws_*_api clients you call
-  aws_dynamodb_api: ^2.0.0
+```bash
+dart pub add aws_xray_sdk aws_lambda_dart_runtime_ns
+# plus whichever aws_*_api clients you call
+dart pub add aws_dynamodb_api
 ```
 
-The package depends on nothing beyond the Dart SDK, needs no code generation, and works under AOT compilation, which is what you're shipping to `provided.al2023`.
+The [`aws_xray_sdk`](https://pub.dev/packages/aws_xray_sdk) package depends on nothing beyond the Dart SDK, needs no code generation, and works under AOT compilation, which is what you're shipping to `provided.al2023`.
 
 ## Step 3: configure once at cold start
 
@@ -170,4 +168,4 @@ Each bar carries real timings, so "why did this take 900 ms" stops being a guess
 
 The whole setup comes down to four things: active tracing plus the daemon-write policy on the function, one `XRay.configure()` at cold start, the two small wrappers that capture the right trace header, and `XRay.aws()` or `XRay.capture` wherever you want detail. The two Lambda traps (competing top-level segments, and the env var that isn't the trace ID you need) are handled inside the SDK, but knowing they exist is what makes the troubleshooting table make sense.
 
-A complete deployable project, CDK stack with API Gateway, Lambda, and DynamoDB included, lives in [`demos/lambda_dart_runtime`](https://github.com/mohamed-abdelsamei/aws-xray-sdk-dart). Issues and PRs welcome.
+The [`aws_xray_sdk`](https://pub.dev/packages/aws_xray_sdk) package is on pub.dev; its runnable [`example/lambda_runtime.dart`](https://github.com/mohamed-abdelsamei/aws-xray-sdk-dart/blob/main/example/lambda_runtime.dart) walks the traced-handler pattern end to end.

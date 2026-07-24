@@ -10,7 +10,7 @@ heroAlt: "Terminal illustration: dart compile exe bin/main.dart -o bootstrap, an
 
 AWS Lambda's runtime dropdown has no Dart in it, and it probably never will. That's less of a problem than it sounds. Lambda's `provided.al2023` runtime will run any Linux executable you hand it, and Dart compiles to exactly that: a single, self-contained native binary with no VM to boot. Cold starts are short because there is nothing to warm up.
 
-This post takes you from an empty directory to a Dart function behind an HTTP endpoint. Everything here matches the deployable demo in [aws-xray-sdk-dart](https://github.com/mohamed-abdelsamei/aws-xray-sdk-dart); the follow-up post adds [X-Ray tracing](/blog/xray-tracing-dart-on-lambda/) on top of this exact setup.
+This post takes you from an empty directory to a Dart function behind an HTTP endpoint. The follow-up post adds [X-Ray tracing](/blog/xray-tracing-dart-on-lambda/) on top of this exact setup.
 
 ## How a custom runtime works
 
@@ -24,7 +24,7 @@ There are two ways to ship the binary: a zip file with `bootstrap` at its root, 
 
 ## Step 1: the project
 
-A regular Dart package:
+A regular Dart package. The `pubspec.yaml` only needs a name and an SDK constraint:
 
 ```yaml
 name: hello_lambda
@@ -32,9 +32,12 @@ publish_to: none
 
 environment:
   sdk: '>=3.0.0 <4.0.0'
+```
 
-dependencies:
-  aws_lambda_dart_runtime_ns: ^1.0.1
+Then add the runtime with `pub add`, which resolves the latest version and writes it into `pubspec.yaml` for you:
+
+```bash
+dart pub add aws_lambda_dart_runtime_ns
 ```
 
 ## Step 2: the handler
