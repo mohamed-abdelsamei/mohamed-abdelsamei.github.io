@@ -24,31 +24,17 @@ jobs:
         with:
           node-version: 22
           cache: npm
-          cache-dependency-path: blog/package-lock.json
+          cache-dependency-path: package-lock.json
 
-      - name: Install blog dependencies
-        working-directory: blog
+      - name: Install dependencies
         run: npm ci
 
-      - name: Build Astro blog
-        working-directory: blog
+      - name: Build site
         run: npm run build
-
-      # Assemble the static root files (hand-authored, no build step) and the
-      # built blog into a single directory to publish. Add new root static
-      # files to this list explicitly when they're added to the repo.
-      - name: Assemble combined Pages artifact
-        run: |
-          mkdir -p _site
-          cp index.html 404.html CNAME .nojekyll robots.txt sitemap.xml feed.xml \
-             og-image.jpg og-image.png favicon.ico favicon.svg favicon_32.png favicon_180.png \
-             google02b7a32b9c11fcc0.html style.css _site/
-          mkdir -p _site/blog
-          cp -r blog/dist/. _site/blog/
 
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: _site
+          path: dist
 
   deploy:
     needs: build

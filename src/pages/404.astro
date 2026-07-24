@@ -1,0 +1,61 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="404 — Mohamed Abdelsamei"
+  description="The path you followed doesn't resolve here — it may have moved, or never existed."
+  navAccent="contact"
+  noindex
+>
+  <style>
+    .err-main {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 72svh;
+      padding: 64px;
+    }
+    .err-code {
+      font-size: clamp(3.4rem, 12vw, 6rem);
+      line-height: 1.1;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: var(--head);
+      margin-top: 14px;
+    }
+    .err-divider {
+      width: 56px;
+      height: 2px;
+      background: var(--accent);
+      margin-top: 26px;
+    }
+    .err-msg {
+      font-size: 0.94rem;
+      line-height: 1.75;
+      color: var(--dim);
+      max-width: 560px;
+      margin-top: 24px;
+    }
+    .err-msg code { color: var(--head); }
+    @media (max-width: 760px) {
+      .err-main { padding: 56px 22px; }
+    }
+  </style>
+
+  <div class="err-main">
+    <p class="prompt accent">$ cat requested_page</p>
+    <h1 class="err-code">404<span class="cursor" aria-hidden="true"></span></h1>
+    <div class="err-divider" aria-hidden="true"></div>
+    <p class="err-msg">
+      <code>cat: requested_page: No such file or directory.</code><br />
+      The path you followed doesn&rsquo;t resolve here &mdash; it may have
+      moved, or never existed.
+    </p>
+    <div class="btn-row">
+      <a href="/" class="btn btn--primary">cd ~/</a>
+      <a href="/blog/" class="btn">ls ~/blog</a>
+    </div>
+  </div>
+</Layout>

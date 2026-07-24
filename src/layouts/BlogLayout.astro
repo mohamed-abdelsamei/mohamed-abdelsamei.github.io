@@ -1,0 +1,94 @@
+---
+import Layout from './Layout.astro';
+import '../styles/blog.css';
+
+interface Props {
+  title: string;
+  description: string;
+  type?: 'website' | 'article';
+  publishedTime?: Date;
+  tags?: string[];
+  image?: string;
+}
+
+const { title, description, type = 'website', publishedTime, tags = [], image } = Astro.props;
+
+const pageTitle = `${title} — Mohamed Abdelsamei`;
+---
+
+<Layout
+  title={pageTitle}
+  description={description}
+  ogType={type}
+  image={image}
+  publishedTime={publishedTime}
+  tags={tags}
+  navAccent="writing"
+>
+  <slot />
+
+  <Fragment slot="scripts">
+    <script is:inline>
+      // Wrap Shiki code blocks in the terminal-style "code-card" chrome
+      // (filename bar + copy button) — done client-side since Astro's
+      // Shiki output isn't reachable as a plain hast tree at rehype time.
+      document.querySelectorAll('.prose pre.astro-code').forEach((pre) => {
+        const card = document.createElement('div');
+        card.className = 'code-card';
+
+        const bar = document.createElement('div');
+        bar.className = 'code-card-bar';
+
+        const name = document.createElement('span');
+        name.className = 'code-card-name';
+        name.textContent = pre.getAttribute('data-language') || 'text';
+
+        const copyBtn = document.createElement('button');
+        copyBtn.type = 'button';
+        copyBtn.className = 'code-card-copy';
+        copyBtn.textContent = 'copy';
+        copyBtn.addEventListener('click', async () => {
+          const code = pre.querySelector('code');
+          if (!code) return;
+          try {
+            await navigator.clipboard.writeText(code.textContent || '');
+            const original = copyBtn.textContent;
+            copyBtn.textContent = 'copied';
+            setTimeout(() => { copyBtn.textContent = original; }, 1400);
+          } catch (e) { /* clipboard unavailable */ }
+        });
+
+        bar.append(name, copyBtn);
+        pre.replaceWith(card);
+        card.append(bar, pre);
+      });
+    </script>
+
+    <script is:inline>
+      // Share the current post — native share sheet where available,
+      // clipboard copy otherwise (both real actions; this used to be a
+      // link that just pointed at the page's own URL, doing nothing).
+      document.querySelectorAll('.post-share').forEach((btn) => {
+        const label = btn.querySelector('.post-share-label');
+        btn.addEventListener('click', async () => {
+          const url = window.location.href;
+          const title = document.title;
+          if (navigator.share) {
+            try {
+              await navigator.share({ title, url });
+            } catch (e) { /* user cancelled — ignore */ }
+            return;
+          }
+          try {
+            await navigator.clipboard.writeText(url);
+            if (label) {
+              const original = label.textContent;
+              label.textContent = 'copied';
+              setTimeout(() => { label.textContent = original; }, 1400);
+            }
+          } catch (e) { /* clipboard unavailable */ }
+        });
+      });
+    </script>
+  </Fragment>
+</Layout>

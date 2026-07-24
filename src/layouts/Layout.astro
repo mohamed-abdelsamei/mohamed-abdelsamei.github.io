@@ -1,28 +1,38 @@
 ---
-import '../styles/blog.css';
+import '../styles/global.css';
 
-interface Props {
+export interface Props {
   title: string;
   description: string;
-  type?: 'website' | 'article';
+  ogType?: 'profile' | 'website' | 'article';
+  image?: string;
   publishedTime?: Date;
   tags?: string[];
-  image?: string;
+  navAccent?: 'contact' | 'writing';
+  noindex?: boolean;
 }
 
-const { title, description, type = 'website', publishedTime, tags = [], image } = Astro.props;
+const {
+  title,
+  description,
+  ogType = 'website',
+  image = '/og-image.png',
+  publishedTime,
+  tags = [],
+  navAccent = 'contact',
+  noindex = false,
+} = Astro.props;
 
-const pageTitle = `${title} — Mohamed Abdelsamei`;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-const ogImage = new URL(image || '/og-image.jpg', Astro.site);
+const ogImage = new URL(image, Astro.site);
 
-// Same entity as the Person JSON-LD on the root index.html — keep these two in sync.
+// Same entity as the Person JSON-LD emitted on every page — keep in sync.
 const personSchema = {
   '@context': 'https://schema.org',
   '@type': 'Person',
   name: 'Mohamed Abdelsamei',
   url: 'https://mabdelsamei.com/',
-  image: 'https://mabdelsamei.com/og-image.jpg',
+  image: 'https://mabdelsamei.com/og-image.png',
   jobTitle: 'Senior Backend Engineer',
   description:
     'Backend and identity infrastructure engineer building on AWS. 10 years building privacy-preserving systems with Verifiable Credentials, OID4VP, and OID4VCI — now focused on identity for humans and AI agents, and safe agent execution environments. Publishes technical writing on identity and backend systems.',
@@ -39,8 +49,8 @@ const personSchema = {
   ],
 };
 
-const jsonLd =
-  type === 'article' && publishedTime
+const blogPostingSchema =
+  ogType === 'article' && publishedTime
     ? {
         '@context': 'https://schema.org',
         '@type': 'BlogPosting',
@@ -60,35 +70,37 @@ const jsonLd =
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{pageTitle}</title>
+    <title>{title}</title>
     <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex" />}
     <link rel="canonical" href={canonicalURL} />
 
     <!-- Open Graph -->
-    <meta property="og:type" content={type} />
-    <meta property="og:title" content={pageTitle} />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:image" content={ogImage} />
-    {image && (
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="en_US" />
+    {ogType === 'profile' && (
       <>
-        <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="630" />
+        <meta property="profile:first_name" content="Mohamed" />
+        <meta property="profile:last_name" content="Abdelsamei" />
+        <meta property="profile:username" content="mohamed-abdelsamei" />
       </>
     )}
-    <meta property="og:locale" content="en_US" />
 
     <!-- Twitter -->
-    <!-- Per-post ogImage assets are 1200×630 → large card; the site-wide
-         fallback og-image.jpg is 460×460, which only fits `summary`. -->
-    <meta name="twitter:card" content={image ? 'summary_large_image' : 'summary'} />
-    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
 
     <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
-    {jsonLd && (
-      <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    {blogPostingSchema && (
+      <script type="application/ld+json" set:html={JSON.stringify(blogPostingSchema)} />
     )}
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -112,20 +124,22 @@ const jsonLd =
         } catch (e) { /* storage unavailable — stay dark */ }
       })();
     </script>
-    <link rel="stylesheet" href="/style.css" />
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
 
     <nav class="nav" aria-label="Site">
-      <a href="/" class="logo">ma<span class="logo-block" aria-hidden="true"></span></a>
+      <a href="/#top" class="logo">ma<span class="logo-block" aria-hidden="true"></span></a>
       <div class="nav-links">
         <a href="/#work">work</a>
         <a href="/#open-source">open_source</a>
-        <a href="/blog/" class="accent">writing</a>
+        <a href="/blog/" class={navAccent === 'writing' ? 'accent' : undefined}>writing</a>
         <a href="/#stack">stack</a>
-        <a href="/#contact">contact</a>
-        <button type="button" class="theme-btn" id="theme-btn">theme --light</button>
+        <a href="/#contact" class={navAccent === 'contact' ? 'accent' : undefined}>contact</a>
+        <button type="button" class="theme-btn" id="theme-btn" aria-label="Switch to light theme">
+          <span class="theme-dot theme-dot--active" id="theme-dot-dark" aria-hidden="true"></span>
+          <span class="theme-dot" id="theme-dot-light" aria-hidden="true"></span>
+        </button>
       </div>
     </nav>
 
@@ -142,80 +156,24 @@ const jsonLd =
       // Theme toggle, persisted across visits
       const btn = document.getElementById('theme-btn');
       const root = document.documentElement;
-      const label = () => {
-        btn.textContent = root.dataset.theme === 'light' ? 'theme --dark' : 'theme --light';
+      const dotDark = document.getElementById('theme-dot-dark');
+      const dotLight = document.getElementById('theme-dot-light');
+      const sync = () => {
+        const isLight = root.dataset.theme === 'light';
+        dotDark.classList.toggle('theme-dot--active', !isLight);
+        dotLight.classList.toggle('theme-dot--active', isLight);
+        btn.setAttribute('aria-label', isLight ? 'Switch to dark theme' : 'Switch to light theme');
       };
       btn.addEventListener('click', () => {
         const next = root.dataset.theme === 'light' ? 'dark' : 'light';
         if (next === 'light') { root.dataset.theme = 'light'; }
         else { delete root.dataset.theme; }
         try { localStorage.setItem('ma-theme', next); } catch (e) { /* ignore */ }
-        label();
+        sync();
       });
-      label();
+      sync();
     </script>
 
-    <script is:inline>
-      // Wrap Shiki code blocks in the terminal-style "code-card" chrome
-      // (filename bar + copy button) — done client-side since Astro's
-      // Shiki output isn't reachable as a plain hast tree at rehype time.
-      document.querySelectorAll('.prose pre.astro-code').forEach((pre) => {
-        const card = document.createElement('div');
-        card.className = 'code-card';
-
-        const bar = document.createElement('div');
-        bar.className = 'code-card-bar';
-
-        const name = document.createElement('span');
-        name.className = 'code-card-name';
-        name.textContent = pre.getAttribute('data-language') || 'text';
-
-        const copyBtn = document.createElement('button');
-        copyBtn.type = 'button';
-        copyBtn.className = 'code-card-copy';
-        copyBtn.textContent = 'copy';
-        copyBtn.addEventListener('click', async () => {
-          const code = pre.querySelector('code');
-          if (!code) return;
-          try {
-            await navigator.clipboard.writeText(code.textContent || '');
-            const original = copyBtn.textContent;
-            copyBtn.textContent = 'copied';
-            setTimeout(() => { copyBtn.textContent = original; }, 1400);
-          } catch (e) { /* clipboard unavailable */ }
-        });
-
-        bar.append(name, copyBtn);
-        pre.replaceWith(card);
-        card.append(bar, pre);
-      });
-    </script>
-
-    <script is:inline>
-      // Share the current post — native share sheet where available,
-      // clipboard copy otherwise (both real actions; this used to be a
-      // link that just pointed at the page's own URL, doing nothing).
-      document.querySelectorAll('.post-share').forEach((btn) => {
-        const label = btn.querySelector('.post-share-label');
-        btn.addEventListener('click', async () => {
-          const url = window.location.href;
-          const title = document.title;
-          if (navigator.share) {
-            try {
-              await navigator.share({ title, url });
-            } catch (e) { /* user cancelled — ignore */ }
-            return;
-          }
-          try {
-            await navigator.clipboard.writeText(url);
-            if (label) {
-              const original = label.textContent;
-              label.textContent = 'copied';
-              setTimeout(() => { label.textContent = original; }, 1400);
-            }
-          } catch (e) { /* clipboard unavailable */ }
-        });
-      });
-    </script>
+    <slot name="scripts" />
   </body>
 </html>

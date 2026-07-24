@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-Sitemap: https://mabdelsamei.com/sitemap.xml
-Sitemap: https://mabdelsamei.com/blog/sitemap-index.xml
