@@ -124,6 +124,17 @@ const blogPostingSchema =
         } catch (e) { /* storage unavailable — stay dark */ }
       })();
     </script>
+    {/* Cookieless pageview analytics. Double-gated: PROD keeps it out of `astro dev`,
+        data-domains keeps a local `dist/` preview from polluting real stats. */}
+    {import.meta.env.PROD && (
+      <script
+        is:inline
+        defer
+        src="https://cloud.umami.is/script.js"
+        data-website-id="93a36481-0028-4133-9936-7b54c56aefc7"
+        data-domains="mabdelsamei.com"
+      />
+    )}
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
