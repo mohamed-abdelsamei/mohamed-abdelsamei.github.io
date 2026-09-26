@@ -6,7 +6,7 @@
   --head:   #eef2ee;
   --body:   #c6cec9;
   --dim:    #949e97;
-  --mut:    #707b74;
+  --mut:    #7a857e; /* ≥4.5:1 on --bg and --card (was #707b74: 4.43 / 4.22) */
   --navbg:  rgba(11, 13, 12, 0.9);
   --accent: #4ade8f;
   --ink:    #0b0d0c;
@@ -22,7 +22,7 @@
   --head:   #101310;
   --body:   #2b312c;
   --dim:    #4d564f;
-  --mut:    #6c756e;
+  --mut:    #667068; /* ≥4.5:1 on --bg, --card and --code-bg */
   --navbg:  rgba(250, 250, 247, 0.92);
   --accent: #0b7a48;
   --on-accent: #fafaf7; /* accent flips to a dark forest green in light mode, so text-on-accent flips to paper, not ink */
@@ -322,10 +322,13 @@ footer {
 
 /* ─── Open source ─────────────────────────────────────── */
 
-.card--solo {
-  margin: 26px 0 0;
-  max-width: 640px;
-}
+/* Solo card and writing terminal both span two of the three grid columns
+   used by what_i_do / stack, so their right edges line up with the cards
+   above and below instead of stopping at two unrelated widths. */
+.card--solo,
+.term { max-width: calc((100% - 48px) * 2 / 3 + 24px); }
+
+.card--solo { margin: 30px 0 0; }
 
 .card-desc code {
   color: var(--head);
@@ -362,7 +365,6 @@ footer {
 
 .term {
   margin-top: 30px;
-  max-width: 860px;
   border: 1px solid var(--hair);
   background: var(--card);
 }
@@ -535,7 +537,7 @@ footer {
 /* ─── Focus ───────────────────────────────────────────── */
 
 a:focus-visible,
-.theme-btn:focus-visible {
+button:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 2px;
 }
@@ -554,9 +556,16 @@ a:focus-visible,
 /* ─── Mobile ──────────────────────────────────────────── */
 
 @media (max-width: 760px) {
-  .nav { padding: 14px 22px; flex-wrap: wrap; gap: 8px 16px; }
+  .nav { padding: 14px 22px 12px; flex-wrap: wrap; gap: 10px 16px; }
 
-  .nav-links { gap: 14px; font-size: 0.72rem; flex-wrap: wrap; }
+  .nav-links { gap: 14px; font-size: 0.72rem; flex-wrap: wrap; width: 100%; }
+
+  /* Pin the toggle to the logo row so the sticky nav stays two rows tall
+     instead of wrapping the toggle onto a third row of its own. */
+  .theme-btn { position: absolute; top: 14px; right: 22px; }
+
+  .card--solo,
+  .term { max-width: none; }
 
   .hero { padding: 64px 22px 56px; }
 

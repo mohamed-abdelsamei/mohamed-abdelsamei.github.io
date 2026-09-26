@@ -4,7 +4,7 @@
   --code-bg: #0e1210;
   --tok-k: #4ade8f;
   --tok-s: #e8c468;
-  --tok-c: #5c6660;
+  --tok-c: #7a857e; /* comments: ≥4.5:1 on --code-bg (was 3.27) */
   --tok-f: #67d4e8;
 }
 
@@ -12,7 +12,7 @@
   --code-bg: #f1f1ec;
   --tok-k: #0b7a48;
   --tok-s: #8f6a06;
-  --tok-c: #8a938b;
+  --tok-c: #646d66; /* comments: ≥4.5:1 on --code-bg (was 3.03) */
   --tok-f: #0b6b88;
 }
 
@@ -42,21 +42,53 @@
   margin-top: 30px;
 }
 
+.blog-hero { padding-bottom: 64px; }
+
+.blog-title {
+  font-size: clamp(1.9rem, 4.4vw, 3rem);
+  line-height: 1.2;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  color: var(--head);
+}
+
+.blog-hero .hero-intro a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid var(--hair2);
+}
+
+.blog-hero .hero-intro a:hover { opacity: 0.75; }
+
 .post-list .card {
   margin: 0;
   max-width: 720px;
 }
 
-.post-list .card h3 {
-  margin-top: 4px;
-}
+/* Whole card is the click target (stretched link from the title), with the
+   brand's opacity-fade hover on the card rather than just the title text. */
+.post-card { position: relative; transition: opacity 0.25s; }
 
-.post-list .card h3 a {
+.post-card:hover { opacity: 0.78; }
+
+.post-card h3 { margin-top: 4px; }
+
+.post-card h3 a {
   color: inherit;
   text-decoration: none;
 }
 
-.post-list .card h3 a:hover { opacity: 0.75; }
+.post-card h3 a::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+}
+
+.post-card-cta {
+  font-size: 0.75rem;
+  color: var(--accent);
+  margin-top: 22px;
+}
 
 /* ─── Post header ─────────────────────────────────────────────────── */
 
@@ -288,11 +320,13 @@
   display: flex;
   gap: 10px;
   align-items: center;
+  flex-wrap: wrap; /* 5+ tags overflowed a 390px viewport */
 }
 
 .post-footer-tags-label {
   font-size: 0.72rem;
   color: var(--mut);
+  white-space: nowrap;
 }
 
 .post-share {
