@@ -196,7 +196,7 @@
 .prose {
   max-width: 720px;
   margin-top: 0;
-  font-size: 0.906rem;
+  font-size: 1rem;
 }
 
 .prose > * + * { margin-top: 1.25em; }
@@ -394,3 +394,7 @@
   .post-nav-grid { grid-template-columns: 1fr; }
   .post-nav-empty { text-align: left; }
 }
+
+/* Keep long identifiers and troubleshooting tables inside the reading column. */
+.prose :not(pre) > code { overflow-wrap: anywhere; }
+.prose table { display: block; max-width: 100%; overflow-x: auto; }

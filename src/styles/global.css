@@ -11,6 +11,7 @@
   --accent: #4ade8f;
   --ink:    #0b0d0c;
   --on-accent: var(--ink); /* brand rule: text on accent fills is always ink — dark theme */
+  --anchor-offset: 96px;
   --mono:   'JetBrains Mono', ui-monospace, 'Menlo', monospace;
 }
 
@@ -32,7 +33,7 @@
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-html { font-size: 16px; scroll-behavior: smooth; }
+html { font-size: 16px; scroll-behavior: smooth; scroll-padding-top: var(--anchor-offset); }
 
 ::selection { background: var(--accent); color: var(--on-accent); }
 
@@ -217,7 +218,7 @@ footer {
 
 .hero-tagline {
   font-size: 0.875rem;
-  letter-spacing: 0.22em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--dim);
   margin-top: 24px;
@@ -285,7 +286,7 @@ footer {
 }
 
 .card-desc {
-  font-size: 0.81rem;
+  font-size: 0.9375rem;
   line-height: 1.75;
   color: var(--dim);
   margin-top: 12px;
@@ -349,6 +350,7 @@ footer {
 
 .card-links {
   display: flex;
+  flex-wrap: wrap;
   gap: 22px;
   margin-top: 18px;
   font-size: 0.78rem;
@@ -360,6 +362,16 @@ footer {
 }
 
 .card-links a:hover { opacity: 0.75; }
+
+.project-details {
+  display: grid;
+  gap: 18px;
+  margin-top: 24px;
+  font-size: 0.9375rem;
+}
+
+.project-details dt { color: var(--head); font-weight: 500; }
+.project-details dd { margin-top: 4px; color: var(--dim); }
 
 /* ─── Writing ─────────────────────────────────────────── */
 
@@ -409,7 +421,7 @@ footer {
   display: flex;
   gap: 16px;
   align-items: baseline;
-  font-size: 0.81rem;
+  font-size: 0.9375rem;
   color: var(--body);
   text-decoration: none;
 }
@@ -422,7 +434,7 @@ footer {
 }
 
 .writing-note {
-  font-size: 0.81rem;
+  font-size: 0.9375rem;
   line-height: 1.8;
   color: var(--dim);
   margin-top: 16px;
@@ -480,7 +492,7 @@ footer {
   display: flex;
   flex-direction: column;
   gap: 14px;
-  font-size: 0.81rem;
+  font-size: 0.9375rem;
   color: var(--body);
   list-style: none;
 }
@@ -556,6 +568,20 @@ button:focus-visible {
 /* ─── Mobile ──────────────────────────────────────────── */
 
 @media (max-width: 760px) {
+  :root { --anchor-offset: 112px; }
+
+  .hero-tagline { letter-spacing: 0.025em; text-transform: none; font-size: 0.9375rem; }
+
+  .hero .btn-row { margin-top: 28px; }
+
+  .writing-list a { flex-direction: column; gap: 2px; }
+
+  .writing-date { font-size: 0.75rem; }
+
+  .btn { overflow-wrap: anywhere; }
+
+  .stack-list li { flex-wrap: wrap; gap: 4px 12px; }
+
   .nav { padding: 14px 22px 12px; flex-wrap: wrap; gap: 10px 16px; }
 
   .nav-links { gap: 14px; font-size: 0.72rem; flex-wrap: wrap; width: 100%; }
@@ -590,4 +616,8 @@ button:focus-visible {
   .term-body { padding: 24px 22px 28px; }
 
   .btn-row .btn { width: 100%; text-align: center; }
+}
+
+@media (max-width: 360px) {
+  :root { --anchor-offset: 144px; }
 }
