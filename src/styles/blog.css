@@ -398,3 +398,25 @@
 /* Keep long identifiers and troubleshooting tables inside the reading column. */
 .prose :not(pre) > code { overflow-wrap: anywhere; }
 .prose table { display: block; max-width: 100%; overflow-x: auto; }
+
+/* Server-rendered contents stay usable without JavaScript. */
+.post-contents {
+  padding: 24px;
+  margin-bottom: 40px;
+  border: 1px solid var(--hair);
+  background: var(--card);
+}
+
+.post-contents ol {
+  display: grid;
+  gap: 10px;
+  padding-left: 1.5em;
+  margin-top: 18px;
+  font-size: 0.9375rem;
+}
+
+.post-contents li::marker { color: var(--mut); }
+.post-contents a { color: var(--body); text-underline-offset: 4px; }
+.post-contents a:hover { color: var(--accent); }
+
+.code-card-copy { min-height: 32px; padding: 4px 8px; }

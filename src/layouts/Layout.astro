@@ -142,8 +142,8 @@ const blogPostingSchema =
     <nav class="nav" aria-label="Site">
       <a href="/#top" class="logo">ma<span class="logo-block" aria-hidden="true"></span></a>
       <div class="nav-links">
-        <a href="/#work">work</a>
         <a href="/#open-source">open_source</a>
+        <a href="/#work">work</a>
         <a href="/blog/" class={navAccent === 'writing' ? 'accent' : undefined}>writing</a>
         <a href="/#stack">stack</a>
         <a href="/#contact" class={navAccent === 'contact' ? 'accent' : undefined}>contact</a>
@@ -185,6 +185,16 @@ const blogPostingSchema =
         sync();
       });
       sync();
+
+      // Track wrapped navigation and zoom instead of assuming a fixed height.
+      const nav = document.querySelector('.nav');
+      if (nav && typeof ResizeObserver !== 'undefined') {
+        const updateAnchorOffset = () => {
+          root.style.setProperty('--anchor-offset', `${Math.ceil(nav.getBoundingClientRect().height) + 16}px`);
+        };
+        updateAnchorOffset();
+        new ResizeObserver(updateAnchorOffset).observe(nav);
+      }
     </script>
 
     <slot name="scripts" />

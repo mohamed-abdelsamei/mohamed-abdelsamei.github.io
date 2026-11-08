@@ -17,7 +17,11 @@ export async function getStaticPaths() {
 }
 
 const { post, older, newer } = Astro.props;
-const { Content } = await render(post);
+const { Content, headings } = await render(post);
+const contents = headings.filter((heading) => heading.depth === 2).map((heading) => ({
+  ...heading,
+  text: heading.text.replace(/^#{2,3}\s+/, ''),
+}));
 
 const wordCount = post.body ? post.body.trim().split(/\s+/).length : 0;
 const readMinutes = Math.max(1, Math.round(wordCount / WORDS_PER_MINUTE));
@@ -69,6 +73,16 @@ const [firstTag, ...restTags] = post.data.tags;
         width="1440"
         height="480"
       />
+    )}
+    {contents.length > 1 && (
+      <nav class="post-contents" aria-label="Article contents">
+        <h2 class="sec-hdr"><span aria-hidden="true">##</span> on_this_page</h2>
+        <ol>
+          {contents.map((heading) => (
+            <li><a href={`#${heading.slug}`}>{heading.text}</a></li>
+          ))}
+        </ol>
+      </nav>
     )}
     <article class="prose">
       <Content />
