@@ -21,4 +21,16 @@ const blog = defineCollection({
   }),
 });
 
-export const collections = { blog };
+const projects = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/projects' }),
+  schema: z.object({ title: z.string(), description: z.string(), repository: z.string().url(), status: z.string(),
+    category: z.string(), headline: z.string(), summary: z.string(),
+    format: z.string(), stack: z.string(), contribution: z.string(),
+    image: z.string(), imageAlt: z.string(), imageCaption: z.string(),
+    imageWidth: z.number().positive(), imageHeight: z.number().positive(),
+    icon: z.string().optional(),
+    seoTitle: z.string(), ogImage: z.string(), ogAlt: z.string(),
+    languages: z.string(), cardTitle: z.string(), cardSubtitle: z.string(),
+  }),
+});
+export const collections = { blog, projects };

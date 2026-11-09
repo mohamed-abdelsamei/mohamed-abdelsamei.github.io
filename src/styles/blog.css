@@ -38,11 +38,11 @@
 .post-list {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: var(--space-5);
   margin-top: 30px;
 }
 
-.blog-hero { padding-bottom: 64px; }
+.blog-hero { padding-bottom: var(--space-8); }
 
 .blog-title {
   font-size: clamp(1.9rem, 4.4vw, 3rem);
@@ -71,7 +71,7 @@
 
 .post-card:hover { opacity: 0.78; }
 
-.post-card h3 { margin-top: 4px; }
+.post-card h3 { margin-top: var(--space-1); }
 
 .post-card h3 a {
   color: inherit;
@@ -93,7 +93,7 @@
 /* ─── Post header ─────────────────────────────────────────────────── */
 
 .post-header-wrap {
-  padding: 88px 64px 0;
+  padding: 88px var(--space-8) 0;
 }
 
 .post-header-inner,
@@ -104,10 +104,10 @@
 
 /* content-box so max-width:720 is the content column (matching
    .post-header-inner, which carries no side padding of its own) and the
-   64px paddings act as gutters; with the root border-box rule the body
+   var(--space-8) paddings act as gutters; with the root border-box rule the body
    column rendered 592px — 128px narrower than the header above it. */
 .post-body-wrap {
-  padding: 48px 64px 80px;
+  padding: var(--space-7) var(--space-8) var(--space-9);
   box-sizing: content-box;
 }
 
@@ -130,7 +130,7 @@
 .tag-fill,
 .tag-outline {
   font-size: 0.6875rem;
-  padding: 5px 12px;
+  padding: 5px var(--space-3);
   white-space: nowrap;
 }
 
@@ -156,7 +156,7 @@
 
 .post-meta-row {
   display: flex;
-  gap: 24px;
+  gap: var(--space-5);
   align-items: center;
   margin-top: 26px;
   font-size: 0.75rem;
@@ -176,7 +176,7 @@
   width: 56px;
   height: 2px;
   background: var(--accent);
-  margin-top: 32px;
+  margin-top: var(--space-6);
 }
 
 /* ─── Post poster ─────────────────────────────────────────────────── */
@@ -196,7 +196,7 @@
 .prose {
   max-width: 720px;
   margin-top: 0;
-  font-size: 0.906rem;
+  font-size: 1rem;
 }
 
 .prose > * + * { margin-top: 1.25em; }
@@ -232,7 +232,7 @@
 .prose ul,
 .prose ol {
   padding-left: 1.4em;
-  line-height: 1.8;
+  line-height: var(--leading-body);
 }
 
 .prose li + li { margin-top: 0.4em; }
@@ -240,7 +240,7 @@
 .prose blockquote {
   margin-top: 2.2em;
   border-left: 3px solid var(--accent);
-  padding: 6px 0 6px 24px;
+  padding: 6px 0 6px var(--space-5);
   font-size: 0.94rem;
   line-height: 1.9;
   color: var(--dim);
@@ -265,7 +265,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px 20px;
+  padding: var(--space-3) 20px;
   border-bottom: 1px solid var(--hair);
 }
 
@@ -288,9 +288,9 @@
 
 .code-card pre.astro-code {
   margin: 0;
-  padding: 24px 24px 26px;
+  padding: var(--space-5) var(--space-5) 26px;
   font-size: 0.78rem;
-  line-height: 1.8;
+  line-height: var(--leading-body);
   overflow-x: auto;
 }
 
@@ -309,8 +309,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 16px;
-  margin-top: 64px;
+  gap: var(--space-4);
+  margin-top: var(--space-8);
   padding-top: 28px;
   border-top: 1px solid var(--hair);
   flex-wrap: wrap;
@@ -346,13 +346,13 @@
 .post-nav-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 24px;
+  gap: var(--space-5);
   margin-top: 40px;
 }
 
 .post-nav-card,
 .post-nav-empty {
-  padding: 24px 28px;
+  padding: var(--space-5) 28px;
 }
 
 .post-nav-card {
@@ -390,7 +390,82 @@
 
 @media (max-width: 760px) {
   .post-header-wrap { padding: 56px 22px 0; }
-  .post-body-wrap { padding: 32px 22px 56px; }
+  .post-body-wrap { padding: var(--space-6) 22px 56px; }
   .post-nav-grid { grid-template-columns: 1fr; }
   .post-nav-empty { text-align: left; }
 }
+
+/* Keep long identifiers and troubleshooting tables inside the reading column. */
+.prose :not(pre) > code { overflow-wrap: anywhere; }
+.prose table { display: block; max-width: 100%; overflow-x: auto; }
+
+/* Server-rendered contents stay usable without JavaScript. */
+.post-contents {
+  padding: var(--space-5);
+  margin-bottom: 40px;
+  border: 1px solid var(--hair);
+  background: var(--card);
+}
+
+.post-contents ol {
+  display: grid;
+  gap: 10px;
+  padding-left: 1.5em;
+  margin-top: 18px;
+  font-size: 0.9375rem;
+}
+
+.post-contents li::marker { color: var(--mut); }
+.post-contents a { color: var(--body); text-underline-offset: var(--space-1); }
+.post-contents a:hover { color: var(--accent); }
+
+.code-card-copy { min-height: var(--space-6); padding: var(--space-1) var(--space-2); }
+
+/* The writing pages share the portfolio's quieter editorial hierarchy. */
+.blog-hero { padding-bottom: 28px; }
+.blog-hero .hero-eyebrow { margin-bottom: 28px; }
+.writing-archive { padding-top: var(--space-5); padding-bottom: 100px; }
+.archive-heading { display: flex; align-items: center; justify-content: space-between; gap: 20px; margin-bottom: var(--space-5); }
+.archive-heading h2 { font-weight: 400; }
+.post-hero-title { font-size: clamp(2rem, 4.5vw, 3.15rem); letter-spacing: -.055em; font-weight: 500; }
+.post-tags { margin-top: 30px; }
+.tag-fill { background: transparent; color: var(--accent); border: 1px solid var(--hair2); }
+.post-contents { background: transparent; border-inline: 0; padding: var(--space-5) 0; }
+.post-contents .sec-hdr { letter-spacing: .06em; }
+.post-contents ol { font-size: .82rem; }
+.prose h2 { font-size: 1.4rem; letter-spacing: -.035em; }
+.prose h3 { font-size: 1.1rem; }
+.prose p { line-height: 1.95; }
+.prose table { border-collapse: collapse; font-size: .82rem; }
+.prose th, .prose td { padding: var(--space-3) var(--space-4); text-align: left; border: 1px solid var(--hair); }
+.prose th { color: var(--head); background: var(--card); }
+.post-nav-card { background: transparent; }
+.post-nav-card:hover { border-color: var(--hair2); }
+.post-meta-row { white-space: normal; gap: var(--space-3) 20px; }
+@media (max-width: 700px) {
+  .writing-archive { padding-bottom: var(--space-8); }
+  .post-header-wrap { padding-top: 44px; }
+  .post-body-wrap { padding-top: 30px; }
+  .post-hero-title { font-size: 2rem; }
+  .code-card pre.astro-code { padding: 18px; }
+}
+
+/* Architecture figures are HTML, readable without scripts and at narrow widths. */
+.architecture-flow { margin-block: var(--space-6); border: 1px solid var(--hair2); padding: clamp(18px, 4vw, 30px); background: var(--card); }
+.architecture-flow figcaption { font-size: .9rem; color: var(--head); margin-bottom: var(--space-5); }
+.architecture-flow ol { list-style: none; counter-reset: architecture; padding: 0; }
+.architecture-flow li { counter-increment: architecture; position: relative; padding: 0 0 var(--space-5) 38px; margin: 0; border-left: 1px solid var(--hair2); margin-left: var(--space-3); }
+.architecture-flow li:last-child { border-left-color: transparent; padding-bottom: 0; }
+.architecture-flow li::before { content: counter(architecture); position: absolute; left: -13px; top: 0; width: 25px; height: 25px; background: var(--card); border: 1px solid var(--hair2); color: var(--accent); text-align: center; font-size: .7rem; line-height: 23px; }
+.architecture-flow strong { display: block; color: var(--head); font-weight: 500; font-size: .9rem; }
+.architecture-flow li span { display: block; color: var(--dim); font-size: .82rem; margin-top: 6px; }
+.architecture-flow > p { border-top: 1px solid var(--hair); padding-top: 18px; margin-top: var(--space-5); color: var(--dim); font-size: .78rem; }
+
+.prose { font-family: var(--sans); font-size: var(--text-body); line-height: 1.85; }
+.prose h2, .prose h3 { font-family: var(--sans); font-weight: 600; letter-spacing: -.025em; }
+.prose h2 { font-size: 1.65rem; }
+.prose h3 { font-size: 1.3rem; }
+.prose .prose-hdr-mark { display: none; }
+.prose p { line-height: 1.85; }
+.prose table { font-size: 1rem; }
+.prose pre, .prose code, .prose .architecture-flow { font-family: var(--mono); }

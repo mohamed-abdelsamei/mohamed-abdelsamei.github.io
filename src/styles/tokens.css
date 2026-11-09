@@ -1,0 +1,53 @@
+/* Global design tokens. Components consume these; project content never defines styles. */
+:root {
+  color-scheme: dark;
+  --bg: #0b0d0c;
+  --card: #121613;
+  --hair: #252c27;
+  --hair2: #39433c;
+  --head: #eef2ee;
+  --body: #c6cec9;
+  --dim: #b0bab3;
+  --mut: #9ba79e;
+  --navbg: rgba(11,13,12,.94);
+  --accent: #4ade8f;
+  --ink: #0b0d0c;
+  --on-accent: var(--ink);
+  --anchor-offset: 108px;
+  --sans: 'Avenir Next', Avenir, 'Segoe UI', sans-serif;
+  --mono: 'JetBrains Mono', ui-monospace, Menlo, monospace;
+  --page-width: 1240px;
+  --gutter: clamp(22px, 5vw, 80px);
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 80px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --text-label: .75rem;
+  --text-body: 1.125rem;
+  --text-small: 1rem;
+  --leading-body: 1.8;
+  --reading-width: 760px;
+  --media-surface: #dcdde8;
+  --media-ink: #0b0d0c;
+}
+:root[data-theme='light'] {
+  color-scheme: light;
+  --bg: #fafaf7;
+  --card: #f0f1eb;
+  --hair: #dfe2d9;
+  --hair2: #bfc5b9;
+  --head: #172219;
+  --body: #344238;
+  --dim: #4b5c50;
+  --mut: #58685d;
+  --navbg: rgba(250,250,247,.94);
+  --accent: #0b7a48;
+  --on-accent: #fafaf7;
+}
