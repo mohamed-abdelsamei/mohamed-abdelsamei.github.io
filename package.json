@@ -10,7 +10,10 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "check-links": "linkinator dist --recurse --silent --url-rewrite-search https://mabdelsamei.com --url-rewrite-replace ."
+    "check-links": "linkinator dist --recurse --silent --url-rewrite-search https://mabdelsamei.com --url-rewrite-replace .",
+    "check": "astro check",
+    "check-site": "python3 scripts/check-site.py",
+    "check-seo": "python3 scripts/check-seo.py"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.10",

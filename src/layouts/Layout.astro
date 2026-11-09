@@ -6,9 +6,11 @@ export interface Props {
   description: string;
   ogType?: 'profile' | 'website' | 'article';
   image?: string;
+  imageAlt?: string;
+  structuredData?: Record<string, unknown>[];
   publishedTime?: Date;
   tags?: string[];
-  navAccent?: 'contact' | 'writing';
+  navAccent?: 'contact' | 'writing' | 'projects';
   noindex?: boolean;
 }
 
@@ -17,6 +19,8 @@ const {
   description,
   ogType = 'website',
   image = '/og-image.png',
+  imageAlt = title,
+  structuredData = [],
   publishedTime,
   tags = [],
   navAccent = 'contact',
@@ -30,12 +34,13 @@ const ogImage = new URL(image, Astro.site);
 const personSchema = {
   '@context': 'https://schema.org',
   '@type': 'Person',
+  '@id': 'https://mabdelsamei.com/#person',
   name: 'Mohamed Abdelsamei',
   url: 'https://mabdelsamei.com/',
   image: 'https://mabdelsamei.com/og-image.png',
   jobTitle: 'Senior Backend Engineer',
   description:
-    'Backend and identity infrastructure engineer building on AWS. 10 years building privacy-preserving systems with Verifiable Credentials, OID4VP, and OID4VCI — now focused on identity for humans and AI agents, and safe agent execution environments. Publishes technical writing on identity and backend systems.',
+    'Backend engineer with ten years of experience building backend systems. Current work and interests include AWS infrastructure, verifiable credentials, identity for humans and AI agents, and safe agent execution environments. Publishes practical technical writing and builds developer tools.',
   address: { '@type': 'PostalAddress', addressLocality: 'Berlin', addressCountry: 'DE' },
   knowsAbout: [
     'Digital Identity', 'Verifiable Credentials', 'OID4VP', 'OID4VCI', 'Self-Sovereign Identity',
@@ -48,6 +53,16 @@ const personSchema = {
     'https://www.linkedin.com/in/mohamed-abdelsamei/',
   ],
 };
+
+const websiteSchema = Astro.url.pathname === '/' ? {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  '@id': 'https://mabdelsamei.com/#website',
+  name: 'Mohamed Abdelsamei',
+  alternateName: 'mabdelsamei.com',
+  url: 'https://mabdelsamei.com/',
+  publisher: { '@id': 'https://mabdelsamei.com/#person' },
+} : null;
 
 const blogPostingSchema =
   ogType === 'article' && publishedTime
@@ -81,6 +96,8 @@ const blogPostingSchema =
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:image" content={ogImage} />
+    <meta property="og:image:alt" content={imageAlt} />
+    <meta property="og:site_name" content="Mohamed Abdelsamei" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:locale" content="en_US" />
@@ -97,11 +114,15 @@ const blogPostingSchema =
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image:alt" content={imageAlt} />
 
     <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
+    {websiteSchema && <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />}
     {blogPostingSchema && (
       <script type="application/ld+json" set:html={JSON.stringify(blogPostingSchema)} />
     )}
+
+    {structuredData.map(schema => <script type="application/ld+json" set:html={JSON.stringify(schema).replace(/</g, '\\u003c')} />)}
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -140,12 +161,11 @@ const blogPostingSchema =
     <a class="skip-link" href="#main">Skip to content</a>
 
     <nav class="nav" aria-label="Site">
-      <a href="/#top" class="logo">ma<span class="logo-block" aria-hidden="true"></span></a>
+      <a href="/#top" class="logo" aria-label="Mohamed Abdelsamei home">ma<span class="logo-block" aria-hidden="true"></span></a>
       <div class="nav-links">
-        <a href="/#open-source">open_source</a>
-        <a href="/#work">work</a>
+        <a href="/#projects" class={navAccent === 'projects' ? 'accent' : undefined}>projects</a>
         <a href="/blog/" class={navAccent === 'writing' ? 'accent' : undefined}>writing</a>
-        <a href="/#stack">stack</a>
+        <a href="/#work">about</a>
         <a href="/#contact" class={navAccent === 'contact' ? 'accent' : undefined}>contact</a>
         <button type="button" class="theme-btn" id="theme-btn" aria-label="Switch to light theme">
           <span class="theme-dot theme-dot--active" id="theme-dot-dark" aria-hidden="true"></span>

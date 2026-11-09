@@ -1,42 +1,23 @@
 ---
 import BlogLayout from '../../layouts/BlogLayout.astro';
 import { getCollection } from 'astro:content';
-
-const posts = (
-  await getCollection('blog', ({ data }) => (import.meta.env.PROD ? !data.draft : true))
-).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const posts = (await getCollection('blog', ({ data }) => import.meta.env.PROD ? !data.draft : true))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 ---
-
-<BlogLayout
-  title="writing"
-  description="Writing about identity infrastructure, Verifiable Credentials, and backend system design."
->
+<BlogLayout title="Engineering Blog: Backend, AWS & Identity" description="Practical notes on backend systems, AWS, and identity infrastructure. Implementation details, tradeoffs, and the parts the docs skip.">
   <header class="hero blog-hero">
-    <p class="prompt accent">$ cd ~/writing</p>
-    <h1 class="blog-title">Writing</h1>
-    <div class="hero-divider" aria-hidden="true"></div>
-    <p class="hero-intro">
-      Notes from building identity infrastructure and backend systems on
-      AWS &mdash; the parts the docs skip. Follow along via the <a href="/blog/rss.xml">RSS feed</a>.
-    </p>
+    <p class="hero-eyebrow"><span class="accent" aria-hidden="true">//</span> FIELD NOTES</p>
+    <h1 class="blog-title">From the workbench.</h1>
+    <p class="hero-intro">Notes from building backend systems and identity infrastructure. Implementation details, tradeoffs, and the parts the docs skip.</p>
   </header>
-
-  <section class="sec" aria-label="All posts">
-    <h2 class="sec-hdr"><span class="sec-hdr-mark" aria-hidden="true">##</span> ls --all <span class="term-mut">&mdash; {posts.length} {posts.length === 1 ? 'post' : 'posts'}</span></h2>
-    <div class="post-list">
+  <section class="sec writing-archive" aria-label="All articles">
+    <div class="archive-heading"><h2 class="section-index">ALL ARTICLES <span class="term-mut">/ {posts.length}</span></h2><a href="/blog/rss.xml" class="quiet-link">RSS feed <span aria-hidden="true">&nearr;</span></a></div>
+    <div class="journal-list">
       {posts.map((post) => (
-        <article class="card post-card">
-          <p class="card-tag accent">// {post.data.pubDate.toISOString().slice(0, 10)}</p>
-          <h3><a href={`/blog/${post.id}/`}>{post.data.title}</a></h3>
-          <p class="card-desc">{post.data.description}</p>
-          {post.data.tags.length > 0 && (
-            <div class="chip-row">
-              {post.data.tags.map((tag) => (
-                <span class="chip">{tag}</span>
-              ))}
-            </div>
-          )}
-          <p class="post-card-cta" aria-hidden="true">cat article.md &rarr;</p>
+        <article class="journal-entry">
+          <time datetime={post.data.pubDate.toISOString()}>{post.data.pubDate.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric', timeZone: 'UTC' })}</time>
+          <div><h3><a href={`/blog/${post.id}/`}>{post.data.title}<span aria-hidden="true">&nearr;</span></a></h3><p>{post.data.description}</p></div>
+          <span class="journal-tags">{post.data.tags.slice(0, 2).join(' / ')}</span>
         </article>
       ))}
     </div>

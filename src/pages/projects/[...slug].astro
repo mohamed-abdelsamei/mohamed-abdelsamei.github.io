@@ -1,0 +1,53 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import '../../styles/blog.css';
+import '../../styles/case-study.css';
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+  return projects.map(project => ({ params: { slug: project.id }, props: { project, next: projects.find(item => item.id !== project.id) } }));
+}
+const { project, next } = Astro.props;
+const { Content, headings } = await render(project);
+const contents = headings.filter(h => h.depth === 2).map(h => ({ ...h, text: h.text.replace(/^#{2,3}\s+/, '') }));
+const data = project.data;
+const facts = [['Format', data.format], ['Built with', data.stack], ['My contribution', data.contribution]];
+
+const projectURL = new URL(`/projects/${project.id}/`, Astro.site).href;
+const structuredData = [
+  {
+    '@context': 'https://schema.org', '@type': 'SoftwareSourceCode',
+    '@id': `${projectURL}#source`, name: data.title, description: data.description,
+    url: projectURL, codeRepository: data.repository,
+    programmingLanguage: data.languages.split(',').map(value => value.trim()),
+    image: new URL(data.ogImage, Astro.site).href,
+    author: { '@id': 'https://mabdelsamei.com/#person' },
+  },
+  {
+    '@context': 'https://schema.org', '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: new URL('/', Astro.site).href },
+      { '@type': 'ListItem', position: 2, name: data.title, item: projectURL },
+    ],
+  },
+];
+---
+<Layout title={`${data.seoTitle} | Mohamed Abdelsamei`} image={data.ogImage} imageAlt={data.ogAlt} structuredData={structuredData} description={project.data.description} navAccent="projects">
+  <div class="case-shell">
+    <header class="case-header">
+      <a href="/#projects" class="case-back">&larr; All projects</a>
+      <p class="case-eyebrow">ENGINEERING CASE STUDY <span aria-hidden="true">/</span> {data.category}</p>
+      <div class="case-overview">
+        <div><h1>{data.icon && <img class="case-project-icon" src={data.icon} alt="" width="56" height="56" />}{project.data.title}<span class="accent">.</span></h1><p class="case-deck">{data.headline}</p><p class="case-summary">{data.summary}</p><a class="text-link" href={project.data.repository} target="_blank" rel="noopener noreferrer">Explore the source <span aria-hidden="true">&nearr;</span></a></div>
+        <dl class="case-facts">{facts.map(([label, value]) => <div><dt>{label}</dt><dd>{value}</dd></div>)}<div><dt>Current status</dt><dd>{project.data.status}</dd></div></dl>
+      </div>
+    </header>
+    <figure class="case-cover"><div><a href={data.image} aria-label="Open full-size project image"><img src={data.image} alt={data.imageAlt} width={data.imageWidth} height={data.imageHeight} /></a></div><figcaption><span>{data.title}</span><span>{data.imageCaption}</span></figcaption></figure>
+    <details class="case-mobile-contents"><summary>Explore the engineering story <span aria-hidden="true">+</span></summary><nav aria-label="Mobile case study contents"><ol>{contents.map(h => <li><a href={`#${h.slug}`}>{h.text.split(':')[0]}</a></li>)}</ol></nav></details>
+    <div class="case-reading-grid">
+      <aside class="case-sidebar"><nav aria-label="Case study contents"><p>IN THIS PROJECT</p><ol>{contents.map((h, i) => <li><a href={`#${h.slug}`}><span aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>{h.text.split(':')[0]}</a></li>)}</ol></nav><a class="case-back" href="/#contact">Discuss the project &nearr;</a></aside>
+      <article class="prose case-prose"><Content /></article>
+    </div>
+    {next && <a class="case-next" href={`/projects/${next.id}/`}><span>NEXT PROJECT</span><strong>{next.data.title}</strong><span aria-hidden="true">&nearr;</span></a>}
+  </div>
+</Layout>

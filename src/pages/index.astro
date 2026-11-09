@@ -1,191 +1,100 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
-
-// Rendered at build time from the same collection as /blog, so the teaser is
-// in the static HTML (crawlable, no JS, no layout shift) and stays in sync on
-// every deploy without editing this page.
 const posts = (await getCollection('blog', ({ data }) => !data.draft))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 ---
 
 <Layout
   title="Mohamed Abdelsamei — Backend Engineer, AWS & Identity Infrastructure"
-  description="Mohamed Abdelsamei — backend engineer building identity infrastructure for humans and AI agents on AWS. Writes technical articles on identity and backend systems."
+  description="Mohamed Abdelsamei — backend engineer building identity infrastructure for humans and AI agents on AWS. Explore projects and practical writing on backend systems."
   ogType="profile"
   navAccent="contact"
 >
-  <!-- Hero -->
-  <header class="hero" id="top">
-    <p class="prompt accent">$ whoami</p>
-    <h1>Mohamed Abdelsamei<span class="cursor" aria-hidden="true"></span></h1>
-    <div class="hero-divider" aria-hidden="true"></div>
-    <p class="hero-tagline">Backend engineer &middot; identity for humans &amp; AI agents</p>
-    <p class="hero-intro">
-      Ten years building backend systems. Today, I design and operate services on AWS.
-      My focus: verifiable credentials, secure delegation, and safe
-      execution environments for AI agents.
-    </p>
-    <div class="btn-row">
-      <a href="#open-source" class="btn btn--primary">./explore_work</a>
-      <a href="#contact" class="btn">./get_in_touch</a>
-      <a href="https://www.linkedin.com/in/mohamed-abdelsamei/" target="_blank" rel="me noopener noreferrer" class="btn">open linkedin <span aria-hidden="true">&#x2197;</span></a>
-    </div>
-  </header>
-
-  <!-- Open source -->
-  <section id="open-source" class="sec" aria-label="Open source">
-    <h2 class="sec-hdr"><span class="sec-hdr-mark" aria-hidden="true">##</span> open_source</h2>
-    <article class="card card--solo">
-      <p class="card-tag accent">// dart_package</p>
-      <h3>aws_xray_sdk &mdash; AWS X-Ray distributed tracing for Dart</h3>
-      <p class="card-desc">
-        I built this package to make Dart services observable with AWS X-Ray,
-        including functions running on Lambda.
-      </p>
-      <dl class="project-details">
-        <div><dt>Problem</dt><dd>Dart has no official AWS X-Ray SDK, leaving downstream calls difficult to trace.</dd></div>
-        <div><dt>Approach</dt><dd>Automatic HTTP and AWS SDK tracing, trace-context propagation, and Lambda-aware subsegments.</dd></div>
-        <div><dt>Result</dt><dd>A published, MIT-licensed package with a runnable Lambda example and an implementation guide.</dd></div>
-      </dl>
-      <p class="pkg-meta">
-        <code class="pkg-install">dart pub add aws_xray_sdk</code>
-      </p>
-      <div class="chip-row">
-        <span class="chip">Dart</span>
-        <span class="chip">MIT</span>
-        <span class="chip">&#x2713; verified publisher</span>
-      </div>
-      <p class="card-links">
-        <a href="https://pub.dev/packages/aws_xray_sdk" target="_blank" rel="noopener noreferrer">pub.dev <span aria-hidden="true">&#x2197;</span></a>
-        <a href="/blog/xray-tracing-dart-on-lambda/">Read the implementation guide <span aria-hidden="true">&rarr;</span></a>
-        <a href="https://github.com/mohamed-abdelsamei/aws-xray-sdk-dart" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">&#x2197;</span></a>
-      </p>
-    </article>
-  </section>
-
-  <!-- What I do -->
-  <section id="work" class="sec" aria-label="What I do">
-    <h2 class="sec-hdr"><span class="sec-hdr-mark" aria-hidden="true">##</span> what_i_do</h2>
-    <div class="work-grid">
-      <article class="card work-card">
-        <p class="card-tag accent">// identity_systems</p>
-        <h3>Digital identity, for humans and agents</h3>
-        <p class="card-desc">
-          Verifiable credentials and open standards like OID4VP/OID4VCI
-          &mdash; and the delegation model AI agents need to act on
-          someone&rsquo;s behalf without becoming the new attack surface.
-        </p>
-      </article>
-      <article class="card work-card">
-        <p class="card-tag accent">// backend_architecture</p>
-        <h3>Systems that stay boring</h3>
-        <p class="card-desc">
-          Designing, modernizing, and scaling cloud-native services on
-          AWS &mdash; including the sandboxed runtimes that let AI
-          agents execute safely, not just quickly.
-        </p>
-      </article>
-      <article class="card work-card">
-        <p class="card-tag accent">// technical_leadership</p>
-        <h3>Teams that ship with confidence</h3>
-        <p class="card-desc">
-          Leading system design across product, infra and security
-          teams &mdash; and mentoring engineers to own architecture, not
-          just tickets.
-        </p>
-      </article>
-    </div>
-  </section>
-
-  <!-- Writing -->
-  <section id="writing" class="sec" aria-label="Writing">
-    <h2 class="sec-hdr"><span class="sec-hdr-mark" aria-hidden="true">##</span> writing --latest</h2>
-    <div class="term">
-      <div class="term-bar" aria-hidden="true">
-        <span class="term-dot"></span>
-        <span class="term-dot"></span>
-        <span class="term-dot term-dot--accent"></span>
-        <span class="term-path">~/writing</span>
-      </div>
-      <div class="term-body">
-        <p class="prompt accent">$ ls articles/{posts.length > 0 && <span class="term-mut"> &mdash; total {posts.length}</span>}</p>
-        {posts.length > 0 && (
-          <ul class="writing-list">
-            {posts.map((post) => (
-              <li>
-                <a href={`/blog/${post.id}/`}><span class="writing-date">{post.data.pubDate.toISOString().slice(0, 10)}</span> {post.data.title}</a>
-              </li>
-            ))}
-          </ul>
-        )}
-        <p class="writing-note">
-          <a href="/blog/">Read the blog</a> or point your reader at the <a href="/blog/rss.xml">RSS feed</a>.
-        </p>
-        <div class="term-cursor-row">
-          <span class="term-dollar" aria-hidden="true">$</span>
-          <span class="cursor cursor--block" aria-hidden="true"></span>
-          <span class="term-hint">Implementation guides, tradeoffs, and lessons from building backend systems.</span>
+  <header class="home-hero" id="top">
+    <div class="hero-eyebrow"><span class="accent" aria-hidden="true">//</span> BACKEND ENGINEER &amp; BUILDER</div>
+    <h1>Mohamed<br />Abdelsamei<span class="name-period">.</span></h1>
+    <div class="intro-grid">
+      <p class="intro-statement">I build the systems<br />behind trust.</p>
+      <div class="intro-copy">
+        <p>Ten years building backend systems. Today, my focus is identity for humans and AI agents, reliable infrastructure on AWS, and tools that make engineering a little easier.</p>
+        <div class="hero-actions">
+          <a href="#projects" class="text-link">Explore my work <span aria-hidden="true">&darr;</span></a>
+          <a href="#contact" class="quiet-link">Get in touch <span aria-hidden="true">&nearr;</span></a>
         </div>
       </div>
     </div>
+    <div class="hero-footnote"><span>Identity &middot; Infrastructure &middot; Developer tools</span><span aria-hidden="true">SCROLL TO EXPLORE &darr;</span></div>
+  </header>
+
+  <section class="portfolio-section" id="projects" aria-labelledby="projects-title">
+    <span id="open-source" class="legacy-anchor" aria-hidden="true"></span>
+    <div class="section-heading">
+      <p class="section-index"><span aria-hidden="true">01 /</span> PROJECTS</p>
+      <div><h2 id="projects-title">Things I&rsquo;ve built.</h2><p>Useful tools, from the desktop to the infrastructure underneath it.</p></div>
+    </div>
+
+    <article class="project-feature project-feature--tracing">
+      <div class="project-copy">
+        <div class="project-kicker"><span>01</span><span>OPEN-SOURCE LIBRARY</span></div>
+        <h3><a href="/projects/aws-xray-sdk/">aws_xray_sdk<span class="accent" aria-hidden="true">&nearr;</span></a></h3>
+        <p class="project-lede">Make the invisible<br />observable.</p>
+        <p class="project-description">Distributed tracing for Dart on AWS. I built this package to trace HTTP and AWS SDK calls, propagate trace context, and put Lambda invocations into a trace tree you can actually follow.</p>
+        <p class="project-tech">Dart &middot; AWS X-Ray &middot; Lambda &middot; MIT</p>
+        <p class="project-status project-status--published"><span aria-hidden="true"></span> Published on pub.dev &middot; verified publisher</p>
+        <div class="project-links">
+          <a href="/projects/aws-xray-sdk/" class="text-link">Project details &rarr;</a>
+          <a href="https://pub.dev/packages/aws_xray_sdk" class="text-link" target="_blank" rel="noopener noreferrer">Explore the package <span aria-hidden="true">&nearr;</span></a>
+          <a href="https://github.com/mohamed-abdelsamei/aws-xray-sdk-dart" class="quiet-link" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">&nearr;</span></a>
+        </div>
+      </div>
+      <figure class="project-figure tracing-figure">
+        <div class="trace-preview">
+          <div class="preview-toolbar"><span aria-hidden="true">&gt;_</span><span>trace / lambda.invocation</span></div>
+          <img src="/posters/xray-tracing-dart-on-lambda.png" width="1440" height="480" alt="Illustrative trace waterfall showing a Lambda handler, validation, an external HTTP call, and a DynamoDB write." loading="lazy" />
+          <div class="install-line"><span aria-hidden="true">$</span><code>dart pub add aws_xray_sdk</code></div>
+        </div>
+        <figcaption><span>AWS X-RAY / DART</span><a href="/blog/xray-tracing-dart-on-lambda/">Read the implementation guide <span aria-hidden="true">&rarr;</span></a></figcaption>
+      </figure>
+    </article>
   </section>
 
-  <!-- Stack -->
-  <section id="stack" class="sec" aria-label="Stack">
-    <h2 class="sec-hdr"><span class="sec-hdr-mark" aria-hidden="true">##</span> stack --list</h2>
-    <div class="stack-grid">
-      <article class="card stack-card">
-        <p class="card-tag accent">// build</p>
-        <ul class="stack-list">
-          <li><span>Node.js / TypeScript</span></li>
-          <li><span>Dart</span></li>
-          <li><span>RESTful API design</span></li>
-          <li><span>Distributed systems</span></li>
-          <li><span>Event-driven architecture</span></li>
-        </ul>
-      </article>
-      <article class="card stack-card">
-        <p class="card-tag accent">// run</p>
-        <ul class="stack-list">
-          <li><span>AWS</span> <span class="stack-freq accent">certified SA</span></li>
-          <li><span>Serverless architectures</span></li>
-          <li><span>CDK / Infrastructure-as-Code</span></li>
-          <li><span>Docker</span></li>
-          <li><span>CI/CD pipelines</span></li>
-        </ul>
-      </article>
-      <article class="card stack-card">
-        <p class="card-tag accent">// lead</p>
-        <ul class="stack-list">
-          <li><span>System design leadership</span></li>
-          <li><span>Technical strategy</span></li>
-          <li><span>Mentoring &amp; coaching</span></li>
-          <li><span>Cross-functional alignment</span></li>
-          <li><span>Security &amp; reliability reviews</span></li>
-        </ul>
-      </article>
+  <section class="portfolio-section" id="writing" aria-labelledby="writing-title">
+    <div class="section-heading">
+      <p class="section-index"><span aria-hidden="true">02 /</span> FIELD NOTES</p>
+      <div><h2 id="writing-title">From the workbench.</h2><p>Implementation details, tradeoffs, and the parts the docs skip.</p></div>
+      <a href="/blog/" class="quiet-link section-more">All writing <span aria-hidden="true">&nearr;</span></a>
     </div>
-    <div class="chip-row chip-row--stack">
-      <span class="stack-also">$ also_speaks:</span>
-      <span class="chip chip--lg">DynamoDB</span>
-      <span class="chip chip--lg">OIDC / OAuth2</span>
-      <span class="chip chip--lg">observability</span>
+    <div class="journal-list">
+      {posts.map((post) => (
+        <article class="journal-entry">
+          <time datetime={post.data.pubDate.toISOString()}>{post.data.pubDate.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric', timeZone: 'UTC' })}</time>
+          <div><h3><a href={`/blog/${post.id}/`}>{post.data.title}<span aria-hidden="true">&nearr;</span></a></h3><p>{post.data.description}</p></div>
+          <span class="journal-tags">{post.data.tags.slice(0, 2).join(' / ')}</span>
+        </article>
+      ))}
     </div>
+    <p class="rss-note">Prefer a feed? <a href="/blog/rss.xml">Follow via RSS <span aria-hidden="true">&nearr;</span></a></p>
   </section>
 
-  <!-- Contact -->
-  <section id="contact" class="sec sec--contact" aria-label="Contact">
-    <p class="prompt accent">$ ping mohamed</p>
-    <h2 class="contact-lede">
-      Let&rsquo;s compare notes on identity, backend systems,
-      and open source.
-    </h2>
-    <p class="hero-intro">Open to technical conversations, knowledge sharing, and open-source collaboration.</p>
-    <div class="btn-row">
-      <a href="mailto:mohamed@mabdelsamei.com?subject=Let's%20talk" class="btn btn--primary">mohamed@mabdelsamei.com</a>
-      <a href="https://www.linkedin.com/in/mohamed-abdelsamei/" target="_blank" rel="me noopener noreferrer" class="btn">linkedin/mohamed-abdelsamei</a>
-      <a href="https://github.com/mohamed-abdelsamei" target="_blank" rel="me noopener noreferrer" class="btn">github/mohamed-abdelsamei</a>
+  <section class="portfolio-section" id="work" aria-labelledby="about-title">
+    <div class="section-heading">
+      <p class="section-index"><span aria-hidden="true">03 /</span> ABOUT</p>
+      <div><h2 id="about-title">Under the hood.</h2><p>Engineering that earns trust through the details.</p></div>
     </div>
+    <div class="about-grid">
+      <div class="about-intro"><p>I care about what happens after a system ships.</p><p>The identities it protects. The failures it handles. The engineers who have to maintain it.</p><a href="https://www.linkedin.com/in/mohamed-abdelsamei/" class="text-link" target="_blank" rel="me noopener noreferrer">More about my experience <span aria-hidden="true">&nearr;</span></a></div>
+      <div class="expertise-list">
+        <article><span class="expertise-number" aria-hidden="true">01</span><div><h3>Identity &amp; delegation</h3><p>Verifiable credentials, OID4VP, OID4VCI, and the delegation models that let agents act on someone&rsquo;s behalf.</p></div></article>
+        <article><span class="expertise-number" aria-hidden="true">02</span><div><h3>Infrastructure &amp; reliability</h3><p>Cloud-native services on AWS, distributed systems, observability, and safe execution environments for agents.</p></div></article>
+        <article><span class="expertise-number" aria-hidden="true">03</span><div><h3>Technical leadership</h3><p>System design across product, infrastructure, and security. Mentoring engineers to own architecture as well as implementation.</p></div></article>
+      </div>
+    </div>
+    <div class="toolbox" id="stack"><span class="section-index">TOOLS OF THE TRADE</span><p>TypeScript / Node.js / Dart / AWS / CDK / DynamoDB / Docker / OAuth 2.0 / OIDC</p></div>
+  </section>
+
+  <section class="portfolio-section contact-section" id="contact" aria-labelledby="contact-title">
+    <p class="section-index"><span aria-hidden="true">04 /</span> CONNECT</p>
+    <div class="contact-grid"><h2 id="contact-title">Let&rsquo;s compare<br />notes<span class="accent">.</span></h2><div><p>Identity, backend systems, or something you&rsquo;re building in the open. Always happy to exchange ideas.</p><a href="mailto:mohamed@mabdelsamei.com?subject=Let's%20talk" class="contact-email">mohamed@mabdelsamei.com <span aria-hidden="true">&nearr;</span></a><div class="contact-socials"><a href="https://github.com/mohamed-abdelsamei" target="_blank" rel="me noopener noreferrer">GitHub <span aria-hidden="true">&nearr;</span></a><a href="https://www.linkedin.com/in/mohamed-abdelsamei/" target="_blank" rel="me noopener noreferrer">LinkedIn <span aria-hidden="true">&nearr;</span></a></div></div></div>
   </section>
 </Layout>
