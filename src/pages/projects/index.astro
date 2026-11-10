@@ -1,0 +1,50 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import '../../styles/blog.css';
+import { getCollection } from 'astro:content';
+const projects = (await getCollection('projects')).sort((a, b) => a.data.title.localeCompare(b.data.title));
+
+const title = 'Projects: Open Source & Engineering Case Studies | Mohamed Abdelsamei';
+const description = 'Open-source libraries and engineering case studies by Mohamed Abdelsamei: what each project solves, how it is built, and where to find the source.';
+const pageURL = new URL('/projects/', Astro.site).href;
+const structuredData = [
+  {
+    '@context': 'https://schema.org', '@type': 'CollectionPage',
+    '@id': `${pageURL}#page`, name: 'Projects', description, url: pageURL,
+    author: { '@id': 'https://mabdelsamei.com/#person' },
+    mainEntity: {
+      '@type': 'ItemList',
+      itemListElement: projects.map((project, i) => ({
+        '@type': 'ListItem', position: i + 1, name: project.data.title,
+        url: new URL(`/projects/${project.id}/`, Astro.site).href,
+      })),
+    },
+  },
+  {
+    '@context': 'https://schema.org', '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: new URL('/', Astro.site).href },
+      { '@type': 'ListItem', position: 2, name: 'Projects', item: pageURL },
+    ],
+  },
+];
+---
+<Layout title={title} description={description} structuredData={structuredData} navAccent="projects">
+  <header class="hero blog-hero">
+    <p class="hero-eyebrow"><span class="accent" aria-hidden="true">//</span> PROJECTS</p>
+    <h1 class="blog-title">Things I&rsquo;ve built.</h1>
+    <p class="hero-intro">Useful tools, from the desktop to the infrastructure underneath it. Each case study covers the problem, the design decisions, and how to use it.</p>
+  </header>
+  <section class="sec writing-archive" aria-label="All projects">
+    <div class="archive-heading"><h2 class="section-index">ALL PROJECTS <span class="term-mut">/ {projects.length}</span></h2><a href="https://github.com/mohamed-abdelsamei" class="quiet-link" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">&nearr;</span></a></div>
+    <div class="journal-list">
+      {projects.map((project) => (
+        <article class="journal-entry">
+          <span class="journal-tags journal-tags--lead">{project.data.category}</span>
+          <div><h3><a href={`/projects/${project.id}/`}>{project.data.title}<span aria-hidden="true">&nearr;</span></a></h3><p>{project.data.summary}</p></div>
+          <span class="journal-tags">{project.data.languages}</span>
+        </article>
+      ))}
+    </div>
+  </section>
+</Layout>

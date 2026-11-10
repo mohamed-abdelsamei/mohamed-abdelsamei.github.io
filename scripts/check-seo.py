@@ -48,7 +48,8 @@ for path in root.rglob('*.html'):
     assert any(s.get('@type')=='Person' for s in p.schemas)
     if canonical=='https://mabdelsamei.com/':
         assert any(s.get('@type')=='WebSite' and s.get('name')=='Mohamed Abdelsamei' for s in p.schemas), 'Homepage missing branded WebSite schema'
-    if '/projects/' in canonical:
+    # Case-study pages only; the /projects/ index is a CollectionPage with the site-wide preview.
+    if '/projects/' in canonical and canonical!='https://mabdelsamei.com/projects/':
         types={s.get('@type') for s in p.schemas}
         assert {'SoftwareSourceCode','BreadcrumbList'}<=types, f'{path}: missing project schema'
         assert '/og/projects/' in p.meta['og:image'], f'{path}: generic project preview'

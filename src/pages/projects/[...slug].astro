@@ -27,7 +27,8 @@ const structuredData = [
     '@context': 'https://schema.org', '@type': 'BreadcrumbList',
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: 'Home', item: new URL('/', Astro.site).href },
-      { '@type': 'ListItem', position: 2, name: data.title, item: projectURL },
+      { '@type': 'ListItem', position: 2, name: 'Projects', item: new URL('/projects/', Astro.site).href },
+      { '@type': 'ListItem', position: 3, name: data.title, item: projectURL },
     ],
   },
 ];
@@ -35,7 +36,7 @@ const structuredData = [
 <Layout title={`${data.seoTitle} | Mohamed Abdelsamei`} image={data.ogImage} imageAlt={data.ogAlt} structuredData={structuredData} description={project.data.description} navAccent="projects">
   <div class="case-shell">
     <header class="case-header">
-      <a href="/#projects" class="case-back">&larr; All projects</a>
+      <a href="/projects/" class="case-back">&larr; All projects</a>
       <p class="case-eyebrow">ENGINEERING CASE STUDY <span aria-hidden="true">/</span> {data.category}</p>
       <div class="case-overview">
         <div><h1>{data.icon && <img class="case-project-icon" src={data.icon} alt="" width="56" height="56" />}{project.data.title}<span class="accent">.</span></h1><p class="case-deck">{data.headline}</p><p class="case-summary">{data.summary}</p><a class="text-link" href={project.data.repository} target="_blank" rel="noopener noreferrer">Explore the source <span aria-hidden="true">&nearr;</span></a></div>

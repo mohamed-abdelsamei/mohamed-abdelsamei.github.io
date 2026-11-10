@@ -34,6 +34,11 @@ src/
       index.astro            post listing
       [...slug].astro         post page (getStaticPaths over the content collection)
       rss.xml.js              @astrojs/rss feed
+    projects/
+      index.astro            project listing (CollectionPage + BreadcrumbList JSON-LD;
+                              exempt from check-seo's case-study rules)
+      [...slug].astro         case-study page (getStaticPaths over the projects collection);
+                              "All projects" link and breadcrumb point to /projects/
   content/
     blog/*.md              Markdown/MDX post entries
   content.config.ts        content collection schema (title, description, pubDate,
