@@ -88,6 +88,18 @@ const breadcrumbs = {
       />
     )}
     {contents.length > 1 && (
+      <details class="post-mobile-contents">
+        <summary>In this article</summary>
+        <nav aria-label="Mobile article contents">
+          <ol>
+            {contents.map((heading) => (
+              <li><a href={`#${heading.slug}`}>{heading.text}</a></li>
+            ))}
+          </ol>
+        </nav>
+      </details>
+    )}
+    {contents.length > 1 && (
       <nav class="post-contents" aria-label="Article contents">
         <h2 class="sec-hdr"><span aria-hidden="true">##</span> on_this_page</h2>
         <ol>
