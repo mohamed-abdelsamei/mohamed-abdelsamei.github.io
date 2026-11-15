@@ -4,7 +4,7 @@ import '../../styles/blog.css';
 import { getCollection } from 'astro:content';
 const projects = (await getCollection('projects')).sort((a, b) => a.data.title.localeCompare(b.data.title));
 
-const title = 'Projects: Open Source & Engineering Case Studies | Mohamed Abdelsamei';
+const title = 'Projects: Open Source & Engineering Case Studies — Mohamed Abdelsamei';
 const description = 'Open-source libraries and engineering case studies by Mohamed Abdelsamei: what each project solves, how it is built, and where to find the source.';
 const pageURL = new URL('/projects/', Astro.site).href;
 const structuredData = [
@@ -12,6 +12,7 @@ const structuredData = [
     '@context': 'https://schema.org', '@type': 'CollectionPage',
     '@id': `${pageURL}#page`, name: 'Projects', description, url: pageURL,
     author: { '@id': 'https://mabdelsamei.com/#person' },
+    isPartOf: { '@id': 'https://mabdelsamei.com/#website' },
     mainEntity: {
       '@type': 'ItemList',
       itemListElement: projects.map((project, i) => ({

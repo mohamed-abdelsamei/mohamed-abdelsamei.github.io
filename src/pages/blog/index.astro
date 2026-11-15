@@ -3,8 +3,32 @@ import BlogLayout from '../../layouts/BlogLayout.astro';
 import { getCollection } from 'astro:content';
 const posts = (await getCollection('blog', ({ data }) => import.meta.env.PROD ? !data.draft : true))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+const blogURL = new URL('/blog/', Astro.site).href;
+const structuredData = [
+  {
+    '@context': 'https://schema.org', '@type': 'Blog',
+    '@id': `${blogURL}#blog`, name: 'Engineering Blog: Backend, AWS & Identity', url: blogURL,
+    author: { '@id': 'https://mabdelsamei.com/#person' },
+    isPartOf: { '@id': 'https://mabdelsamei.com/#website' },
+    // References only (by @id): each post's full BlogPosting, dates included,
+    // lives on its own page, so the listing doesn't carry dates Google could
+    // attach to the index itself.
+    blogPost: posts.map((post) => {
+      const url = new URL(`/blog/${post.id}/`, Astro.site).href;
+      return { '@type': 'BlogPosting', '@id': `${url}#article`, headline: post.data.title, url };
+    }),
+  },
+  {
+    '@context': 'https://schema.org', '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: new URL('/', Astro.site).href },
+      { '@type': 'ListItem', position: 2, name: 'Blog', item: blogURL },
+    ],
+  },
+];
 ---
-<BlogLayout title="Engineering Blog: Backend, AWS & Identity" description="Practical notes on backend systems, AWS, and identity infrastructure. Implementation details, tradeoffs, and the parts the docs skip.">
+<BlogLayout structuredData={structuredData} title="Engineering Blog: Backend, AWS & Identity" description="Practical notes on backend systems, AWS, and identity infrastructure. Implementation details, tradeoffs, and the parts the docs skip.">
   <header class="hero blog-hero">
     <p class="hero-eyebrow"><span class="accent" aria-hidden="true">//</span> FIELD NOTES</p>
     <h1 class="blog-title">From the workbench.</h1>

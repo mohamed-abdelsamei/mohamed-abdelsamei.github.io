@@ -471,3 +471,24 @@
 .prose p { line-height: 1.85; }
 .prose table { font-size: 1rem; }
 .prose pre, .prose code, .prose .architecture-flow { font-family: var(--mono); }
+
+/* Keep the introduction close to the title on phones. */
+.post-mobile-contents { display: none; }
+@media (max-width: 700px) {
+  .post-header-wrap { padding-top: 28px; }
+  .post-tags { margin-top: 18px; gap: 6px; }
+  .post-tags > span { padding: 3px 8px; font-size: .625rem; }
+  .post-hero-title { margin-top: 18px; line-height: 1.2; }
+  .post-meta-row { margin-top: 18px; gap: 8px 12px; font-size: .625rem; }
+  .post-divider { margin-top: 20px; }
+  .post-body-wrap { padding-top: 22px; }
+  .post-poster { margin-bottom: 18px; }
+  .post-contents { display: none; }
+  .post-mobile-contents { display: block; margin-bottom: 22px; border-block: 1px solid var(--hair); }
+  .post-mobile-contents summary { padding-block: 14px; min-height: 44px; cursor: pointer; color: var(--head); font-size: .75rem; }
+  .post-mobile-contents nav { padding-bottom: 18px; }
+  .post-mobile-contents ol { padding-left: 1.5em; font: .9375rem/1.6 var(--sans); }
+  .post-mobile-contents li + li { margin-top: 12px; }
+  .post-mobile-contents a { text-underline-offset: 4px; }
+  .post-mobile-contents a:hover { color: var(--accent); }
+}
