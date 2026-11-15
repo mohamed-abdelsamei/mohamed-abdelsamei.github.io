@@ -1,5 +1,13 @@
 ---
+// Self-hosted JetBrains Mono (bundled from @fontsource, served from our origin):
+// loading it from fonts.googleapis.com sent every visitor's IP to Google, which
+// German courts have held to need consent (LG München I, 3 O 17493/20). Keep it local.
+import '@fontsource/jetbrains-mono/400.css';
+import '@fontsource/jetbrains-mono/500.css';
+import '@fontsource/jetbrains-mono/700.css';
+import '@fontsource/jetbrains-mono/400-italic.css';
 import '../styles/global.css';
+import { PERSON_DESCRIPTION } from '../lib/site';
 
 export interface Props {
   title: string;
@@ -9,6 +17,9 @@ export interface Props {
   imageAlt?: string;
   structuredData?: Record<string, unknown>[];
   publishedTime?: Date;
+  modifiedTime?: Date;
+  /** Site-relative path of this page's markdown twin, for agents (rel=alternate). */
+  markdownPath?: string;
   tags?: string[];
   navAccent?: 'contact' | 'writing' | 'projects';
   noindex?: boolean;
@@ -22,6 +33,8 @@ const {
   imageAlt = title,
   structuredData = [],
   publishedTime,
+  modifiedTime,
+  markdownPath,
   tags = [],
   navAccent = 'contact',
   noindex = false,
@@ -39,8 +52,7 @@ const personSchema = {
   url: 'https://mabdelsamei.com/',
   image: 'https://mabdelsamei.com/og-image.png',
   jobTitle: 'Senior Backend Engineer',
-  description:
-    'Backend engineer with ten years of experience building backend systems. Current work and interests include AWS infrastructure, verifiable credentials, identity for humans and AI agents, and safe agent execution environments. Publishes practical technical writing and builds developer tools.',
+  description: PERSON_DESCRIPTION,
   address: { '@type': 'PostalAddress', addressLocality: 'Berlin', addressCountry: 'DE' },
   knowsAbout: [
     'Digital Identity', 'Verifiable Credentials', 'OID4VP', 'OID4VCI', 'Self-Sovereign Identity',
@@ -54,27 +66,36 @@ const personSchema = {
   ],
 };
 
-const websiteSchema = Astro.url.pathname === '/' ? {
+// Google's site name (the line above the URL in results) is read from the homepage's
+// copy of this entity only, and applies domain-wide. The other pages carry an identical
+// copy so their `isPartOf` / `publisher` @id references resolve on the same page.
+const websiteSchema = {
   '@context': 'https://schema.org',
   '@type': 'WebSite',
   '@id': 'https://mabdelsamei.com/#website',
   name: 'Mohamed Abdelsamei',
-  alternateName: 'mabdelsamei.com',
+  alternateName: 'mabdelsamei',
   url: 'https://mabdelsamei.com/',
   publisher: { '@id': 'https://mabdelsamei.com/#person' },
-} : null;
+};
 
 const blogPostingSchema =
   ogType === 'article' && publishedTime
     ? {
         '@context': 'https://schema.org',
         '@type': 'BlogPosting',
-        headline: title,
+        '@id': `${canonicalURL}#article`,
+        headline: title.replace(/ — Mohamed Abdelsamei$/, ''),
         description,
         datePublished: publishedTime.toISOString(),
+        dateModified: (modifiedTime ?? publishedTime).toISOString(),
         url: canonicalURL.toString(),
+        mainEntityOfPage: { '@type': 'WebPage', '@id': canonicalURL.toString() },
         image: ogImage.toString(),
-        author: { '@type': 'Person', name: 'Mohamed Abdelsamei', url: 'https://mabdelsamei.com/' },
+        inLanguage: 'en',
+        author: { '@type': 'Person', '@id': 'https://mabdelsamei.com/#person', name: 'Mohamed Abdelsamei', url: 'https://mabdelsamei.com/' },
+        publisher: { '@id': 'https://mabdelsamei.com/#person' },
+        isPartOf: { '@id': 'https://mabdelsamei.com/#website' },
         keywords: tags.join(', '),
       }
     : null;
@@ -87,8 +108,9 @@ const blogPostingSchema =
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    {noindex && <meta name="robots" content="noindex" />}
+    <meta name="robots" content={noindex ? 'noindex' : 'index, follow, max-image-preview:large, max-snippet:-1'} />
     <link rel="canonical" href={canonicalURL} />
+    {markdownPath && <link rel="alternate" type="text/markdown" href={markdownPath} title="Markdown version" />}
 
     <!-- Open Graph -->
     <meta property="og:type" content={ogType} />
@@ -101,6 +123,14 @@ const blogPostingSchema =
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:locale" content="en_US" />
+    {ogType === 'article' && publishedTime && (
+      <>
+        <meta property="article:published_time" content={publishedTime.toISOString()} />
+        <meta property="article:modified_time" content={(modifiedTime ?? publishedTime).toISOString()} />
+        <meta property="article:author" content="https://mabdelsamei.com/" />
+        {tags.map((tag) => <meta property="article:tag" content={tag} />)}
+      </>
+    )}
     {ogType === 'profile' && (
       <>
         <meta property="profile:first_name" content="Mohamed" />
@@ -117,19 +147,13 @@ const blogPostingSchema =
     <meta name="twitter:image:alt" content={imageAlt} />
 
     <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
-    {websiteSchema && <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />}
+    <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
     {blogPostingSchema && (
       <script type="application/ld+json" set:html={JSON.stringify(blogPostingSchema)} />
     )}
 
     {structuredData.map(schema => <script type="application/ld+json" set:html={JSON.stringify(schema).replace(/</g, '\\u003c')} />)}
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,700;1,400&display=swap"
-      rel="stylesheet"
-    />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="icon" href="/favicon_32.png" sizes="32x32" />
     <link rel="apple-touch-icon" href="/favicon_180.png" />

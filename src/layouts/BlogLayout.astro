@@ -7,11 +7,14 @@ interface Props {
   description: string;
   type?: 'website' | 'article';
   publishedTime?: Date;
+  modifiedTime?: Date;
   tags?: string[];
   image?: string;
+  markdownPath?: string;
+  structuredData?: Record<string, unknown>[];
 }
 
-const { title, description, type = 'website', publishedTime, tags = [], image } = Astro.props;
+const { title, description, type = 'website', publishedTime, modifiedTime, tags = [], image, markdownPath, structuredData } = Astro.props;
 
 const pageTitle = `${title} — Mohamed Abdelsamei`;
 ---
@@ -22,6 +25,9 @@ const pageTitle = `${title} — Mohamed Abdelsamei`;
   ogType={type}
   image={image}
   publishedTime={publishedTime}
+  modifiedTime={modifiedTime}
+  markdownPath={markdownPath}
+  structuredData={structuredData}
   tags={tags}
   navAccent="writing"
 >

@@ -27,6 +27,16 @@ const wordCount = post.body ? post.body.trim().split(/\s+/).length : 0;
 const readMinutes = Math.max(1, Math.round(wordCount / WORDS_PER_MINUTE));
 const pubDateStr = post.data.pubDate.toISOString().slice(0, 10);
 const [firstTag, ...restTags] = post.data.tags;
+
+const postURL = new URL(`/blog/${post.id}/`, Astro.site).href;
+const breadcrumbs = {
+  '@context': 'https://schema.org', '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: new URL('/', Astro.site).href },
+    { '@type': 'ListItem', position: 2, name: 'Blog', item: new URL('/blog/', Astro.site).href },
+    { '@type': 'ListItem', position: 3, name: post.data.title, item: postURL },
+  ],
+};
 ---
 
 <BlogLayout
@@ -34,8 +44,11 @@ const [firstTag, ...restTags] = post.data.tags;
   description={post.data.description}
   type="article"
   publishedTime={post.data.pubDate}
+  modifiedTime={post.data.updatedDate}
   tags={post.data.tags}
   image={post.data.ogImage}
+  markdownPath={`/blog/${post.id}.md`}
+  structuredData={[breadcrumbs]}
 >
   <div class="post-header-wrap" aria-label={post.data.title}>
     <div class="post-header-inner">

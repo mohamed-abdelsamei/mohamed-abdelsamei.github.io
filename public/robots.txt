@@ -1,3 +1,19 @@
+# Search engines and AI agents — including AI training crawlers — are welcome
+# to crawl everything. This is a deliberate choice (see CLAUDE.md).
+# Agent-oriented index (llmstxt.org): https://mabdelsamei.com/llms.txt
+# Every post/project also has a plain-markdown twin at <path>.md
+
 User-agent: *
 Allow: /
+
+# Search engines index the HTML pages only; the .md twins are duplicates of them.
+User-agent: Googlebot
+User-agent: Bingbot
+User-agent: Applebot
+User-agent: DuckDuckBot
+User-agent: YandexBot
+User-agent: Baiduspider
+Disallow: /*.md$
+Allow: /
+
 Sitemap: https://mabdelsamei.com/sitemap-index.xml
